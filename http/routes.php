@@ -1,4 +1,4 @@
 <?php
 
-Router::get('tutorials/foreach-loop', 'Tutorials@foreachLoop');
-Router::get('/', 'Pages@Home');
+$router->get('tutorials/foreach-loop', 'Tutorials@foreachLoop');
+$router->get('/', 'Pages@home');

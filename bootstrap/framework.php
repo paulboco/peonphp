@@ -23,6 +23,6 @@ require('requires.php');
 */
 
 $router = new Router();
-$router->registerRoutes();
+require(path() . '/http/routes.php');
 dd($router);
 $router->dispatch();

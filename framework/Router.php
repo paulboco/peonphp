@@ -17,6 +17,11 @@ class Router
      */
     protected $method;
 
+    /**
+     * The Route Parameters
+     */
+    protected $params;
+
 
     /**
      * Class Constructor
@@ -28,7 +33,7 @@ class Router
     /**
      * Register GET Routes
      */
-    public static function get($path, $controllerAction)
+    public function get($path, $controllerAction)
     {
         list($controller, $action) = $this->parseControllerAction($controllerAction);
 
@@ -60,20 +65,39 @@ class Router
      */
     private function parseUri()
     {
-        $uri = urldecode(
-            parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
-        );
-
-        if ($uri !== '/' && file_exists(__DIR__.'/public'.$uri)) {
-            return false;
-        }
-
-        require_once __DIR__.'/public/index.php';
-
         $parts = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
 
-        $this->controller = $parts[0];
-        $this->method = $parts[1];
+        $parts = $this->checkForHomePage($parts);
+
+        if (count($parts) < 2) {
+            // you should throw a 404 here
+            throw new Exception("Page Not Found", 1);
+        }
+
+        $this->controller = array_shift($parts);
+        $this->method = array_shift($parts);
+
+        if ( ! empty($parts)) {
+            $this->params = $parts;
+        }
+    }
+
+    /**
+     * Check if the URI is to the home page.
+     *
+     * @param  array  $parts
+     * @return boolean
+     */
+    private function checkForHomePage($parts)
+    {
+        if (count($parts) == 1 and $parts[0] === '') {
+            return array(
+                'Pages',
+                'home',
+            );
+        }
+
+        return $parts;
     }
 
     /**
@@ -83,7 +107,7 @@ class Router
      * @param  string  $controllerAction
      * @return void
      */
-    private static function registerRoute($verb, $path, $controller, $action, $params = array())
+    private function registerRoute($verb, $path, $controller, $action, $params = array())
     {
         $this->routes[] = array(
             'verb' => $verb,
