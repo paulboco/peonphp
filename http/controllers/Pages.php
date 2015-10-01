@@ -5,16 +5,16 @@
 */
 class Pages
 {
-	/**
-	 * Create Pages object
-	 */
-	function __construct()
-	{
-		# code...
-	}
+    /**
+     * Create Pages object
+     */
+    function __construct()
+    {
+        # code...
+    }
 
-	public function home()
-	{
-		require()
-	}
+    public function home()
+    {
+        require()
+    }
 }

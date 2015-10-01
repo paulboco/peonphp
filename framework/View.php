@@ -5,9 +5,9 @@
 */
 class View
 {
-	
-	function __construct()
-	{
-		
-	}
+
+    function __construct()
+    {
+
+    }
 }
