@@ -15,4 +15,6 @@ require('requires.php');
 */
 
 $router = new Router();
+$router->registerRoutes();
+dd($router);
 $router->dispatch();

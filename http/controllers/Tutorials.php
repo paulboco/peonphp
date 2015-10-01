@@ -3,12 +3,12 @@
 /**
 * Tutorial Controller
 */
-class Tutorial
+class Tutorials
 {
-	public function foreach_loop() {
+	public function foreachLoop() {
 		$data = array(
 			'title' => 'Basic foreach() Tutorial',
-			'description' => 'It\'s a titorial about each four.',
+			'description' => 'It\'s a tutorial about foreach loops.',
 		);
 
 		return view('tutorials/foreach_loop', $data);

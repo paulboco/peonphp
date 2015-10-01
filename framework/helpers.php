@@ -25,10 +25,23 @@ function path() {
  */
 function view($template, $data) {
 	$template = file_get_contents(path() . "/views/{$template}.php");
-dd($template);
-	$search = array_keys($data);
+
+	$search = format_search_strings(array_keys($data));
+
 	$replace = array_values($data);
 
 	$template = str_replace($search, $replace, $template);
 	echo $template;
 }
+
+function format_search_strings($search) {
+	return array_map(
+		function($value) {
+		    return '{{' . $value . '}}';
+		},
+		$search
+	);
+}
+
+
+

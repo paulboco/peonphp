@@ -11,8 +11,8 @@
 |
 */
 
-require('../framework/router.php');
-require('../framework/view.php');
-require('../framework/mssql.php');
+require('../framework/Router.php');
+require('../framework/View.php');
+require('../framework/Mssql.php');
 require('../framework/helpers.php');
 
