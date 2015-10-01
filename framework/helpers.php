@@ -12,12 +12,25 @@ function dd($var) {
 }
 
 /**
+ * Export Variable and Die
+ *
+ * @param mixed $var
+ * @return void
+ */
+function dv($var) {
+    echo '<pre>';
+    var_export($var);
+    echo '</pre>';
+    die;
+}
+
+/**
  * Get The Filesystem Path
  *
  * @return string
  */
 function path() {
-    return realpath('../');
+    return realpath(__DIR__ . '/../');
 }
 
 /**

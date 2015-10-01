@@ -70,8 +70,7 @@ class Router
         $parts = $this->checkForHomePage($parts);
 
         if (count($parts) < 2) {
-            // you should throw a 404 here
-            throw new Exception("Page Not Found", 1);
+            $this->send404();
         }
 
         $this->controller = array_shift($parts);
@@ -124,6 +123,16 @@ class Router
     private function parseControllerAction($controllerAction)
     {
         return explode('@', $controllerAction);
+    }
+
+    /**
+     * Send 404
+     */
+    private function send404()
+    {
+        header('Page Not Found', true, 404);
+        echo 'Page Not Found';
+        exit();
     }
 
 }
