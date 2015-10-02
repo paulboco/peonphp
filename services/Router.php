@@ -40,31 +40,32 @@ class Router
     public function dispatch()
     {
         // Send a 404 if the controller doesn't exist
-        if ( ! file_exists(path() . "/app/http/controllers/{$this->controller}.php")) {
+        if ( ! file_exists(path() . "/app/Http/Controllers/{$this->controller}.php")) {
             $this->send404();
         }
 
         // All's clear, include the controller file
-        require(path() . "/app/http/controllers/{$this->controller}.php");
+        require(path() . "/app/Http/Controllers/{$this->controller}.php");
 
-        // Check that the controller method exists
-        if ( ! method_exists($this->controller, $this->method)) {
+        // Call the controller method if it exists
+        $controller = "Http\\Controllers\\{$this->controller}";
+
+        if ( ! method_exists($controller, $this->method)) {
             $this->send404();
         }
 
-        // Call the controller method
         call_user_func_array(array(
-            new $this->controller,
+            new $controller,
             $this->method
         ), $this->params);
     }
 
     /**
      * Prepare the URI
-     * 
+     *
      * @return void
      */
-    private function prepareUri() 
+    private function prepareUri()
     {
         $this->uri = trim($_SERVER['REQUEST_URI'], '/') ?: 'page/home';
     }
@@ -77,7 +78,7 @@ class Router
     private function extractSegments()
     {
         $segments = explode('/', $this->uri);
-        
+
         $this->controller = $this->formatController(array_shift($segments));
         $this->method = $this->formatMethod(array_shift($segments));
         $this->params = empty($segments) ? array() : $segments;

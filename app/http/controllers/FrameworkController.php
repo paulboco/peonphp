@@ -1,9 +1,11 @@
 <?php
 
+namespace Http\Controllers;
+
 /**
 * Framework Controller
 */
-class FrameworkController
+class FrameworkController extends Controller
 {
     /**
      * Framework Home Page
