@@ -16,7 +16,7 @@ class PageController
     public function home()
     {
         view('/views/page/home.tpl', array(
-            'title' => 'The Bartlett Test Repository',
+            'title' => 'The Peon Framework',
             'leftColumnTitle' => 'Left Column Title',
         ));
     }
