@@ -15,7 +15,7 @@ class PageController
 
     public function home()
     {
-        require_once(path() . '/views/pages/home.php');
+        require_once(path() . '/views/pages/home.tpl');
     }
 
 

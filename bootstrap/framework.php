@@ -10,11 +10,9 @@ require('requires.php');
 
 /*
 |--------------------------------------------------------------------------
-| Initialize The Routes
+| Dispatch the Route
 |--------------------------------------------------------------------------
 */
 
 $router = new Router();
-require(path() . '/http/routes.php');
-dv($router);
 $router->dispatch();

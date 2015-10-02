@@ -1,10 +1,21 @@
 <?php
 
 /**
-* Tutorial Controller
+* Framework Controller
 */
-class TutorialController
+class FrameworkController
 {
+    /**
+     * Framework Home Page
+     */
+    public function home()
+    {
+        require_once(path() . '/views/framework/home.tpl');
+    }
+
+    /**
+     * Foreach Loop
+     */
     public function foreachLoop() {
         $items = array(
             array('id' => 1, 'name' => 'Herman Munster'),
@@ -14,7 +25,7 @@ class TutorialController
             array('id' => 4, 'name' => 'Grandpa Munster'),
         );
 
-        require_once(path() . '/views/tutorials/foreach.php');
+        require_once(path() . '/views/framework/foreach.tpl');
     }
 
 

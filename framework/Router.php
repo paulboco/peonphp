@@ -3,11 +3,6 @@
 class Router
 {
     /**
-     * All Registered Routes
-     */
-    protected $routes = array();
-
-    /**
      * The Controller
      */
     protected $controller;
@@ -32,21 +27,8 @@ class Router
      * Class Constructor
      */
     public function __construct() {
-        $this->parseUri();
-    }
-
-    /**
-     * Register A Route
-     *
-     * @param  string  $path
-     * @param  string  $controllerAction
-     * @return void
-     */
-    public function register($path, $controllerAction)
-    {
-        list($controller, $action) = $this->parseControllerAction($controllerAction);
-
-        $this->registerRoute('GET', $path, $controller, $action);
+        $this->prepareUri();
+        $this->extractSegments();
     }
 
     /**
@@ -57,47 +39,13 @@ class Router
     public function dispatch()
     {
         // Include the controller class
-        require(path() . "/http/controllers/{$this->controller}Controller.php");
+        require(path() . "/http/controllers/{$this->controller}.php");
 
         // Call the controller method
-        call_user_func_array(
-            array(
-                new $this->controller,
-                $this->method
-            ),
-            array()
-        );
-    }
-
-    /**
-     * Parse Controller Action
-     *
-     * @param  string  $controllerAction 
-     * @return string
-     */
-    private function parseControllerAction($controllerAction)
-    {
-        return explode('@', $controllerAction);
-    }
-
-    /**
-     * Parse The Request URI
-     *
-     * @return void
-     */
-    private function parseUri()
-    {
-        $this->prepareUri();
-
-        $parts = explode('/', $this->uri);
-
-        $parts = $this->checkForHomePage($parts);
-
-        if (count($parts) < 2) {
-            $this->send404();
-        }
-
-        $this->setAttributes($parts);
+        call_user_func_array(array(
+            new $this->controller,
+            $this->method
+        ), $this->params);
     }
 
     /**
@@ -105,27 +53,49 @@ class Router
      * 
      * @return void
      */
-    private function prepareUri()
+    private function prepareUri() 
     {
-        $this->uri = trim($_SERVER['REQUEST_URI'], '/') ?: '/';
+        $this->uri = trim($_SERVER['REQUEST_URI'], '/') ?: 'page/home';
     }
 
     /**
-     * Check if the URI is to the home page.
+     * Extract URI Segments to Class Properties
      *
-     * @param  array  $parts
-     * @return array
+     * @return void
      */
-    private function checkForHomePage($parts)
+    private function extractSegments()
     {
-        if (count($parts) == 1 and $parts[0] === '') {
-            return array(
-                'Page',
-                'home',
-            );
-        }
+        $segments = explode('/', $this->uri);
+        
+        $this->controller = $this->formatController(array_shift($segments));
+        $this->method = $this->formatMethod(array_shift($segments));
+        $this->params = empty($segments) ? array() : $segments;
+    }
 
-        return $parts;
+    /**
+     * Format the Controller Segment
+     *
+     * @param  string  $controller
+     * @return void
+     */
+    private function formatController($controller)
+    {
+        return ucfirst($controller) . 'Controller';
+    }
+
+    /**
+     * Format the Controller Method Segment
+     *
+     * @param  string  $method
+     * @return void
+     */
+    private function formatMethod($method)
+    {
+        $segments = array_map(function($segment) {
+            return ucfirst($segment);
+        }, explode('-', $method));
+
+        return lcfirst(implode('', $segments));
     }
 
     /**
@@ -138,44 +108,6 @@ class Router
         header('Page Not Found', true, 404);
         echo 'Page Not Found';
         exit();
-    }
-
-    /**
-     * Set Class Attributes
-     *
-     * @param  array  $parts
-     * @return void
-     */
-    private function setAttributes($parts)
-    {
-        $this->controller = array_shift($parts);
-        $this->controller = ucfirst($this->controller);
-
-        $this->method = array_shift($parts);
-
-        if ( ! empty($parts)) {
-            $this->params = $parts;
-        }
-    }
-
-    /**
-     * Register A Single Route
-     *
-     * @param  string  $verb
-     * @param  string  $path
-     * @param  string  $controller
-     * @param  string  $action
-     * @return void
-     */
-    private function registerRoute($verb, $path, $controller, $action, $params = array())
-    {
-        $this->routes[] = array(
-            'verb' => $verb,
-            'path' => $path,
-            'controller' => $controller,
-            'action' => $action,
-            'params' => $params,
-        );
     }
 
 
