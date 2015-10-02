@@ -1,20 +1,11 @@
 <?php
 
 /**
-* The Pages Controller
+* Tutorial Controller
 */
-class Pages
+class TutorialController
 {
-    /**
-     * Create Pages object
-     */
-    function __construct()
-    {
-        # code...
-    }
-
-    public function home()
-    {
+    public function foreachLoop() {
         $items = array(
             array('id' => 1, 'name' => 'Herman Munster'),
             array('id' => 2, 'name' => 'Lilly Munster'),

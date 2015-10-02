@@ -1,4 +1,4 @@
 <?php
 
-$router->get('tutorials/foreach', 'Tutorials@foreach');
-$router->get('/', 'Pages@home');
+$router->register('tutorials/foreach-loop', 'TutorialController@foreachLoop');
+$router->register('/', 'PageController@home');
