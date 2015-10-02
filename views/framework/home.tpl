@@ -1,7 +1,11 @@
-<?php require_once(path() . '/views/layout/header.tpl') ?>
+<?php view('/views/layout/header.tpl') ?>
 
 <h1 class="page-header">Framework</h1>
 
-<p>All kinds of information about the framework. </p>
+<div class="row">
+    <div class="col-md-12">
+		<p>All kinds of information about the framework. </p>
+	</div>
+</div>
 
-<?php require_once(path() . '/views/layout/footer.tpl') ?>
+<?php view('/views/layout/footer.tpl') ?>

@@ -34,12 +34,23 @@ class Router
     /**
      * Dispatch The Route
      *
+     * @todo   This method is bloated and needs to be broken up
      * @return void
      */
     public function dispatch()
     {
-        // Include the controller class
-        require(path() . "/http/controllers/{$this->controller}.php");
+        // Send a 404 if the controller doesn't exist
+        if ( ! file_exists(path() . "/app/http/controllers/{$this->controller}.php")) {
+            $this->send404();
+        }
+
+        // All's clear, include the controller file
+        require(path() . "/app/http/controllers/{$this->controller}.php");
+
+        // Check that the controller method exists
+        if ( ! method_exists($this->controller, $this->method)) {
+            $this->send404();
+        }
 
         // Call the controller method
         call_user_func_array(array(
@@ -106,7 +117,7 @@ class Router
     private function send404()
     {
         header('Page Not Found', true, 404);
-        echo 'Page Not Found';
+        view('/views/errors/404.tpl');
         exit();
     }
 

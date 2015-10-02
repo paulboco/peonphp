@@ -15,7 +15,10 @@ class PageController
 
     public function home()
     {
-        require_once(path() . '/views/pages/home.tpl');
+        view('/views/page/home.tpl', array(
+            'title' => 'The Bartlett Test Repository',
+            'leftColumnTitle' => 'Left Column Title',
+        ));
     }
 
 

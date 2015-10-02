@@ -1,4 +1,4 @@
-<?php require_once(path() . '/views/layout/header.tpl') ?>
+<?php view('/views/layout/header.tpl') ?>
 
 <h1 class="page-header">Framework</h1>
 
@@ -25,4 +25,4 @@
     <?php endforeach ?>
 </select>
 
-<?php require_once(path() . '/views/layout/footer.tpl') ?>
+<?php view('/views/layout/footer.tpl') ?>
