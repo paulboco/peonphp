@@ -1,5 +1,7 @@
 <?php
 
+namespace Peon;
+
 class Router
 {
     /**
@@ -39,23 +41,20 @@ class Router
      */
     public function dispatch()
     {
-        // Send a 404 if the controller doesn't exist
-        if ( ! file_exists(path() . "/app/Http/Controllers/{$this->controller}.php")) {
+        $controllerClass = "App\\Http\\Controllers\\{$this->controller}";
+
+        // Send a 404 if the controller or method doesn't exist
+        if ( ! class_exists($controllerClass)) {
             $this->send404();
         }
 
-        // All's clear, include the controller file
-        require(path() . "/app/Http/Controllers/{$this->controller}.php");
+        if ( ! method_exists($controllerClass, $this->method)) {
+            $this->send404();
+        }
 
         // Call the controller method if it exists
-        $controller = "Http\\Controllers\\{$this->controller}";
-
-        if ( ! method_exists($controller, $this->method)) {
-            $this->send404();
-        }
-
         call_user_func_array(array(
-            new $controller,
+            new $controllerClass,
             $this->method
         ), $this->params);
     }

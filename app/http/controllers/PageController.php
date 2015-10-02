@@ -1,22 +1,18 @@
 <?php
 
+namespace App\Http\Controllers;
+
+use Config;
+
 /**
 * The Page Controller
 */
-class PageController
+class PageController extends Controller
 {
-    /**
-     * Create Pages object
-     */
-    function __construct()
-    {
-        # code...
-    }
-
     public function home()
     {
         view('/views/page/home.tpl', array(
-            'title' => 'The Peon Framework',
+            'title' => Config::APP_NAME,
             'leftColumnTitle' => 'Left Column Title',
         ));
     }

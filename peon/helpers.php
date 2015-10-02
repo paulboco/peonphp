@@ -1,14 +1,19 @@
 <?php
 
+function e($string) {
+    echo htmlentities($string);
+}
+
 /**
  * Dump Variable and Die
  *
- * @param mixed $var
  * @return void
  */
-function dd($var) {
-    var_dump($var);
-    die;
+function dd() {
+    array_map(function ($x) {
+        var_dump($x);
+    }, func_get_args());
+    die(1);
 }
 
 /**
@@ -38,6 +43,6 @@ function path() {
  */
 function view($template, $data = array()) {
     extract($data);
-    require_once(path() . $template);
+    require(path() . $template);
 }
 
