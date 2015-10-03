@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(E_ALL);
+
 /**
  * PHPeon Framework - A Very Simple PHP Framework
  *
