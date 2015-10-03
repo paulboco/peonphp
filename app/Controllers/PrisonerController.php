@@ -12,7 +12,7 @@ class PrisonerController extends Controller
      */
     public function intakeForm() {
         $prisoner = new \App\Prisoner;
-        $data = $prisoner->getAll();
+        $data = $prisoner->all();
 
         view('prisoner/intake_form', $data);
     }
@@ -33,7 +33,6 @@ class PrisonerController extends Controller
     public function identification()
     {
         $args = func_get_args();
-dd($args);
     }
 
 

@@ -6,8 +6,8 @@
 |--------------------------------------------------------------------------
 */
 
-require __DIR__ . '/../peon/Psr4Autoloader.php';
-$loader = new \Peon\Psr4Autoloader;
+require __DIR__ . '/../vendor/phpfig/Psr4Autoloader.php';
+$loader = new \Phpfig\Psr4Autoloader;
 $loader->register();
 
 /*
@@ -18,6 +18,7 @@ $loader->register();
 
 $loader->addNamespace('App', __DIR__ . '/../app');
 $loader->addNamespace('Peon', __DIR__ . '/../peon');
+$loader->addNamespace('Vendor', __DIR__ . '/../vendor');
 
 /*
 |--------------------------------------------------------------------------
