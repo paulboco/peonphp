@@ -9,12 +9,12 @@
 
 /*
 |--------------------------------------------------------------------------
-| Boot The Framework
+| Boot The Application
 |--------------------------------------------------------------------------
 |
-| Include the bootstrapper to get the framework started.
-| This file (index.php) will be the only file publicly accessible.
+| This file (index.php) is the only file, in the
+| PEON framework, that is publicly accessible.
 |
 */
 
-require('../bootstrap/framework.php');
+require('../bootstrap/app.php');

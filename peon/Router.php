@@ -83,7 +83,7 @@ class Router
      */
     private function formatController($controller)
     {
-        return "App\\Http\\Controllers\\"
+        return "App\\Controllers\\"
                . ucfirst($controller)
                . 'Controller';
     }
