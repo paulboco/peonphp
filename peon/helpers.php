@@ -1,5 +1,22 @@
 <?php
 
+/**
+ * Get The Filesystem Path
+ *
+ * @return string
+ */
+function path() {
+    return realpath(__DIR__ . '/../');
+}
+
+/**
+ * View Helper
+ */
+function view($template, $data = array()) {
+    extract($data);
+    include(path() . "/views/{$template}.tpl");
+}
+
 function e($string) {
     echo htmlentities($string);
 }
@@ -28,21 +45,3 @@ function dv($var) {
     echo '</pre>';
     die;
 }
-
-/**
- * Get The Filesystem Path
- *
- * @return string
- */
-function path() {
-    return realpath(__DIR__ . '/../');
-}
-
-/**
- * View Helper
- */
-function view($template, $data = array()) {
-    extract($data);
-    require(path() . $template);
-}
-

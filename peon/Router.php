@@ -41,23 +41,15 @@ class Router
      */
     public function dispatch()
     {
-        $controllerClass = "App\\Http\\Controllers\\{$this->controller}";
-
-        // Send a 404 if the controller or method doesn't exist
-        if ( ! class_exists($controllerClass)) {
-            $this->send404();
-        }
-
-        if ( ! method_exists($controllerClass, $this->method)) {
-            $this->send404();
-        }
-
-        // Call the controller method if it exists
-        call_user_func_array(array(
-            new $controllerClass,
-            $this->method
-        ), $this->params);
+        $this->validateRoute();
+        $this->callControllerMethod();
     }
+
+
+
+
+
+
 
     /**
      * Prepare the URI
@@ -91,7 +83,9 @@ class Router
      */
     private function formatController($controller)
     {
-        return ucfirst($controller) . 'Controller';
+        return "App\\Http\\Controllers\\"
+               . ucfirst($controller)
+               . 'Controller';
     }
 
     /**
@@ -110,6 +104,19 @@ class Router
     }
 
     /**
+     * Validate The Route
+     *
+     * @return void
+     */
+    private function validateRoute()
+    {
+        // Send a 404 if the controller method doesn't exist
+        if ( ! method_exists($this->controller, $this->method)) {
+            $this->send404();
+        }
+    }
+
+    /**
      * Send 404
      *
      * @return void
@@ -117,8 +124,21 @@ class Router
     private function send404()
     {
         header('Page Not Found', true, 404);
-        view('/views/errors/404.tpl');
+        view('errors/404');
         exit();
+    }
+
+    /**
+     * Call the Controller Method
+     *
+     * @return void
+     */
+    private function callControllerMethod()
+    {
+        call_user_func_array(array(
+            new $this->controller,
+            $this->method
+        ), $this->params);
     }
 
 

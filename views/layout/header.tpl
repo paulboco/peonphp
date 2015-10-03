@@ -13,5 +13,5 @@
     </style>
 </head>
 <body>
-    <?php view('/views/layout/menu.tpl') ?>
+    <?php view('layout/menu') ?>
     <div class="container">

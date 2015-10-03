@@ -9,11 +9,15 @@ use Config;
 */
 class PageController extends Controller
 {
+    /**
+     * Home Page
+     *
+     * @return void
+     */
     public function home()
     {
-        view('/views/page/home.tpl', array(
-            'title' => Config::APP_NAME,
-            'leftColumnTitle' => 'Left Column Title',
+        return view('page/home', array(
+            'dynamicHeading' => 'Dynamic Heading',
         ));
     }
 
