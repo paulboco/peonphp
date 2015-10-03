@@ -1,10 +1,7 @@
 <?php view('layout/header') ?>
 
-<h1 class="page-header">Prisoner</h1>
+<h1 class="page-header">Prisoner Intake Form</h1>
 
-<h2>Forms</h2>
-
-<h3>Prisoner Intake Form</h3>
 
 <div class="row">
     <div class="col-md-6">
@@ -12,13 +9,13 @@
             <!-- name -->
             <div class="form-group">
                 <label for="prisonerName">Name</label>
-                <input type="text" class="form-control" id="prisonerName" placeholder="Name">
+                <input type="text" class="form-control" id="prisonerName">
             </div>
 
             <!-- alias -->
             <div class="form-group">
                 <label for="prisonerAlias">Alias</label>
-                <input type="text" class="form-control" id="prisonerAlias" placeholder="Alias">
+                <input type="text" class="form-control" id="prisonerAlias">
             </div>
 
             <!-- cell mate -->

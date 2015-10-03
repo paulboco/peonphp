@@ -17,6 +17,15 @@ function view($template, $data = array()) {
     include(path() . "/views/{$template}.tpl");
 }
 
+
+/**
+ * Redirect
+ */
+function redirect($uri) {
+    header('Location: ' . "http://{$_SERVER['SERVER_NAME']}/{$uri}");
+}
+
+
 function e($string) {
     echo htmlentities($string);
 }

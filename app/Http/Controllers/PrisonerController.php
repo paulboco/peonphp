@@ -24,11 +24,17 @@ class PrisonerController extends Controller
     {
         // save the intake form
 
-        redirect('page/home');
+        redirect('prisoner/identification/param1');
     }
 
-}
+    /**
+     * Show Identification
+     */
+    public function identification()
+    {
+        $args = func_get_args();
+dd($args);
+    }
 
-function redirect($uri) {
-    header('Location: ' . "http://{$_SERVER['SERVER_NAME']}/{$uri}");
+
 }
