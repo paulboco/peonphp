@@ -5,8 +5,8 @@
  *
  * @return string
  */
-function path() {
-    return realpath(__DIR__ . '/../');
+function path($extension = '') {
+    return realpath(__DIR__ . '/../') . $extension;
 }
 
 /**
@@ -14,7 +14,7 @@ function path() {
  */
 function view($template, $data = array()) {
     extract($data);
-    include(path() . "/views/{$template}.tpl");
+    include path() . "/views/{$template}.tpl";
 }
 
 

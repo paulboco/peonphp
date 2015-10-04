@@ -3,9 +3,9 @@
 error_reporting(E_ALL);
 
 /**
- * PHPeon Framework - A Very Simple PHP Framework
+ * PEON Framework - A Very Simple PHP Framework
  *
- * @package  Laravel
+ * @package  PEON
  * @author   Paul Sellers <paulboco@hotmail.com>
  */
 
@@ -14,9 +14,9 @@ error_reporting(E_ALL);
 | Boot The Application
 |--------------------------------------------------------------------------
 |
-| This file (index.php) is the only file, in the
-| PEON framework, that is publicly accessible.
+| This file (index.php) is the only file in the
+| PEON framework that is publicly accessible.
 |
 */
 
-require __DIR__ . '../bootstrap/app.php');
+require __DIR__ . '/../bootstrap/app.php';
