@@ -8,32 +8,50 @@ namespace App\Controllers;
 class PrisonerController extends Controller
 {
     /**
-     * Intake Form
+     * Index
      */
-    public function intakeForm() {
-        $prisoner = new \App\Prisoner;
-        $data = $prisoner->all();
+    public function index() {
 
-        view('prisoner/intake_form', $data);
+        $prisoner = new \App\Prisoner;
+$prisoner->seedDb();
+
+        $rows = $prisoner->all();
+dd($rows);
+        view('prisoner/index');
     }
 
     /**
-     * Store Intake Form
+     * Create
+     */
+    public function create() {}
+
+    /**
+     * Store
      */
     public function store()
     {
-        // save the intake form
-
-        redirect('prisoner/identification/param1');
+        redirect('prisoner/index/id');
     }
 
     /**
-     * Show Identification
+     * Show
      */
-    public function identification()
-    {
-        $args = func_get_args();
-    }
+    public function show($id) {}
+
+    /**
+     * Edit
+     */
+    public function edit($id) {}
+
+    /**
+     * Update
+     */
+    public function update($id) {}
+
+    /**
+     * Destroy
+     */
+    public function destroy($id) {}
 
 
 }

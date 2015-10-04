@@ -15,17 +15,17 @@ class Gopher
      *
      * @var PDO
      */
-    protected $db;
+    protected $connection;
 
 
     /**
-     * Create a new PDO wrapper
+     * Create a new gopher
      *
      * @return void
      */
     function __construct()
     {
-        if (is_null($this->db)) {
+        if (is_null($this->connection)) {
             $this->connect(
                 $type = Config::DB_TYPE,
                 $host = Config::DB_HOST,
@@ -38,30 +38,78 @@ class Gopher
 
     /**
      * Connect To The Database
+     *
+     * @param  string  $type
+     * @param  string  $host
+     * @param  string  $name
+     * @param  string  $char
+     * @param  string  $user
+     * @param  string  $pass
+     * @return void
      */
-    public function connect($type, $host, $name, $charset, $username, $password)
+    public function connect($type, $host, $name, $char, $user, $pass)
     {
         $connectionString = sprintf(
             "%s:host=%s;dbname=%s;charset=%s",
-            $type, $host, $name, $charset);
+            $type, $host, $name, $char);
 
-        $this->db = new PDO($connectionString, $username, $password);
+        $this->connection = new PDO($connectionString, $user, $pass);
     }
 
+    /**
+     * Get All Rows
+     *
+     * @param  string  $table
+     * @return array
+     */
     public function getAll($table)
     {
-        $stmt = $this->db->prepare("SELECT * FROM {$table}");
-        $stmt->execute();
+        $statement = $this->connection->prepare("SELECT * FROM {$table}");
+        $statement->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Find By ID
+     *
+     * @param  string  $table
+     * @param  integer $id
+     * @return array
+     */
     public function findById($table, $id)
     {
-        $stmt = $this->db->prepare("SELECT * FROM {$table} WHERE id=?");
-        $stmt->execute(array($id));
+        $statement = $this->connection->prepare("SELECT * FROM {$table} WHERE id=?");
+        $statement->execute(array($id));
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Table Import
+     *
+     * @param  string  $table
+     * @return void
+     */
+    public function import($table)
+    {
+        $rows = include("./../database/{$table}.php");
+
+    // new data
+    $title = 'PHP Security';
+    $author = 'Jack Hijack';
+
+    // query
+    $sql = "INSERT INTO books (title,author) VALUES (:title,:author)";
+    $q = $this->connection->prepare($sql);
+    $q->execute(array(':author'=>$author,
+        ':title'=>$title));
+
+        foreach ($rows as $row) {
+            // insert each row into database
+
+        }
+dd($table, $rows);
     }
 
 

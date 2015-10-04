@@ -17,5 +17,9 @@ class Prisoner extends Gopher
         return $this->findById('prisoners', $id);
     }
 
+    public function seedDb()
+    {
+        $this->import('prisoners');
+    }
 
 }
