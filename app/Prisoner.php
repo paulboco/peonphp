@@ -6,6 +6,9 @@ use Peon\Gopher;
 
 class Prisoner extends Gopher
 {
+    /**
+     * Get All Prisoners
+     */
     public function all() {
         return $this->getAll('prisoners');
     }
