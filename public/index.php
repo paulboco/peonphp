@@ -19,4 +19,4 @@ error_reporting(E_ALL);
 |
 */
 
-require('../bootstrap/app.php');
+require __DIR__ . '../bootstrap/app.php');
