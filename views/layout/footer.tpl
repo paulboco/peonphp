@@ -1,6 +1,6 @@
     </div>
     <footer class="container">
-		&copy; <?php e(date('Y')) ?> <?php e(Config::APP_NAME) ?>
+		&copy; <?php e(date('Y')) ?> <?php e(config('app.name')) ?>
     </footer>
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>

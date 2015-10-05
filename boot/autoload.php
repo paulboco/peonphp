@@ -27,4 +27,3 @@ $loader->addNamespace('Vendor', __DIR__ . '/../vendor');
 */
 
 require __DIR__ . '/../peon/helpers.php';
-require __DIR__ . '/../config/Config.php';

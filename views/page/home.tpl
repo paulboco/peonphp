@@ -1,9 +1,9 @@
 <?php view('layout/header') ?>
 
 <h1 class="page-header">
-    <?php e(Config::APP_NAME) ?>
+    <?php e(config('app.name')) ?>
     <br>
-    <small><?php e(Config::APP_DESC) ?></small>
+    <small><?php e(config('app.description')) ?></small>
 </h1>
 
 <div class="row">

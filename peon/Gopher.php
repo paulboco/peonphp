@@ -3,7 +3,7 @@
 namespace Peon;
 
 use PDO;
-use Config;
+use Peon\Config;
 
 /**
 * PDO Wrapper
@@ -31,14 +31,23 @@ class Gopher
      */
     function __construct()
     {
-        if (is_null($this->connection)) {
+        $config = new Config;
+
+        $default = $config->get('database.default');
+
+        /**
+         * @todo not sure i need this if statement
+         */
+        // if (is_null($this->connection))
+        {
             $this->connect(
-                $type = Config::DB_TYPE,
-                $host = Config::DB_HOST,
-                $name = Config::DB_NAME,
-                $charset = Config::DB_CHAR,
-                $username = Config::DB_USER,
-                $password = Config::DB_PASS);
+                $config->get("database.connections.{$default}.type"),
+                $config->get("database.connections.{$default}.host"),
+                $config->get("database.connections.{$default}.name"),
+                $config->get("database.connections.{$default}.char"),
+                $config->get("database.connections.{$default}.user"),
+                $config->get("database.connections.{$default}.pass")
+            );
         }
     }
 
