@@ -7,6 +7,7 @@
         footer {
             margin-top: 50px;
             padding-top: 50px;
+            padding-bottom: 50px;
             border-top: solid 1px #e8e8e8;
             color: gray;
         }

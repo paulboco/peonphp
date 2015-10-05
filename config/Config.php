@@ -2,15 +2,21 @@
 
 class Config
 {
-	/**
-	 * Application
-	 */
+    /*
+    |--------------------------------------------------------------------------
+    | Application
+    |--------------------------------------------------------------------------
+    */
+
     const APP_NAME = 'The PEON Framework';
     const APP_DESC = 'If all PHP frameworks worked at the same place ...';
 
-    /**
-     * Database
-     */
+    /*
+    |--------------------------------------------------------------------------
+    | Database
+    |--------------------------------------------------------------------------
+    */
+
     const DB_TYPE = 'mysql';
     const DB_HOST = 'localhost';
     const DB_NAME = 'peon';
@@ -18,5 +24,6 @@ class Config
     const DB_PORT = '22';
     const DB_USER = 'homestead';
     const DB_PASS = 'secret';
+
 
 }

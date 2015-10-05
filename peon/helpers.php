@@ -1,6 +1,16 @@
 <?php
 
 /**
+ * Get Configuration Data From An Included File
+ *
+ * @param  string  $path
+ * @return void
+ */
+function config($path) {
+    return include path() . "/config/{$path}.php";
+}
+
+/**
  * Get The Filesystem Path
  *
  * @return string
@@ -14,6 +24,8 @@ function path($extension = '') {
  */
 function view($template, $data = array()) {
     extract($data);
+    $errors = isset($errors) ? $errors : array();
+
     include path() . "/views/{$template}.tpl";
 }
 

@@ -4,9 +4,6 @@ error_reporting(E_ALL);
 
 /**
  * PEON Framework - A Very Simple PHP Framework
- *
- * @package  PEON
- * @author   Paul Sellers <paulboco@hotmail.com>
  */
 
 /*

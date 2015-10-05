@@ -5,6 +5,12 @@ namespace Peon;
 class Router
 {
     /**
+     * The Current URI
+     */
+    protected $uri;
+
+
+    /**
      * The Controller
      */
     protected $controller;
@@ -18,11 +24,6 @@ class Router
      * The Route Parameters
      */
     protected $params;
-
-    /**
-     * The Current URI
-     */
-    protected $uri;
 
 
     /**
@@ -69,6 +70,7 @@ class Router
     private function extractSegments()
     {
         $segments = explode('/', $this->uri);
+        $this->segments = $segments;
 
         $this->controller = $this->formatController(array_shift($segments));
         $this->method = $this->formatMethod(array_shift($segments));

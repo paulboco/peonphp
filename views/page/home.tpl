@@ -16,7 +16,7 @@
 
 <div class="row">
     <div class="col-md-6">
-        <h2><?php e($dynamicHeading) ?></h2>
+        <h2><?php e($dynamic_heading) ?></h2>
         <p class="well">This dynamic heading is defined in the
             <em>home</em> method of the
             <em>PageController</em> in file:

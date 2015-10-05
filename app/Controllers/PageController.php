@@ -17,7 +17,7 @@ class PageController extends Controller
     public function home()
     {
         return view('page/home', array(
-            'dynamicHeading' => 'Dynamic Heading',
+            'dynamic_heading' => 'Dynamic Heading',
         ));
     }
 

@@ -17,6 +17,12 @@ class Gopher
      */
     protected $connection;
 
+    /**
+     * The Count
+     *
+     * @var integer
+     */
+    protected $count;
 
     /**
      * Create a new gopher
@@ -66,6 +72,7 @@ class Gopher
     {
         $statement = $this->connection->prepare("SELECT * FROM {$table}");
         $statement->execute();
+        $this->count = $statement->rowCount();
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -79,7 +86,9 @@ class Gopher
      */
     public function findById($table, $id)
     {
-        $statement = $this->connection->prepare("SELECT * FROM {$table} WHERE id=?");
+        $statement = $this->connection->prepare(
+            "SELECT * FROM {$table} WHERE id=?");
+
         $statement->execute(array($id));
 
         return $statement->fetch(PDO::FETCH_ASSOC);
@@ -93,23 +102,14 @@ class Gopher
      */
     public function import($table)
     {
-        $rows = include("./../database/{$table}.php");
-
-    // new data
-    $title = 'PHP Security';
-    $author = 'Jack Hijack';
-
-    // query
-    $sql = "INSERT INTO books (title,author) VALUES (:title,:author)";
-    $q = $this->connection->prepare($sql);
-    $q->execute(array(':author'=>$author,
-        ':title'=>$title));
+        $rows = include("./../database/seeds/{$table}.php");
 
         foreach ($rows as $row) {
-            // insert each row into database
+            $statement = $this->connection->prepare(
+                "INSERT INTO {$table} (id, name) VALUES (?, ?)");
 
+            $statement->execute(array($row['id'], $row['name']));
         }
-dd($table, $rows);
     }
 
 
