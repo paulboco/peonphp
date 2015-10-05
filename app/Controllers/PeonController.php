@@ -77,7 +77,7 @@ class PeonController extends Controller
      * Update
      */
     public function update($id) {
-dd($this->request);
+dd(request());
         redirect("peon/index/{$id}");
     }
 

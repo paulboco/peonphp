@@ -1,6 +1,7 @@
 <?php
 
 use Peon\Config;
+use Peon\Request;
 
 /**
  * Get An Environmental Variable
@@ -25,6 +26,19 @@ function config($path, $default = null) {
     $config = new Config;
 
     return $config->get($path, $default);
+}
+
+/**
+ * Get The Request
+ *
+ * @param  string  $key
+ * @param  mixed   $default
+ * @return mixed
+ */
+function request($key = null, $default = null) {
+    $request = new Request;
+
+    return $request->get($key, $default);
 }
 
 /**
