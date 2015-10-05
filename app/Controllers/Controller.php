@@ -21,7 +21,26 @@ abstract class Controller {
 	 */
 	public function __construct()
 	{
-		$this->appName = Config::APP_NAME;
+		$this->request = $_REQUEST;
+	}
+
+	/**
+	 * Get Request Variables
+	 *
+	 * @param  string  $key
+	 * @return array|string
+	 */
+	protected function request($key = null, $default = null)
+	{
+		if (is_null($key)) {
+			return $this->request;
+		}
+
+		if (isset($this->request[$key])) {
+			return $this->request[$key];
+		}
+
+		return $default;
 	}
 
 

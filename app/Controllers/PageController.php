@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use Config;
+use Peon\Config;
 
 /**
 * The Page Controller

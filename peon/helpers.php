@@ -1,26 +1,48 @@
 <?php
 
+use Peon\Config;
+
 /**
- * Get Configuration Data From An Included File
+ * Get An Environmental Variable
+ *
+ * @param  string  $name
+ * @param  mixed   $default
+ * @return string
+ */
+function env($name, $default = null)
+{
+    return getenv($name) ?: $default;
+}
+
+/**
+ * Get Configuration Data
  *
  * @param  string  $path
- * @return void
+ * @param  mixed   $default
+ * @return mixed
  */
-function config($path) {
-    return include path() . "/config/{$path}.php";
+function config($path, $default = null) {
+    $config = new Config;
+
+    return $config->get($path, $default);
 }
 
 /**
  * Get The Filesystem Path
  *
+ * @param  string  $children
  * @return string
  */
-function path($extension = '') {
-    return realpath(__DIR__ . '/../') . $extension;
+function path($children = '') {
+    return realpath(__DIR__ . '/../') . $children;
 }
 
 /**
- * View Helper
+ * Display A View
+ *
+ * @param  string  $template
+ * @param  array   $data
+ * @return void
  */
 function view($template, $data = array()) {
     extract($data);
@@ -32,12 +54,20 @@ function view($template, $data = array()) {
 
 /**
  * Redirect
+ *
+ * @param  string  $uri
+ * @return void
  */
 function redirect($uri) {
     header('Location: ' . "http://{$_SERVER['SERVER_NAME']}/{$uri}");
 }
 
-
+/**
+ * Echo An Filtered String
+ *
+ * @param  string  $string
+ * @return void
+ */
 function e($string) {
     echo htmlentities($string);
 }
@@ -57,12 +87,12 @@ function dd() {
 /**
  * Export Variable and Die
  *
- * @param mixed $var
+ * @param  mixed  $var
  * @return void
  */
 function dv($var) {
     echo '<pre>';
-    var_export($var);
+    var_export($var, 1);
     echo '</pre>';
     die;
 }
