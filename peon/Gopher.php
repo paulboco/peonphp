@@ -31,24 +31,20 @@ class Gopher
      */
     function __construct()
     {
-        $config = new Config;
-
-        $default = $config->get('database.default');
-
         /**
          * @todo not sure i need this if statement
          */
         // if (is_null($this->connection))
-        {
-            $this->connect(
-                $config->get("database.connections.{$default}.type"),
-                $config->get("database.connections.{$default}.host"),
-                $config->get("database.connections.{$default}.name"),
-                $config->get("database.connections.{$default}.char"),
-                $config->get("database.connections.{$default}.user"),
-                $config->get("database.connections.{$default}.pass")
-            );
-        }
+        // {
+        //     $this->connect(
+        //         $config->get("database.connections.{$default}.type"),
+        //         $config->get("database.connections.{$default}.host"),
+        //         $config->get("database.connections.{$default}.name"),
+        //         $config->get("database.connections.{$default}.char"),
+        //         $config->get("database.connections.{$default}.user"),
+        //         $config->get("database.connections.{$default}.pass")
+        //     );
+        // }
     }
 
     /**
@@ -62,8 +58,10 @@ class Gopher
      * @param  string  $pass
      * @return void
      */
-    public function connect($type, $host, $name, $char, $user, $pass)
+    public function connect($connection = null)
     {
+        extract($this->getConnection($connection));
+
         $connectionString = sprintf(
             "%s:host=%s;dbname=%s;charset=%s",
             $type, $host, $name, $char);
@@ -119,6 +117,15 @@ class Gopher
 
             $statement->execute(array($row['id'], $row['name']));
         }
+    }
+
+    protected function getConnection($connection = null)
+    {
+        $config = new Config;
+
+        $connection = $connection ?: $config->get('database.default', $connection);
+
+        return $config->get("database.connections.{$connection}");
     }
 
 
