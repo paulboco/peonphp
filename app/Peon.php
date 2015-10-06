@@ -2,29 +2,26 @@
 
 namespace App;
 
-use Peon\Gopher;
+use Peon\BaseModel;
 
-class Peon extends Gopher
+class Peon extends BaseModel
 {
-    /**
-     * Create a new peon
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->connect();
-    }
-
     /**
      * Get All Peons
      *
      * @return array
      */
     public function all() {
-        return $this->getAll('peons');
+        $query = $this->fluent->from('peons')
+                    ->select('id, name, rating')
+                    ->where('id > ?', 3)
+                    ->orderBy('name DESC')
+                    ->limit(5);
+        $peons = $query->fetchAll();
+
+        // $count = $query->rowCount();
+dd($query->fetchAll());
+        return $query->fetchAll();
     }
 
     /**

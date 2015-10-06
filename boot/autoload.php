@@ -2,28 +2,14 @@
 
 /*
 |--------------------------------------------------------------------------
-| Register The Autoloader
+| Register The Composer Auto Loader
 |--------------------------------------------------------------------------
+|
+| Composer provides a convenient, automatically generated class loader
+| for our application. We just need to utilize it! We'll require it
+| into the script here so that we do not have to worry about the
+| loading of any our classes "manually". Feels great to relax.
+|
 */
 
-require __DIR__ . '/../vendor/phpfig/Psr4Autoloader.php';
-$loader = new \Phpfig\Psr4Autoloader;
-$loader->register();
-
-/*
-|--------------------------------------------------------------------------
-| Add PSR4 Namespaces
-|--------------------------------------------------------------------------
-*/
-
-$loader->addNamespace('App', __DIR__ . '/../app');
-$loader->addNamespace('Peon', __DIR__ . '/../peon');
-$loader->addNamespace('Vendor', __DIR__ . '/../vendor');
-
-/*
-|--------------------------------------------------------------------------
-| Require Any Single Files
-|--------------------------------------------------------------------------
-*/
-
-require __DIR__ . '/../peon/helpers.php';
+require __DIR__.'/../vendor/autoload.php';
