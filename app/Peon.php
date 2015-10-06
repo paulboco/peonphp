@@ -13,6 +13,8 @@ class Peon extends Gopher
      */
     public function __construct()
     {
+        parent::__construct();
+
         $this->connect();
     }
 
@@ -43,6 +45,18 @@ class Peon extends Gopher
      */
     public function find($id) {
         return $this->findById('peons', $id);
+    }
+
+    /**
+     * Update By ID
+     *
+     * @param  integer  $id
+     * @param  array  $data
+     * @return boolean
+     */
+    public function update($id, $data) {
+
+        return $this->updateById('peons', $id, $data);
     }
 
     /**

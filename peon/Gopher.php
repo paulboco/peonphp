@@ -11,6 +11,13 @@ use Peon\Config;
 class Gopher
 {
     /**
+     * The Configuration Instance
+     *
+     * @var Peon\Config
+     */
+    protected $config;
+
+    /**
      * The Database Connection
      *
      * @var PDO
@@ -24,27 +31,15 @@ class Gopher
      */
     protected $count;
 
+
     /**
      * Create a new gopher
      *
      * @return void
      */
-    function __construct()
+    public function __construct()
     {
-        /**
-         * @todo not sure i need this if statement
-         */
-        // if (is_null($this->connection))
-        // {
-        //     $this->connect(
-        //         $config->get("database.connections.{$default}.type"),
-        //         $config->get("database.connections.{$default}.host"),
-        //         $config->get("database.connections.{$default}.name"),
-        //         $config->get("database.connections.{$default}.char"),
-        //         $config->get("database.connections.{$default}.user"),
-        //         $config->get("database.connections.{$default}.pass")
-        //     );
-        // }
+        $this->config = new Config;
     }
 
     /**
@@ -102,7 +97,34 @@ class Gopher
     }
 
     /**
-     * Table Import
+     * Update By ID
+     *
+     * @param  string  $table
+     * @param  integer $id
+     * @param  array  $data
+     * @return array
+     */
+    public function updateById($table, $id, $data)
+    {
+        $sql = "UPDATE :table
+                SET name = :name,
+                    rating = :rating
+                WHERE id = :id";
+
+        $statement = $this->connection->prepare($sql);
+
+        return $statement->execute(array(
+            'table' => $table,
+            'name' => $name,
+            'rating' => $rating,
+            'id' => $id
+        ));
+
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Import Table
      *
      * @param  string  $table
      * @return void
@@ -119,13 +141,17 @@ class Gopher
         }
     }
 
+    /**
+     * Get A Connection's Configuration
+     *
+     * @param  string  $connection
+     * @return array
+     */
     protected function getConnection($connection = null)
     {
-        $config = new Config;
+        $connection = $connection ?: $this->config->get('database.default', $connection);
 
-        $connection = $connection ?: $config->get('database.default', $connection);
-
-        return $config->get("database.connections.{$connection}");
+        return $this->config->get("database.connections.{$connection}");
     }
 
 

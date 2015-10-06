@@ -16,6 +16,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Rating</th>
                     <th></th>
                 </tr>
             </thead>
@@ -24,6 +25,7 @@
                     <tr class="<?php echo $id == $row['id'] ? 'info' : '' ?>">
                         <td><?php e($row['id']) ?></td>
                         <td><?php e($row['name']) ?></td>
+                        <td><?php e($row['rating']) ?></td>
                         <td><a href="/peon/edit/<?php e($row['id']) ?>">Edit</a></td>
                     </tr>
                 <?php endforeach ?>

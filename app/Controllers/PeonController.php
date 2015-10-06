@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Peon;
+use Peon\Validation;
 
 /**
 * Peon Controller
@@ -77,8 +78,9 @@ class PeonController extends Controller
      * Update
      */
     public function update($id) {
-dd(request());
-        redirect("peon/index/{$id}");
+        $this->peon->update($id, request());
+
+        redirect("peon/index/{$id}", array('errors' => $errors));
     }
 
     /**
