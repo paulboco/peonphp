@@ -103,16 +103,15 @@ Vagrant.configure(2) do |config|
 
     # phpmyadmin
     sudo cp default phpmyadmin
-    sudo sed -i 's|/vagrant/public/|/home/vagrant/Code/phpmyadmin|g' /etc/apache2/sites-available/phpmyadmin
-    sudo sed -i 's|/peon.53|/home/phpmyadmin.53|g' /etc/apache2/sites-available/phpmyadmin
+    sudo sed -i -e 's/|/vagrant/public/|/home/vagrant/Code/phpmyadmin|g' /etc/apache2/sites-available/phpmyadmin
+    sudo sed -i -e 's/|/peon.53|/home/phpmyadmin.53|g' /etc/apache2/sites-available/phpmyadmin
 
     # enable and restart
     sudo a2ensite phpmyadmin
     sudo service apache2 restart
 
     # php.ini
-    sudo sed -i 's|/display_errors = Off|display_errors = On|g' /etc/php5/apache2/php.ini
-
+    sudo sed -i -e 's/|/display_errors = Off|display_errors = On|g' /etc/php5/apache2/php.ini
 
   SHELL
 end
