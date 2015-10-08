@@ -1,9 +1,7 @@
 <?php
 
-error_reporting(E_ALL);
-
 /**
- * PEON Framework - A Very Simple PHP Framework
+ * PEON - A Very Simple PHP Framework
  */
 
 /*

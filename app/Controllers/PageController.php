@@ -18,6 +18,7 @@ class PageController extends Controller
     {
         return view('page/home', array(
             'dynamic_heading' => 'Dynamic Heading',
+            'shared' => $this->shared,
         ));
     }
 

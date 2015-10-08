@@ -12,7 +12,7 @@ abstract class Controller {
      *
      * @var string
      */
-    protected $value;
+    protected $shared;
 
 
     /**
@@ -22,7 +22,7 @@ abstract class Controller {
      */
     public function __construct()
     {
-        $this->value = 'I am a value that can be shared with classes that extend me.';
+        $this->shared = 'I am a value that can be shared with classes that extend me.';
     }
 
 
