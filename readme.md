@@ -3,5 +3,5 @@
 
 ### Requirements
 <ul>
-    <li>Composer <a href="https://getcomposer.org/">https://getcomposer.org/</a></li>
+    <li><a href="https://getcomposer.org/">Composer</a></li>
 </ul>
