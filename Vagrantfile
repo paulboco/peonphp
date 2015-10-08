@@ -102,27 +102,17 @@ Vagrant.configure(2) do |config|
 </VirtualHost>" > /etc/apache2/sites-available/default
 
     # phpmyadmin
-    sudo echo "<VirtualHost *:80>
-    ServerAdmin webmaster@localhost
-    ServerName phpmyadmin.53
-    DocumentRoot /home/vagrant/Code/phpmyadmin
-    <Directory />
-        Options FollowSymLinks
-        AllowOverride None
-    </Directory>
-    <Directory /home/vagrant/Code/phpmyadmin>
-        Options Indexes FollowSymLinks MultiViews
-        AllowOverride All
-        Order allow,deny
-        allow from all
-    </Directory>
-    ErrorLog ${APACHE_LOG_DIR}/error.log
-    CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>" > /etc/apache2/sites-available/phpmyadmin
+    sudo cp default phpmyadmin
+    sudo sed -i 's|/vagrant/public/|/home/vagrant/Code/phpmyadmin|g' /etc/apache2/sites-available/phpmyadmin
+    sudo sed -i 's|/peon.53|/home/phpmyadmin.53|g' /etc/apache2/sites-available/phpmyadmin
 
-  # enable and restart
-  sudo a2ensite phpmyadmin
-  sudo service apache2 restart
+    # enable and restart
+    sudo a2ensite phpmyadmin
+    sudo service apache2 restart
+
+    # php.ini
+    sudo sed -i 's|/display_errors = Off|display_errors = On|g' /etc/php5/apache2/php.ini
+
 
   SHELL
 end
