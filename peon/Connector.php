@@ -65,6 +65,7 @@ class Connector
     {
         return $this->connection ?: $this->connect();
     }
+
     /**
      * Get The Connection's Configuration
      *

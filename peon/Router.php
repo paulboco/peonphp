@@ -6,22 +6,30 @@ class Router
 {
     /**
      * The Current URI
+     *
+     * @var string
      */
     protected $uri;
 
 
     /**
      * The Controller
+     *
+     * @var string
      */
     protected $controller;
 
     /**
      * The Controller's Method
+     *
+     * @var string
      */
     protected $method;
 
     /**
      * The Route Parameters
+     *
+     * @var array
      */
     protected $params;
 
@@ -43,14 +51,9 @@ class Router
     public function dispatch()
     {
         $this->validateRoute();
+
         $this->callControllerMethod();
     }
-
-
-
-
-
-
 
     /**
      * Prepare the URI

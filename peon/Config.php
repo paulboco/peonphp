@@ -27,7 +27,7 @@ class Config
 
 
     /**
-     * Get Configuration Data From An Included File
+     * Get Configuration Data
      *
      * @param  string  $path
      * @param  mixed   $default
@@ -53,6 +53,7 @@ class Config
     private function parsePath($path)
     {
         $this->parts = explode('.', $path);
+
         $this->file = array_shift($this->parts);
     }
 
@@ -79,9 +80,8 @@ class Config
     private function getValue()
     {
         foreach ($this->parts as $part) {
-            if ( ! is_array($this->config) || ! array_key_exists($part, $this->config)) {
-                return;
-            }
+            if ( ! is_array($this->config)) return;
+            if ( ! array_key_exists($part, $this->config)) return;
 
             $this->config = $this->config[$part];
         }

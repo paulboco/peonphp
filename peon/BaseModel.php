@@ -18,6 +18,7 @@ class BaseModel
     public function __construct()
     {
         $connector = new Connector();
+
         $this->fluent = new FluentPDO($connector->connect());
     }
 
