@@ -64,8 +64,65 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  # config.vm.provision "shell", inline: <<-SHELL
-  #   sudo apt-get update
-  #   sudo apt-get install -y apache2
-  # SHELL
+  config.vm.provision "shell", inline: <<-SHELL
+    cd /home/vagrant
+    mkdir Code
+    cd Code
+    git clone https://github.com/paulboco/phpmyadmin-insecure.git phpmyadmin
+
+    # Configure Apache2
+
+    ## set host name
+    cd /etc/apache2
+    sudo rm httpd.conf
+    echo "ServerName localhost" > httpd.conf
+
+    ## configure virtual hosts
+    cd sites-available
+
+    # default host
+    sudo rm default
+    sudo echo "<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    ServerName peon.53
+    DocumentRoot /vagrant/public
+    <Directory />
+        Options FollowSymLinks
+        AllowOverride None
+    </Directory>
+    <Directory /vagrant/public>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        allow from all
+    </Directory>
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    LogLevel warn
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>" > /etc/apache2/sites-available/default
+
+    # phpmyadmin
+    sudo echo "<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    ServerName phpmyadmin.53
+    DocumentRoot /home/vagrant/Code/phpmyadmin
+    <Directory />
+        Options FollowSymLinks
+        AllowOverride None
+    </Directory>
+    <Directory /home/vagrant/Code/phpmyadmin>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        allow from all
+    </Directory>
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>" > /etc/apache2/sites-available/phpmyadmin
+
+  # enable and restart
+  sudo a2ensite phpmyadmin
+  sudo service apache2 restart
+
+  SHELL
 end
