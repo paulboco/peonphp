@@ -1,4 +1,4 @@
-#The Peon PHP Framework
+#Peon
 ##A very simple PHP framework
 
 ### Requirements
