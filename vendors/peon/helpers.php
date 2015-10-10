@@ -66,7 +66,7 @@ if ( ! function_exists('path')) {
      * @return string
      */
     function path($children = '') {
-        return realpath(__DIR__ . '/../') . $children;
+        return realpath(__DIR__ . '/../../') . $children;
     }
 }
 
@@ -109,6 +109,6 @@ if ( ! function_exists('view')) {
         extract($data);
         $errors = isset($errors) ? $errors : array();
 
-        include path() . "/views/{$template}.tpl";
+        include path("/views/{$template}.tpl");
     }
 }

@@ -64,7 +64,7 @@ class Config
      */
     private function loadConfigFile()
     {
-        $file = path() . "/config/{$this->file}.php";
+        $file = path("/config/{$this->file}.php");
 
         if (file_exists($file)) {
             $this->config = include $file;
