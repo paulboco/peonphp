@@ -18,6 +18,7 @@ $loader->register();
 
 $loader->addNamespace('App', __DIR__ . '/../app');
 $loader->addNamespace('Peon', __DIR__ . '/../vendors/peon');
+$loader->addNamespace('Erusev', __DIR__ . '/../vendors/erusev');
 
 /*
 |--------------------------------------------------------------------------

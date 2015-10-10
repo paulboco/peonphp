@@ -22,5 +22,15 @@ class PageController extends Controller
         ));
     }
 
+    /**
+     * About Page
+     *
+     * @return void
+     */
+    public function about()
+    {
+        return view('page/about');
+    }
+
 
 }
