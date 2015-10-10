@@ -1,7 +1,40 @@
 <?php
-
 namespace Peon;
 
+/**
+ * Peon Router
+ *
+ * The Peon Router is a VERY simple router based the assumption that segment one
+ * of the requested URI is a controller name (without the 'Controller' appendage)
+ * and segment two is name of the controller's method.
+ *
+ * For example, the URL http://example.com/user/dashboard would map to
+ * the dashboard() method of class UserController.
+ * e.g.,
+ *
+ *     <?php
+ *
+ *     class UserController
+ *     {
+ *         public function dashboard()
+ *         {
+ *             // ...
+ *         }
+ *     }
+ *
+ * All controllers exist in the 'project/Controllers' directory and use
+ * studly case with the word 'Controllers' appending the class name.
+ * Therefore, if segment one is 'user', the full class name would be
+ * 'UserController' and the file containing the class would be
+ * 'project/Controllers/UserController.php'.
+ *
+ * If no controller method can be found matching segments one and two, a
+ * 404 response is returned to the browser.
+ *
+ * The one exception to this rule is when the base URL is requested - i.e.,
+ * 'http://example.com'. In this case, the router will map to controller
+ * 'PageController' and its 'home' method.
+ */
 class Router
 {
     /**
@@ -11,6 +44,12 @@ class Router
      */
     protected $uri;
 
+    /**
+     * The URI Segments
+     *
+     * @var array
+     */
+    protected $segments;
 
     /**
      * The Controller
@@ -33,11 +72,11 @@ class Router
      */
     protected $params;
 
-
     /**
      * Class Constructor
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->prepareUri();
         $this->extractSegments();
     }
@@ -51,7 +90,6 @@ class Router
     public function dispatch()
     {
         $this->validateRoute();
-
         $this->callControllerMethod();
     }
 
@@ -62,7 +100,8 @@ class Router
      */
     private function prepareUri()
     {
-        $this->uri = trim($_SERVER['REQUEST_URI'], '/') ?: 'page/home';
+        $uri = preg_replace('~/+~', '/', $_SERVER['REQUEST_URI']);
+        $this->uri = trim($uri, '/') ?: 'page/home';
     }
 
     /**
@@ -89,8 +128,8 @@ class Router
     private function formatController($controller)
     {
         return "App\\Controllers\\"
-               . ucfirst($controller)
-               . 'Controller';
+        . ucfirst($controller)
+        . 'Controller';
     }
 
     /**
@@ -101,7 +140,7 @@ class Router
      */
     private function formatMethod($method)
     {
-        $segments = array_map(function($segment) {
+        $segments = array_map(function ($segment) {
             return ucfirst($segment);
         }, explode('-', $method));
 
@@ -116,7 +155,7 @@ class Router
     private function validateRoute()
     {
         // Send a 404 if the controller method doesn't exist
-        if ( ! method_exists($this->controller, $this->method)) {
+        if (!method_exists($this->controller, $this->method)) {
             $this->send404();
         }
     }
@@ -142,9 +181,8 @@ class Router
     {
         call_user_func_array(array(
             new $this->controller,
-            $this->method
+            $this->method,
         ), $this->params);
     }
-
 
 }

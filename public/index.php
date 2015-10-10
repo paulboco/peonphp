@@ -2,6 +2,8 @@
 
 /**
  * PEON - A Very Simple PHP Framework
+ *
+ * @author PaulboCo
  */
 
 /*

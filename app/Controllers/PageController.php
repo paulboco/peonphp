@@ -1,12 +1,9 @@
 <?php
-
 namespace App\Controllers;
 
-use Peon\Config;
-
 /**
-* The Page Controller
-*/
+ * The Page Controller
+ */
 class PageController extends Controller
 {
     /**
@@ -23,14 +20,23 @@ class PageController extends Controller
     }
 
     /**
-     * About Page
+     * Concepts Page
      *
      * @return void
      */
-    public function about()
+    public function concepts()
     {
-        return view('page/about');
+        return view('page/concepts');
     }
 
+    /**
+     * Helpers Page
+     *
+     * @return void
+     */
+    public function helpers()
+    {
+        return view('page/helpers');
+    }
 
 }

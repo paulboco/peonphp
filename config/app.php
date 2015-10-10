@@ -18,5 +18,4 @@ return array(
 
     'description' => 'A very simple PHP framework',
 
-
 );

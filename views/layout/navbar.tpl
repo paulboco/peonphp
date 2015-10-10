@@ -14,7 +14,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="/page/about">About</a></li>
+                <li><a href="/page/concepts">Concepts</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li><a href="/page/helpers">Helpers</a></li>
             </ul>
             <ul class="nav navbar-nav">
                 <li><a href="/page/doesnt-exist">404</a></li>

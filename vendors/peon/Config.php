@@ -1,5 +1,4 @@
 <?php
-
 namespace Peon;
 
 class Config
@@ -25,7 +24,6 @@ class Config
      */
     protected $config;
 
-
     /**
      * Get Configuration Data
      *
@@ -37,7 +35,7 @@ class Config
     {
         $this->parsePath($path);
 
-        if ( ! $this->loadConfigFile()) {
+        if (!$this->loadConfigFile()) {
             return $default;
         }
 
@@ -80,14 +78,18 @@ class Config
     private function getValue()
     {
         foreach ($this->parts as $part) {
-            if ( ! is_array($this->config)) return;
-            if ( ! array_key_exists($part, $this->config)) return;
+            if (!is_array($this->config)) {
+                return;
+            }
+
+            if (!array_key_exists($part, $this->config)) {
+                return;
+            }
 
             $this->config = $this->config[$part];
         }
 
         return $this->config;
     }
-
 
 }

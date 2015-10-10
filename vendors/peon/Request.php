@@ -1,5 +1,4 @@
 <?php
-
 namespace Peon;
 
 class Request
@@ -10,7 +9,6 @@ class Request
      * @var array
      */
     protected $request;
-
 
     /**
      * Create a new request controller
@@ -28,11 +26,15 @@ class Request
      */
     public function get($key = null, $default = null)
     {
-        if (is_null($key)) return $this->request;
-        if (isset($this->request[$key])) return $this->request[$key];
+        if (is_null($key)) {
+            return $this->request;
+        }
+
+        if (isset($this->request[$key])) {
+            return $this->request[$key];
+        }
 
         return $default;
     }
-
 
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace Phpfig;
 
 /**
@@ -157,8 +156,8 @@ class Autoloader
             // replace namespace separators with directory separators
             // in the relative class name, append with .php
             $file = $base_dir
-                  . str_replace('\\', '/', $relative_class)
-                  . '.php';
+            . str_replace('\\', '/', $relative_class)
+            . '.php';
 
             // if the mapped file exists, require it
             if ($this->requireFile($file)) {
