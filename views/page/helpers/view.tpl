@@ -18,9 +18,8 @@
     <p>void</p>
     <h4>Examples</h4>
     <p>Here is an example displaying a view:</p>
-    <pre><code class="php">&lt;?php
+    <pre><code>&lt;?php
 
-view('page/home', array('title' => 'The Peon Framework'));
-// outputs the view to the browser
+view('page/home', array('title' => 'My Title'));
 </code></pre>
 </div>

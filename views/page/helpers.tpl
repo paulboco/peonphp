@@ -27,6 +27,9 @@
 <?php $helperjs = <<<JS
 <script type="text/javascript">
 $(document).ready(function () {
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
     $(window).scroll(function() {
         if ($(this).scrollTop() > 100) {
             $('a#back-to-top>span').fadeIn(400);

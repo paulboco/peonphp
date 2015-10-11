@@ -14,10 +14,10 @@
     <p>void</p>
     <h4>Examples</h4>
     <p>Here is an example of outputting a string:</p>
-    <pre><code class="php">&lt;?php
+    <pre><code>&lt;?php
 
-$unsafe_string = "A 'quote' is &lt;b&gt;bold&lt;/b&gt;";
+$unsafe_string = <?php e("A 'quote' is <b>bold</b>") ?>;
 e($unsafe_string);
-// prints A 'quote' is &amp;lt;b&amp;gt;bold&amp;lt;/b&amp;gt;
+// prints A 'quote' is &amp;lt;b&amp;gt;bold&amp;lt;/b&amp;gt;;
 </code></pre>
 </div>

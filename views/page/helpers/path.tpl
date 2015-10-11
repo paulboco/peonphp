@@ -16,7 +16,7 @@
     <p>string</p>
     <h4>Examples</h4>
     <p>Here is an example of finding the application's <code>public</code> path:</p>
-    <pre><code class="php">&lt;?php
+    <pre><code>&lt;?php
 
 $public = path('/public');
 echo $public; // prints <?php e(path('/public')) ?>

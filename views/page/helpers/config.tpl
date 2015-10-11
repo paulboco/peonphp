@@ -8,7 +8,8 @@
         <dt>path</dt>
         <dd>
             Path to the configuation item.
-            It is a string using <em>dot notation</em>.
+            It is a string using
+            <em class="hint" data-toggle="tooltip" data-placement="top" title="Jargon Alert!">dot notation</em>.
             The first segment of the path is the filename without the <code>.php</code>.
             Each subsequent segment in the path is an array key.
         </dd>
@@ -19,7 +20,7 @@
     <p>Mixed</p>
     <h4>Examples</h4>
     <p>Here is an example of retrieving this application's description:</p>
-    <pre><code class="php">&lt;?php
+    <pre><code>&lt;?php
 
 $description = config('app.description');
 

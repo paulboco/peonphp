@@ -1,6 +1,6 @@
 <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
  -->
-<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/spacelab/bootstrap.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/united/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/default.min.css">
 <link rel="stylesheet" type="text/css" href="/css/railscasts.css">
 <style type="text/css">
@@ -76,6 +76,9 @@
         cursor:help;
         border-bottom: dashed 1px #ccc;
     }
+    pre {
+        margin-bottom: 30px;
+    }
     ul.nav-compact {
         list-style-type: none;
         list-style-position: inside;
@@ -92,7 +95,7 @@
     a#back-to-top {
         position:fixed;
         bottom: 0;
-        right: 50%;
+        left: 20px;
         text-decoration: none;
     }
     a#back-to-top span {

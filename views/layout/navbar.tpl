@@ -20,7 +20,7 @@
                 <li><a href="/page/helpers">Helpers</a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li><a href="/page/doesnt-exist">404</a></li>
+                <li><a href="/page/requirements">Requirements</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:alert('Just a dummy logout link');">Logout</a></li>

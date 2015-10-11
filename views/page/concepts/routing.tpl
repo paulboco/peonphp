@@ -1,17 +1,18 @@
 <h2>Routing</h2>
 <p>
-    The Peon Router (located at <code>&lt;project>/vendors/peon/Router.php</code>) is a VERY simple router based on the assumption that
-    segment one of the requested URI is a controller's name (without the 'Controller' appendage)
-    and segment two is the name of a controller's method.
+    The Peon Router is VERY and is based on the assumption that
+    segment one of the requested URI is an existing controller
+    and that segment two is an existings method on that controller.
 </p>
 <p>
     For example, the URL <code>http://example.com/user/dashboard</code> would map to
-    the <code>dashboard()</code> method of class <code>UserController</code>.
+    the <code>dashboard()</code> method on class <code>UserController</code>.
 </p>
 
 <p>
 e.g.
 <pre><code class="php">&lt;?php
+namespace App\Controllers;
 
 class UserController
 {

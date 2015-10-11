@@ -14,7 +14,7 @@
     <p>void</p>
     <h4>Examples</h4>
     <p>Here is an example of redirecting to the home page:</p>
-    <pre><code class="php">&lt;?php
+    <pre><code>&lt;?php
 
 redirect('');
 </code></pre>

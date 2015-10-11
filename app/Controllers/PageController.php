@@ -39,4 +39,14 @@ class PageController extends Controller
         return view('page/helpers');
     }
 
+    /**
+     * Requirements Page
+     *
+     * @return void
+     */
+    public function requirements()
+    {
+        return view('page/requirements');
+    }
+
 }

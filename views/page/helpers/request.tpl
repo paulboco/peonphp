@@ -14,7 +14,7 @@
     <p>Mixed</p>
     <h4>Examples</h4>
     <p>Here is an example of retrieving a request variable with a default fallback:</p>
-    <pre><code class="php">&lt;?php
+    <pre><code>&lt;?php
 
 $username = request('username', 'peon');
 

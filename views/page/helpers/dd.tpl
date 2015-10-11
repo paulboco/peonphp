@@ -14,7 +14,7 @@
     <p>void</p>
     <h4>Examples</h4>
     <p>Here is an example of dumping multiple variables:</p>
-    <pre><code class="php">&lt;?php
+    <pre><code>&lt;?php
 
 $var1 = 1;
 $var2 = 'Sloth rules!';
