@@ -8,6 +8,7 @@
             <li>Vagrant</li>
             <li>Virtual Box</li>
             <li>PHP 5.3.10</li>
+            <li>URL rewrite</li>
         </ul>
     </div>
 </div>

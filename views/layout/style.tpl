@@ -1,6 +1,6 @@
 <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
  -->
-<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/united/bootstrap.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/simplex/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/default.min.css">
 <link rel="stylesheet" type="text/css" href="/css/railscasts.css">
 <style type="text/css">
@@ -31,6 +31,10 @@
         color: #a00;
         font-size: 15px;
     }
+    a.navbar-brand {
+        text-transform: uppercase;
+        font-weight: bold;
+    }
     div.target {
         margin-top: 70px;
         height: 100px;
@@ -41,7 +45,7 @@
         margin-bottom: 50px;
         padding: 60px 20px;
         background-color: #F0F7FF;
-        box-shadow: 4px 4px 15px #aaa;
+        box-shadow: 3px 3px 5px #ccc;
     }
     div.function-definition h3 {
         font-weight: bold;
@@ -102,5 +106,13 @@
         display: none;
         font-size: 30px;
         color: gray;
+    }
+    .navbar-inverse {
+        background-color: #AA0000;
+        box-shadow: 4px 2px 15px #000;
+    }
+    .navbar-inverse .navbar-brand {
+        letter-spacing: 2px;
+        color: #eee;
     }
 </style>

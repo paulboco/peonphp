@@ -1,6 +1,6 @@
 <h2>Routing</h2>
 <p>
-    The Peon Router is VERY and is based on the assumption that
+    The Peon Router is VERY simple and is based on the assumption that
     segment one of the requested URI is an existing controller
     and that segment two is an existings method on that controller.
 </p>
