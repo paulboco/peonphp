@@ -1,4 +1,4 @@
-<div class="function-definition">
+<div id="<?php echo $id ?>" class="function-definition">
     <h3>e</h3>
     <p>e - Echo a string filtered by htmlentities().</p>
     <h4>Description</h4>

@@ -1,4 +1,4 @@
-<div class="function-definition">
+<div id="<?php echo $id ?>" class="function-definition">
     <h3>view</h3>
     <p>view - Include a view with variables for display.</p>
     <h4>Description</h4>

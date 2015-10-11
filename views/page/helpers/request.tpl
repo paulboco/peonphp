@@ -1,4 +1,4 @@
-<div class="function-definition">
+<div id="<?php echo $id ?>" class="function-definition">
     <h3>request</h3>
     <p>request - Get a request variable by key.</p>
     <h4>Description</h4>

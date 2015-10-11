@@ -1,4 +1,4 @@
-<div class="function-definition">
+<div id="<?php echo $id ?>" class="function-definition">
     <h3>config</h3>
     <p>config - Get a configuration variable.</p>
     <h4>Description</h4>

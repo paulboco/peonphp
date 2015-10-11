@@ -1,4 +1,4 @@
-<div class="function-definition">
+<div id="<?php echo $id ?>" class="function-definition">
     <h3>path</h3>
     <p>path - Get the application's base path.</p>
     <h4>Description</h4>

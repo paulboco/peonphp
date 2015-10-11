@@ -1,4 +1,4 @@
-<div class="function-definition">
+<div id="<?php echo $id ?>" class="function-definition">
     <h3>redirect</h3>
     <p>redirect - Redirect to the specified URI.</p>
     <h4>Description</h4>

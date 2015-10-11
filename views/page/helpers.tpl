@@ -10,14 +10,13 @@
         <ul class="nav-compact">
             <?php foreach ($helpers as $template): ?>
                 <?php $basename = basename($template, '.tpl') ?>
-                <li><a href="#<?php echo $basename ?>"><?php echo $basename ?></a></li>
+                <li><a href="#goto-<?php echo $basename ?>"><?php echo $basename ?></a></li>
             <?php endforeach ?>
         </ul>
         <?php foreach ($helpers as $template): ?>
-            <a id="<?php echo basename($template, '.tpl') ?>"></a>
-            <?php include($template) ?>
+            <?php $id = 'goto-' . basename($template, '.tpl') ?>
+            <?php include $template ?>
         <?php endforeach ?>
-
     </div>
 </div>
 <a href="javascript:window.scrollTo(0, 0);" id="back-to-top">
