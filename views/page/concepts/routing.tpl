@@ -1,15 +1,16 @@
 <h2>Routing</h2>
 <p>
-    The Peon Router (located at <code>&lt;project-name>/vendors/peon/Router.php</code>) is a VERY simple router based on the assumption that
-    segment one of the requested URI is a controller name (without the 'Controller' appendage)
-    and segment two is the name of controller's method.
+    The Peon Router (located at <code>&lt;project>/vendors/peon/Router.php</code>) is a VERY simple router based on the assumption that
+    segment one of the requested URI is a controller's name (without the 'Controller' appendage)
+    and segment two is the name of a controller's method.
 </p>
 <p>
     For example, the URL <code>http://example.com/user/dashboard</code> would map to
     the <code>dashboard()</code> method of class <code>UserController</code>.
-    e.g.,
 </p>
+
 <p>
+e.g.
 <pre><code class="php">&lt;?php
 
 class UserController
@@ -22,12 +23,13 @@ class UserController
 </code></pre>
 </p>
 <p>
-    All controllers exist in the <code>&lt;project-name>/Controllers</code>
-    directory and use studly case with the word <code>Controllers</code>
-    appending the class name.
+    All controllers exist in the <code>&lt;project>/app/Controllers</code>
+    directory and use
+    <em class="hint" data-toggle="tooltip" data-placement="top" title="Jargon Alert!">studly caps</em>
+    with the text <code>Controllers</code> appending the class name.
     Therefore, if segment one is <code>user</code>, the full class name
     would be <code>UserController</code> and the file containing the class
-    would be <code>&lt;project-name>/Controllers/UserController.php</code>.
+    would be <code>&lt;project>/app/Controllers/UserController.php</code>.
 </p>
 <p>
     If no controller method can be found matching segments one and two, a
@@ -36,6 +38,6 @@ class UserController
 <p>
     The one exception to this rule is when the base URL is requested -
     i.e., <code>http://example.com</code>.
-    In this case, the router will map to controller <code>PageController</code>
-    and its <code>home()</code> method.
+    In this case, the router will map the request to the <code>PageController</code>'s
+    <code>home()</code> method.
 </p>

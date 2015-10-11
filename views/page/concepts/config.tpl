@@ -1,8 +1,8 @@
 <h2>Configuration</h2>
 <p>
     Application configuration variables are simply arrays stored in files in the
-    <code>&lt;project-name>/config</code> directory. For example, Peon is shipped
-    with the <code>&lt;project-name>/config/app.php</code> file which contains:
+    <code>&lt;project>/config</code> directory. For example, Peon is shipped
+    with the <code>&lt;project>/config/app.php</code> file which contains:
 <pre><code class="php">&lt;?php
 
 return array(
@@ -26,7 +26,7 @@ return array(
 );
 </code></pre>
 
-<p>You may get a configuration item by calling the config helper function.</p>
+<p>You may get a configuration item's value by calling the <a href="/page/helpers#config">config</a> helper function.</p>
 
 <pre><code class="php">&lt;?php
 

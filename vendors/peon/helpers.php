@@ -36,7 +36,7 @@ if (!function_exists('dd')) {
 
 if (!function_exists('e')) {
     /**
-     * Echo An Filtered String
+     * Echo String Filtered By htmlentities()
      *
      * @param  string  $string
      * @return void
@@ -47,23 +47,9 @@ if (!function_exists('e')) {
     }
 }
 
-if (!function_exists('env')) {
-    /**
-     * Get An Environmental Variable
-     *
-     * @param  string  $name
-     * @param  mixed   $default
-     * @return string
-     */
-    function env($name, $default = null)
-    {
-        return getenv($name) ?: $default;
-    }
-}
-
 if (!function_exists('path')) {
     /**
-     * Get The Filesystem Path
+     * Get The Application's Base Path
      *
      * @param  string  $children
      * @return string
@@ -76,12 +62,12 @@ if (!function_exists('path')) {
 
 if (!function_exists('redirect')) {
     /**
-     * Redirect
+     * Redirect To The Specified URI
      *
-     * @param  string  $uri
+     * @param  string|null  $uri
      * @return void
      */
-    function redirect($uri)
+    function redirect($uri = null)
     {
         header('Location: ' . "http://{$_SERVER['SERVER_NAME']}/{$uri}");
     }
