@@ -3,6 +3,19 @@
 use Peon\Config;
 use Peon\Request;
 
+if (!function_exists('active')) {
+    /**
+     * Returns The String 'active' When $condition Is True
+     *
+     * @param  boolean  $condition
+     * @return string
+     */
+    function active(boolean $condition)
+    {
+        return $condition ? 'active' : '';
+    }
+}
+
 if (!function_exists('config')) {
     /**
      * Get Configuration Data

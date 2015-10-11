@@ -24,17 +24,14 @@
     <span class="glyphicon glyphicon-circle-arrow-up"></span>
 </a>
 
-<?php $helperjs = <<<JS
+<?php $javascript = <<<JS
 <script type="text/javascript">
 $(document).ready(function () {
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
     $(window).scroll(function() {
         if ($(this).scrollTop() > 100) {
-            $('a#back-to-top>span').fadeIn(400);
+            $('a#back-to-top>span').fadeIn();
         } else {
-            $('a#back-to-top>span').fadeOut(400);
+            $('a#back-to-top>span').fadeOut();
         }
     });
 });
@@ -42,4 +39,4 @@ $(document).ready(function () {
 JS;
 ?>
 
-<?php view('layout/footer', array('javascript' => $helperjs)) ?>
+<?php view('layout/footer', array('javascript' => $javascript)) ?>

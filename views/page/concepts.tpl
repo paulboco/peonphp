@@ -12,15 +12,4 @@
     </div>
 </div>
 
-<?php $conceptsJs = <<<JS
-<script type="text/javascript">
-$(document).ready(function () {
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-});
-</script>
-JS;
-?>
-
-<?php view('layout/footer', array('javascript' => $conceptsJs)) ?>
+<?php view('layout/footer') ?>

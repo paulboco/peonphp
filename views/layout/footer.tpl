@@ -7,5 +7,12 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <?php echo isset($javascript) ? $javascript : '' ?>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    });
+    </script>
 </body>
 </html>

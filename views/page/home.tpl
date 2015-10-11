@@ -22,15 +22,4 @@
     </div>
 </div>
 
-<?php $homeJs = <<<JS
-<script type="text/javascript">
-$(document).ready(function () {
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-});
-</script>
-JS;
-?>
-
-<?php view('layout/footer', array('javascript' => $homeJs)) ?>
+<?php view('layout/footer') ?>
