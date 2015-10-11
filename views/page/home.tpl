@@ -10,7 +10,7 @@
     <div class="col-md-7">
         <h2><?php e($dynamic_heading) ?></h2>
         <p>The dynamic heading above is defined in the
-            <code>home()</code> method of the
+            <code>home()</code> method on the
             <code>PageController</code> in file:
             <code>&lt;project>/app/Controllers/PageController.php</code>
         </p>
