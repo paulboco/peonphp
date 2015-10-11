@@ -17,7 +17,7 @@
     <pre><code>&lt;?php
 
 $var1 = 1;
-$var2 = 'Sloth rules!';
+$var2 = 'Sloth Rules!';
 
 dd($var1, $var2);
 /* prints
