@@ -42,7 +42,7 @@ class Router
      *
      * @var string
      */
-    protected $uri;
+    private static $uri;
 
     /**
      * The URI Segments
@@ -117,8 +117,10 @@ class Router
      */
     private function prepareUri()
     {
-        $uri = preg_replace('~/+~', '/', $_SERVER['REQUEST_URI']);
-        $this->uri = trim($uri, '/') ?: 'page/home';
+        if (is_null(static::$uri)) {
+            $uri = preg_replace('~/+~', '/', $_SERVER['REQUEST_URI']);
+            static::$uri = trim($uri, '/') ?: 'page/home';
+        }
     }
 
     /**
@@ -128,7 +130,7 @@ class Router
      */
     private function extractSegments()
     {
-        $segments = explode('/', $this->uri);
+        $segments = explode('/', static::$uri);
         $this->segments = $segments;
 
         $this->controller = $this->formatController(array_shift($segments));
