@@ -25,6 +25,9 @@
     h1.page-header>small {
         text-shadow: none;
     }
+    a {
+        color: #008;
+    }
     footer {
         margin-top: 50px;
         padding-top: 50px;
@@ -32,7 +35,7 @@
         color: gray;
     }
     code {
-        background-color: #ffd;
+        background-color: #fff;
         color: #a00;
         font-size: 15px;
     }
@@ -103,7 +106,7 @@
     a#back-to-top {
         position:fixed;
         bottom: 0;
-        left: 20px;
+        right: 20px;
         text-decoration: none;
     }
     a#back-to-top span {
@@ -122,5 +125,11 @@
     .navbar-inverse .navbar-nav>.active>a,
     .navbar-inverse .navbar-nav>.active>a:hover {
         background-color: rgba(0, 0, 0, 0.12);
+    }
+    .popover-title {
+        font-size: larger;
+    }
+    .popover-content {
+        font-size: 108%;
     }
 </style>

@@ -1,7 +1,6 @@
 <?php view('layout/header') ?>
 
-<a id="top"></a>
-<h1 class="page-header">Helper Functions</h1>
+<h1 id="top" class="page-header">Helper Functions</h1>
 
 <?php $helpers = glob(path('/views/page/helpers/*.tpl')) ?>
 
