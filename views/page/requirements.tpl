@@ -3,7 +3,7 @@
 <h1 class="page-header">Requirements</h1>
 
 <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-8">
         <ul>
             <li>Vagrant</li>
             <li>Virtual Box</li>

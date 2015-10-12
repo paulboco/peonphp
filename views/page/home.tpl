@@ -7,7 +7,7 @@
 </h1>
 
 <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-8">
         <h2><?php e($dynamic_heading) ?></h2>
         <p>The dynamic heading above is defined in the
             <code>home()</code> method on the

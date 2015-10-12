@@ -3,7 +3,7 @@
 <h1 class="page-header">Concepts</h1>
 
 <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-8">
         <?php view('page/concepts/cycle') ?>
 
         <?php view('page/concepts/routing') ?>

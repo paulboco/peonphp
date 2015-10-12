@@ -10,9 +10,10 @@
     }
     body { margin-top: 60px; }
     h1.page-header {
-        border-bottom: dotted 2px #ccc;
+        border-bottom: none;
     }
     h1, h2, h3, h4 {
+        border-bottom: dotted 2px #ccc;
         text-shadow: 1px 1px 2px #888;
         padding: 10px 0;
     }
@@ -23,7 +24,6 @@
         margin-top: 50px;
         padding-top: 50px;
         padding-bottom: 50px;
-        border-top: solid 1px #e8e8e8;
         color: gray;
     }
     code {
@@ -53,7 +53,6 @@
     }
     div.function-definition h3,
     div.function-definition h4 {
-        border-bottom: dotted 2px #ccc;
         padding-bottom: 10px;
         color: #700;
     }
