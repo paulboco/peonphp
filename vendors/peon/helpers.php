@@ -98,18 +98,21 @@ if (!function_exists('segment')) {
     /**
      * Check A URI Segment For Equality
      *
-     * Returns the string 'active' when $segment equals $name.
+     * Compares the value of the URI segment at $position with $value.
+     * If they are a match, true is returned unless $default is defined in which
+     * case $default's value will be returned.
+     * If they are not a match, false is returned.
      *
-     * @param  integer  $segment
+     * @param  integer  $position
      * @param  string  $value
      * @param  mixed  $default
      * @return mixed
      */
-    function segment($segment, $value, $default = null)
+    function segment($position, $value, $default = null)
     {
         $router = Container::getInstance()->make('router');
 
-        if ($router->getSegment($segment) == $value) {
+        if ($router->getSegment($position) == $value) {
             return is_null($default) ? true : $default;
         }
 

@@ -19,6 +19,10 @@
     <pre><code>&lt;?php
 
 $public = path('/public');
-echo $public; // prints <?php e(path('/public')) ?>
+echo $public;
+/* prints
+<?php e(path('/public')) ?>
+
+*/
 </code></pre>
 </div>

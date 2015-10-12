@@ -18,6 +18,9 @@
 
 $username = request('username', 'peon');
 
-echo $username; // prints "peon"
+echo $username;
+/* prints
+peon
+*/
 </code></pre>
 </div>

@@ -24,6 +24,10 @@
 
 $description = config('app.description');
 
-echo $description; // prints "<?php e(config('app.description')) ?>"
+echo $description;
+/* prints
+<?php e(config('app.description')) ?>
+
+*/
 </code></pre>
 </div>

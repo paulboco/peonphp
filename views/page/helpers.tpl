@@ -6,7 +6,7 @@
 <?php $helpers = glob(path('/views/page/helpers/*.tpl')) ?>
 
 <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-8">
         <ul class="nav-compact">
             <?php foreach ($helpers as $template): ?>
                 <?php $basename = basename($template, '.tpl') ?>

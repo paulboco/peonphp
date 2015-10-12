@@ -18,6 +18,8 @@
 
 $unsafe_string = <?php e("A 'quote' is <b>bold</b>") ?>;
 e($unsafe_string);
-// prints A 'quote' is &amp;lt;b&amp;gt;bold&amp;lt;/b&amp;gt;;
+/* prints
+A 'quote' is &amp;lt;b&amp;gt;bold&amp;lt;/b&amp;gt;;
+*/
 </code></pre>
 </div>
