@@ -115,4 +115,8 @@
         letter-spacing: 2px;
         color: #eee;
     }
+    .navbar-inverse .navbar-nav>.active>a,
+    .navbar-inverse .navbar-nav>.active>a:hover {
+        background-color: rgba(0, 0, 0, 0.12);
+    }
 </style>
