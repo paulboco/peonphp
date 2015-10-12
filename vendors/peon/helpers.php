@@ -8,24 +8,6 @@ function d($var)
     var_dump($var);
 }
 
-if (!function_exists('active')) {
-    /**
-     * Set Active By Segment
-     *
-     * Returns the string 'active' when $segment equals $name.
-     *
-     * @param  integer  $segment
-     * @param  string  $name
-     * @return string
-     */
-    function active($segment, $name)
-    {
-        $router = Container::getInstance()->make('router');
-
-        return $router->segment($segment) == $name ? 'active' : '';
-    }
-}
-
 if (!function_exists('config')) {
     /**
      * Get Configuration Data
@@ -109,6 +91,29 @@ if (!function_exists('request')) {
         $request = Container::getInstance()->make('request');
 
         return $request->get($key, $default);
+    }
+}
+
+if (!function_exists('segment')) {
+    /**
+     * Check A URI Segment For Equality
+     *
+     * Returns the string 'active' when $segment equals $name.
+     *
+     * @param  integer  $segment
+     * @param  string  $value
+     * @param  mixed  $default
+     * @return mixed
+     */
+    function segment($segment, $value, $default = null)
+    {
+        $router = Container::getInstance()->make('router');
+
+        if ($router->getSegment($segment) == $value) {
+            return is_null($default) ? true : $default;
+        }
+
+        return false;
     }
 }
 

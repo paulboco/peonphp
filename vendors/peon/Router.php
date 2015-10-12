@@ -101,7 +101,7 @@ class Router
      * @param  string  $default
      * @return string
      */
-    public function segment($position, $default = '')
+    public function getSegment($position, $default = '')
     {
         if (isset($this->segments[$position - 1])) {
             return $this->segments[$position - 1];

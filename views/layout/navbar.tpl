@@ -14,13 +14,13 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="<?php echo active(2, 'concepts') ?>"><a href="/page/concepts">Concepts</a></li>
+                <li class="<?php echo segment(2, 'concepts', 'active') ?>"><a href="/page/concepts">Concepts</a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li class="<?php echo active(2, 'helpers') ?>"><a href="/page/helpers">Helpers</a></li>
+                <li class="<?php echo segment(2, 'helpers', 'active') ?>"><a href="/page/helpers">Helpers</a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li class="<?php echo active(2, 'requirements') ?>"><a href="/page/requirements">Requirements</a></li>
+                <li class="<?php echo segment(2, 'requirements', 'active') ?>"><a href="/page/requirements">Requirements</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:alert('Just a dummy logout link');">Logout</a></li>
