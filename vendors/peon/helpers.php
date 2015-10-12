@@ -1,18 +1,28 @@
 <?php
-
 use Peon\Config;
+use Peon\Container;
 use Peon\Request;
+
+function d($var)
+{
+    var_dump($var);
+}
 
 if (!function_exists('active')) {
     /**
-     * Returns The String 'active' When $condition Is True
+     * Set Active By Segment
      *
-     * @param  boolean  $condition
+     * Returns the string 'active' when $segment equals $name.
+     *
+     * @param  integer  $segment
+     * @param  string  $name
      * @return string
      */
-    function active(boolean $condition)
+    function active($segment, $name)
     {
-        return $condition ? 'active' : '';
+        $router = Container::getInstance()->make('router');
+
+        return $router->segment($segment) == $name ? 'active' : '';
     }
 }
 
@@ -26,7 +36,7 @@ if (!function_exists('config')) {
      */
     function config($path, $default = null)
     {
-        $config = new Config;
+        $config = Container::getInstance()->make('config');
 
         return $config->get($path, $default);
     }
@@ -69,7 +79,7 @@ if (!function_exists('path')) {
      */
     function path($children = '')
     {
-        return realpath(__DIR__ . '/../../') . $children;
+        return Container::getInstance()->basePath . $children;
     }
 }
 
@@ -96,7 +106,7 @@ if (!function_exists('request')) {
      */
     function request($key = null, $default = null)
     {
-        $request = new Request;
+        $request = Container::getInstance()->make('request');
 
         return $request->get($key, $default);
     }

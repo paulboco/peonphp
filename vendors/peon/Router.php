@@ -73,7 +73,9 @@ class Router
     protected $params;
 
     /**
-     * Class Constructor
+     * Create a new router
+     *
+     * @return void
      */
     public function __construct()
     {
@@ -84,13 +86,28 @@ class Router
     /**
      * Dispatch The Route
      *
-     * @todo   This method is bloated and needs to be broken up
      * @return void
      */
     public function dispatch()
     {
         $this->validateRoute();
         $this->callControllerMethod();
+    }
+
+    /**
+     * Get A URI Segment By Position
+     *
+     * @param  integer  $position
+     * @param  string  $default
+     * @return string
+     */
+    public function segment($position, $default = '')
+    {
+        if (isset($this->segments[$position - 1])) {
+            return $this->segments[$position - 1];
+        }
+
+        return $default;
     }
 
     /**
@@ -184,5 +201,4 @@ class Router
             $this->method,
         ), $this->params);
     }
-
 }
