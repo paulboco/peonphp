@@ -8,7 +8,12 @@
        font-size: 16px;
        line-height: 2;
     }
-    body { margin-top: 60px; }
+    html {
+        overflow-y: scroll;
+    }
+    body {
+        margin-top: 60px;
+    }
     h1.page-header {
         border-bottom: none;
     }
