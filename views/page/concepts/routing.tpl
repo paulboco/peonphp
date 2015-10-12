@@ -24,9 +24,17 @@ class UserController
 </code></pre>
 </p>
 <p>
-    All controllers exist in the <code>&lt;project>/app/Controllers</code>
-    directory and use
-    <em class="hint" data-toggle="tooltip" data-placement="top" title="Jargon Alert!">studly caps</em>
+    All controllers are classes and exist in the <code>&lt;project>/app/Controllers</code>
+    directory and are named using
+    <em class="hint"
+        tabindex="0"
+        data-toggle="popover"
+        data-trigger="focus"
+        data-placement="top"
+        title="Studly Caps"
+        data-content="Words strung together without spaces and the first letter of each word capitalized. e.g. MyStudlyClassName ">
+        studly caps
+    </em>
     with the text <code>Controllers</code> appending the class name.
     Therefore, if segment one is <code>user</code>, the full class name
     would be <code>UserController</code> and the file containing the class

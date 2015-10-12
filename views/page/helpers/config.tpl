@@ -9,7 +9,15 @@
         <dd>
             Path to the configuation item.
             It is a string using
-            <em class="hint" data-toggle="tooltip" data-placement="top" title="Jargon Alert!">dot notation</em>.
+            <em class="hint"
+                tabindex="0"
+                data-toggle="popover"
+                data-trigger="focus"
+                data-placement="top"
+                title="Dot Notation"
+                data-content="A string of array keys separated by dots. e.g. database.mysql.name">
+                dot notation
+            </em>.
             The first segment of the path is the filename without the <code>.php</code>.
             Each subsequent segment in the path is an array key.
         </dd>

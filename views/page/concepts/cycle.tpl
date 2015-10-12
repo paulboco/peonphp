@@ -4,7 +4,13 @@
     <ul>
         <li>
             All incoming requests are handled by the
-            <em class="hint" data-toggle="tooltip" data-placement="top" title="i. e. public/index.php">
+            <em class="hint"
+                tabindex="0"
+                data-toggle="popover"
+                data-trigger="focus"
+                data-placement="top"
+                title="Front Controller"
+                data-content="This simply means the public/index.php file.">
                 front controller.
             </em>
             The front controller:
