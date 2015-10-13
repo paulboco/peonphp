@@ -61,7 +61,7 @@ if (!function_exists('path')) {
      */
     function path($children = '')
     {
-        return App::getInstance()->basePath . $children;
+        return App::getInstance()->getRootPath() . $children;
     }
 }
 

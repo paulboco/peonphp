@@ -2,7 +2,7 @@
 
 namespace Peon;
 
-class App extends Container
+final class App extends Container
 {
     /**
      * The App Instance
@@ -14,16 +14,41 @@ class App extends Container
     /**
      * The Application's Root Path
      */
-    public $rootPath;
+    protected $rootPath;
+
+    private function __construct()
+    {
+    }
+
+   public static function instance()
+    {
+        static $inst = null;
+
+        if ($inst === null) {
+            $inst = new UserFactory();
+        }
+        return $inst;
+    }
 
     /**
      * Set The Application's Root Path
      *
      * @param  string  $path
+     * @return void
      */
     public function setRootPath($path)
     {
         $this->rootPath = $path;
+    }
+
+    /**
+     * Get The Application's Root Path
+     *
+     * @return string
+     */
+    public function getRootPath()
+    {
+        return $this->rootPath;
     }
 
     /**
@@ -33,6 +58,10 @@ class App extends Container
      */
     public static function getInstance()
     {
+        if (self::$instance == null) {
+            self::$instance = new self;
+        }
+
         return self::$instance;
     }
 
@@ -44,10 +73,5 @@ class App extends Container
     public function registerServices()
     {
         parent::registerServices();
-d($this);
-        if ( ! self::$instance instanceof Peon\App) {
-            self::$instance = $this;
-        }
-dd($this);
     }
 }

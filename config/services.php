@@ -6,10 +6,6 @@ return array(
     |--------------------------------------------------------------------------
     | Register Services
     |--------------------------------------------------------------------------
-    |
-    | You may register and classes that have dependencies here.
-    |
-    |--------------------------------------------------------------------------
     */
 
     'config' => function() {
@@ -21,7 +17,7 @@ return array(
     },
 
     'router' => function() {
-        return new Peon\Router(new Peon\App);
+        return new Peon\Router(Peon\App::getInstance());
     },
 
 );
