@@ -8,7 +8,7 @@ return array(
     |--------------------------------------------------------------------------
     */
 
-    'name' => 'The PEON Framework',
+    'name' => 'Peon',
 
     /*
     |--------------------------------------------------------------------------
@@ -16,7 +16,6 @@ return array(
     |--------------------------------------------------------------------------
     */
 
-    'description' => 'If all PHP frameworks worked at the same place ...',
-
+    'description' => 'A very simple PHP framework',
 
 );

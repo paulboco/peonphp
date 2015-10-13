@@ -1,19 +1,40 @@
 <?php
 
+/**
+ * Peon - A Very Simple PHP Framework
+ *
+ * @author PaulboCo
+ */
+
+/*
+|--------------------------------------------------------------------------
+| Error Reporting
+|--------------------------------------------------------------------------
+*/
+
 error_reporting(E_ALL);
 
-/**
- * PEON Framework - A Very Simple PHP Framework
- */
+/*
+|--------------------------------------------------------------------------
+| Register The Auto Loader
+|--------------------------------------------------------------------------
+*/
+
+require __DIR__ . '/../boot/autoloader.php';
 
 /*
 |--------------------------------------------------------------------------
 | Boot The Application
 |--------------------------------------------------------------------------
-|
-| This file (index.php) is the only file in the
-| PEON framework that is publicly accessible.
-|
 */
 
-require __DIR__ . '/../boot/app.php';
+$app = require_once __DIR__ . '/../boot/app.php';
+
+/*
+|--------------------------------------------------------------------------
+| Dispatch The Route
+|--------------------------------------------------------------------------
+*/
+
+$router = $app->make('router');
+$router->dispatch();

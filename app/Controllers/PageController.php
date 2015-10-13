@@ -2,11 +2,12 @@
 
 namespace App\Controllers;
 
-use Peon\Config;
+use Peon\Controller;
+use Peon\View;
 
 /**
-* The Page Controller
-*/
+ * The Page Controller
+ */
 class PageController extends Controller
 {
     /**
@@ -16,10 +17,40 @@ class PageController extends Controller
      */
     public function home()
     {
-        return view('page/home', array(
+        return $this->view->make('page/home', array(
             'dynamic_heading' => 'Dynamic Heading',
+            'shared' => $this->shared,
         ));
     }
 
+    /**
+     * Concepts Page
+     *
+     * @return void
+     */
+    public function concepts()
+    {
+        return $this->view->make('page/concepts');
+    }
+
+    /**
+     * Helpers Page
+     *
+     * @return void
+     */
+    public function helpers()
+    {
+        return $this->view->make('page/helpers');
+    }
+
+    /**
+     * Requirements Page
+     *
+     * @return void
+     */
+    public function requirements()
+    {
+        return $this->view->make('page/requirements');
+    }
 
 }
