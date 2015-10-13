@@ -1,4 +1,4 @@
-<?php view('layout/header') ?>
+<?php $this->view->make('layout/header') ?>
 
 <h1 id="top" class="page-header">Helper Functions</h1>
 
@@ -37,4 +37,4 @@ $(document).ready(function () {
 JS;
 ?>
 
-<?php view('layout/footer', array('javascript' => $javascript)) ?>
+<?php $this->view->make('layout/footer', array('javascript' => $javascript)) ?>

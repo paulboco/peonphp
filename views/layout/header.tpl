@@ -2,8 +2,8 @@
 <html>
 <head>
     <title><?php e(config('app.name')) ?></title>
-    <?php echo view('layout/style') ?>
+    <?php echo $this->view->make('layout/style') ?>
 </head>
 <body>
-    <?php view('layout/navbar') ?>
+    <?php $this->view->make('layout/navbar') ?>
     <div class="container">

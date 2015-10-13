@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use Peon\Controller;
+use Peon\View;
 
 /**
  * The Page Controller
@@ -16,7 +17,7 @@ class PageController extends Controller
      */
     public function home()
     {
-        return view('page/home', array(
+        return $this->view->make('page/home', array(
             'dynamic_heading' => 'Dynamic Heading',
             'shared' => $this->shared,
         ));
@@ -29,7 +30,7 @@ class PageController extends Controller
      */
     public function concepts()
     {
-        return view('page/concepts');
+        return $this->view->make('page/concepts');
     }
 
     /**
@@ -39,7 +40,7 @@ class PageController extends Controller
      */
     public function helpers()
     {
-        return view('page/helpers');
+        return $this->view->make('page/helpers');
     }
 
     /**
@@ -49,7 +50,7 @@ class PageController extends Controller
      */
     public function requirements()
     {
-        return view('page/requirements');
+        return $this->view->make('page/requirements');
     }
 
 }

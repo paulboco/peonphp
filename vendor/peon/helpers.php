@@ -104,19 +104,3 @@ if (!function_exists('segment')) {
     }
 }
 
-if (!function_exists('view')) {
-    /**
-     * Display A View
-     *
-     * @param  string  $template
-     * @param  array   $data
-     * @return void
-     */
-    function view($template, $data = array())
-    {
-        extract($data);
-        $errors = isset($errors) ? $errors : array();
-
-        include path("/views/{$template}.tpl");
-    }
-}

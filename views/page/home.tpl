@@ -1,4 +1,4 @@
-<?php view('layout/header') ?>
+<?php $this->view->make('layout/header') ?>
 
 <h1 class="page-header">
     <?php e(config('app.name')) ?>
@@ -22,4 +22,4 @@
     </div>
 </div>
 
-<?php view('layout/footer') ?>
+<?php $this->view->make('layout/footer') ?>

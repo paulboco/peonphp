@@ -1,4 +1,4 @@
-<?php view('layout/header') ?>
+<?php $this->view->make('layout/header') ?>
 
 <h1 class="page-header">Requirements</h1>
 
@@ -13,4 +13,4 @@
     </div>
 </div>
 
-<?php view('layout/footer') ?>
+<?php $this->view->make('layout/footer') ?>
