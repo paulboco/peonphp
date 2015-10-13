@@ -30,7 +30,7 @@ abstract class Controller
      * @return void
      * @todo Inject Request and View
      */
-    public function __construct()
+    public function __construct(Request $request)
     {
         $this->request = $request;
 

@@ -129,10 +129,10 @@ class Router
      */
     private function prepareUri()
     {
-        if (is_null(static::$uri)) {
-            $uri = preg_replace('~/+~', '/', $_SERVER['REQUEST_URI']);
-            static::$uri = trim($uri, '/') ?: 'page/home';
-        }
+        $uri = strstr($_SERVER['REQUEST_URI'], '?', true);
+        $uri = preg_replace('~/+~', '/', $uri);
+
+        static::$uri = trim($uri, '/') ?: 'page/home';
     }
 
     /**

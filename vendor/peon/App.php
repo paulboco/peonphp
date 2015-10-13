@@ -4,15 +4,50 @@ namespace Peon;
 
 class App extends Container
 {
-    public $basePath;
+    /**
+     * The App Instance
+     *
+     * @var Peon\App
+     */
+    private static $instance;
 
-    public function __construct()
+    /**
+     * The Application's Root Path
+     */
+    public $rootPath;
+
+    /**
+     * Set The Application's Root Path
+     *
+     * @param  string  $path
+     */
+    public function setRootPath($path)
     {
-        parent::__construct();
+        $this->rootPath = $path;
     }
 
-    public function setPath($basePath)
+    /**
+     * Get the globally available instance of the container.
+     *
+     * @return static
+     */
+    public static function getInstance()
     {
-        $this->basePath = $basePath;
+        return self::$instance;
+    }
+
+    /**
+     * Register Configured Services
+     *
+     * @return void
+     */
+    public function registerServices()
+    {
+        parent::registerServices();
+d($this);
+        if ( ! self::$instance instanceof Peon\App) {
+            self::$instance = $this;
+        }
+dd($this);
     }
 }

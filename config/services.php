@@ -16,10 +16,6 @@ return array(
         return new Peon\Config();
     },
 
-    'controller' => function() {
-        return new Peon\Controller();
-    },
-
     'request' => function() {
         return new Peon\Request();
     },

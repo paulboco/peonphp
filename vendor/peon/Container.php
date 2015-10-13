@@ -5,41 +5,14 @@ namespace Peon;
 use Closure;
 use Exception;
 
-class Container
+abstract class Container
 {
-    /**
-     * The Container Instance
-     *
-     * @var Peon\Container
-     */
-    protected static $instance;
-
     /**
      * The Registered Services (Classes)
      *
      * @var array
      */
-    private $services = array();
-
-    /**
-     * Create a new container
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        static::$instance = $this;
-    }
-
-    /**
-     * Get the globally available instance of the container.
-     *
-     * @return static
-     */
-    public static function getInstance()
-    {
-        return static::$instance;
-    }
+    protected $services = array();
 
     /**
      * Register Configured Services

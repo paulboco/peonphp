@@ -1,11 +1,11 @@
 <?php
 use Peon\Config;
-use Peon\Container;
+use Peon\App;
 use Peon\Request;
 
 function d($var)
 {
-    var_dump($var);
+    array_map(function ($x) { var_dump($x); }, func_get_args());
 }
 
 if (!function_exists('config')) {
@@ -18,7 +18,7 @@ if (!function_exists('config')) {
      */
     function config($path, $default = null)
     {
-        $config = Container::getInstance()->make('config');
+        $config = App::getInstance()->make('config');
 
         return $config->get($path, $default);
     }
@@ -61,7 +61,7 @@ if (!function_exists('path')) {
      */
     function path($children = '')
     {
-        return Container::getInstance()->basePath . $children;
+        return App::getInstance()->basePath . $children;
     }
 }
 
@@ -88,7 +88,7 @@ if (!function_exists('request')) {
      */
     function request($key = null, $default = null)
     {
-        $request = Container::getInstance()->make('request');
+        $request = App::getInstance()->make('request');
 
         return $request->get($key, $default);
     }
@@ -110,7 +110,7 @@ if (!function_exists('segment')) {
      */
     function segment($position, $value, $default = null)
     {
-        $router = Container::getInstance()->make('router');
+        $router = App::getInstance()->make('router');
 
         if ($router->getSegment($position) == $value) {
             return is_null($default) ? true : $default;
