@@ -1,4 +1,5 @@
 <?php
+
 namespace Peon;
 
 class Config

@@ -1,4 +1,5 @@
 <?php
+
 namespace Peon;
 
 class Request
@@ -22,6 +23,7 @@ class Request
      * Get Request Variables
      *
      * @param  string  $key
+     * @param  string  $default
      * @return array|string
      */
     public function get($key = null, $default = null)
@@ -37,4 +39,24 @@ class Request
         return $default;
     }
 
+    /**
+     * Get All Request Variables
+     *
+     * @return array|null
+     */
+    public function all()
+    {
+        return $this->request;
+    }
+
+    /**
+     * Check If A Request Variable Exists
+     *
+     * @param  string  $key
+     * @return boolean
+     */
+    public function has($key)
+    {
+        return isset($request[$key]);
+    }
 }
