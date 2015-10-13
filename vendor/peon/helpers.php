@@ -78,22 +78,6 @@ if (!function_exists('redirect')) {
     }
 }
 
-if (!function_exists('request')) {
-    /**
-     * Get The Request
-     *
-     * @param  string  $key
-     * @param  mixed   $default
-     * @return mixed
-     */
-    function request($key = null, $default = null)
-    {
-        $request = App::getInstance()->make('request');
-
-        return $request->get($key, $default);
-    }
-}
-
 if (!function_exists('segment')) {
     /**
      * Check A URI Segment For Equality
