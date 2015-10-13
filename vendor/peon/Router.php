@@ -1,5 +1,8 @@
 <?php
+
 namespace Peon;
+
+use Peon\App;
 
 /**
  * Peon Router
@@ -37,6 +40,13 @@ namespace Peon;
  */
 class Router
 {
+    /**
+     * The app instance
+     *
+     * @var Peon\App
+     */
+    protected $app;
+
     /**
      * The Current URI
      *
@@ -77,8 +87,10 @@ class Router
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(App $app)
     {
+        $this->app = $app;
+
         $this->prepareUri();
         $this->extractSegments();
     }
@@ -199,7 +211,7 @@ class Router
     private function callControllerMethod()
     {
         call_user_func_array(array(
-            new $this->controller,
+            new $this->controller($this->app->make('request')),
             $this->method,
         ), $this->params);
     }

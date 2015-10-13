@@ -1,5 +1,8 @@
 <?php
+
 namespace App\Controllers;
+
+use Peon\Controller;
 
 /**
  * The Page Controller
