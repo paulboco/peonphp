@@ -17,10 +17,7 @@ class PageController extends Controller
      */
     public function home()
     {
-        return $this->view->make('page/home', array(
-            'dynamic_heading' => 'Dynamic Heading',
-            'shared' => $this->shared,
-        ));
+        $this->view->make('page/home');
     }
 
     /**
@@ -30,7 +27,7 @@ class PageController extends Controller
      */
     public function concepts()
     {
-        return $this->view->make('page/concepts');
+        $this->view->make('page/concepts');
     }
 
     /**
@@ -40,7 +37,7 @@ class PageController extends Controller
      */
     public function helpers()
     {
-        return $this->view->make('page/helpers');
+        $this->view->make('page/helpers');
     }
 
     /**
@@ -50,7 +47,16 @@ class PageController extends Controller
      */
     public function requirements()
     {
-        return $this->view->make('page/requirements');
+        $this->view->make('page/requirements');
     }
 
+    /**
+     * Peon API
+     *
+     * @return void
+     */
+    public function api()
+    {
+        $this->view->make('page/api');
+    }
 }
