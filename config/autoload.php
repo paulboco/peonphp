@@ -9,7 +9,7 @@ return array(
     */
 
     'namespaces' => array(
-        'Peon\\' => 'vendors/peon/',
+        'Peon\\' => 'vendor/peon/',
         'App\\' => 'app/',
     ),
 
@@ -20,7 +20,7 @@ return array(
     */
 
     'files' => array(
-        'vendors/peon/helpers.php',
+        'vendor/peon/helpers.php',
     ),
 
 );

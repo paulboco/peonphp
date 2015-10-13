@@ -14,7 +14,7 @@ $autoload = require __DIR__ . '/../config/autoload.php';
 |--------------------------------------------------------------------------
 */
 
-require __DIR__ . '/../vendors/phpfig/Autoloader.php';
+require __DIR__ . '/../vendor/phpfig/Autoloader.php';
 $autoloader = new \Phpfig\Autoloader;
 $autoloader->register();
 
