@@ -211,7 +211,10 @@ class Router
     private function callControllerMethod()
     {
         call_user_func_array(array(
-            new $this->controller($this->app->make('request')),
+            new $this->controller(
+                $this->app->make('view'),
+                $this->app->make('request')
+            ),
             $this->method,
         ), $this->params);
     }

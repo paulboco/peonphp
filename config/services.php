@@ -20,4 +20,8 @@ return array(
         return new Peon\Router(Peon\App::getInstance());
     },
 
+    'view' => function() {
+        return new Peon\View();
+    },
+
 );

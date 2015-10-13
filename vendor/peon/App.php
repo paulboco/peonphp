@@ -16,6 +16,9 @@ final class App extends Container
      */
     protected $rootPath;
 
+    /**
+     * Private constructor
+     */
     private function __construct()
     {
     }

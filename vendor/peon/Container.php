@@ -8,11 +8,11 @@ use Exception;
 abstract class Container
 {
     /**
-     * The Registered Services (Classes)
+     * The Registered Services
      *
      * @var array
      */
-    protected $services = array();
+    protected $services;
 
     /**
      * Register Configured Services

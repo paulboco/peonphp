@@ -2,8 +2,6 @@
 
 namespace Peon;
 
-use Peon\Request;
-
 /**
  * The Base Controller
  */
@@ -17,6 +15,13 @@ abstract class Controller
     protected $request;
 
     /**
+     * The view instance
+     *
+     * @var  Peon\View
+     */
+    protected $view;
+
+    /**
      * The Value
      *
      * @var string
@@ -26,12 +31,14 @@ abstract class Controller
     /**
      * Create a new controller
      *
+     * @param  Peon\View  $view
      * @param  Peon\Request  $request
      * @return void
      * @todo Inject Request and View
      */
-    public function __construct(Request $request)
+    public function __construct(View $view, Request $request)
     {
+        $this->view = $view;
         $this->request = $request;
 
         $this->shared = 'I am a value that can be shared with classes that extend me.';
