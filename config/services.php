@@ -8,6 +8,12 @@ return array(
     |--------------------------------------------------------------------------
     */
 
+    'bondservant' => function() {
+        return new App\Bondservant(
+            new PDO('mysql:dbname=peon;host=localhost', 'root', 'root')
+        );
+    },
+
     'config' => function() {
         return new Peon\Config();
     },
