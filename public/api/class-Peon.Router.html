@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Peon\Router</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+				<li>
+					<a href="namespace-None.html">
+						None					</a>
+
+						</li>
+				<li class="active">
+					<a href="namespace-Peon.html">
+						Peon					</a>
+
+						</li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Peon.App.html">App</a></li>
+				<li><a href="class-Peon.Config.html">Config</a></li>
+				<li><a href="class-Peon.Container.html">Container</a></li>
+				<li><a href="class-Peon.Controller.html">Controller</a></li>
+				<li><a href="class-Peon.Request.html">Request</a></li>
+				<li class="active"><a href="class-Peon.Router.html">Router</a></li>
+				<li><a href="class-Peon.View.html">View</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Peon.html" title="Summary of Peon"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Router</h1>
+
+
+	<div class="description">
+	<p>Peon Router</p>
+
+<p>The Peon Router is a VERY simple router based the assumption that segment one
+of the requested URI is a controller name (without the 'Controller' appendage)
+and segment two is name of the controller's method.</p>
+
+<p>For example, the URL http://example.com/user/dashboard would map to
+the dashboard() method of class UserController.
+e.g.,
+ &lt;?php
+ class UserController { public function dashboard() { // ... } }</p>
+
+<p>All controllers exist in the 'project/Controllers' directory and use
+studly case with the word 'Controllers' appending the class name.
+Therefore, if segment one is 'user', the full class name would be
+'UserController' and the file containing the class would be
+'project/Controllers/UserController.php'.</p>
+
+<p>If no controller method can be found matching segments one and two, a
+404 response is returned to the browser.</p>
+
+<p>The one exception to this rule is when the base URL is requested - i.e.,
+'http://example.com'. In this case, the router will map to controller
+'PageController' and its 'home' method.</p>
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Peon.html">Peon</a><br>
+		
+
+			<b>Located at</b> <a href="source-class-Peon.Router.html#7-221" title="Go to source code">Router.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Peon.Router.html#85-96" title="Go to source code">__construct</a>( <span><code><a href="class-Peon.App.html">Peon\App</a></code> <var>$app</var></span> )</code>
+
+		<div class="description short">
+			<p>Create a new router</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Create a new router</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="dispatch" id="_dispatch">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_dispatch">#</a>
+		<code><a href="source-class-Peon.Router.html#98-107" title="Go to source code">dispatch</a>( )</code>
+
+		<div class="description short">
+			<p>Dispatch The Route</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Dispatch The Route</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getSegment" id="_getSegment">
+
+		<td class="attributes"><code>
+			 public 
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getSegment">#</a>
+		<code><a href="source-class-Peon.Router.html#109-123" title="Go to source code">getSegment</a>( <span>integer <var>$position</var></span>, <span>string <var>$default</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			<p>Get A URI Segment By Position</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Get A URI Segment By Position</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$position</var></dt>
+					<dd></dd>
+					<dt><var>$default</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="app" id="$app">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Peon.App.html">Peon\App</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Peon.Router.html#43-48" title="Go to source code"><var>$app</var></a>
+
+			<div class="description short">
+				<p>The app instance</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>The app instance</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$app" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="uri" id="$uri">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Peon.Router.html#50-55" title="Go to source code"><var>$uri</var></a>
+
+			<div class="description short">
+				<p>The Current URI</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>The Current URI</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$uri" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="segments" id="$segments">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Peon.Router.html#57-62" title="Go to source code"><var>$segments</var></a>
+
+			<div class="description short">
+				<p>The URI Segments</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>The URI Segments</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$segments" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="controller" id="$controller">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Peon.Router.html#64-69" title="Go to source code"><var>$controller</var></a>
+
+			<div class="description short">
+				<p>The Controller</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>The Controller</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$controller" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="method" id="$method">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Peon.Router.html#71-76" title="Go to source code"><var>$method</var></a>
+
+			<div class="description short">
+				<p>The Controller's Method</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>The Controller's Method</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$method" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="params" id="$params">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Peon.Router.html#78-83" title="Go to source code"><var>$params</var></a>
+
+			<div class="description short">
+				<p>The Route Parameters</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>The Route Parameters</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$params" class="anchor">#</a>
+				<code></code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>

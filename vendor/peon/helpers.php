@@ -1,12 +1,7 @@
 <?php
-use Peon\Config;
-use Peon\App;
-use Peon\Request;
 
-function d($var)
-{
-    array_map(function ($x) { var_dump($x); }, func_get_args());
-}
+use Peon\App;
+use Peon\Config;
 
 if (!function_exists('config')) {
     /**
@@ -24,6 +19,20 @@ if (!function_exists('config')) {
     }
 }
 
+if (!function_exists('d')) {
+    /**
+     * Dump Variable
+     *
+     * @return void
+     */
+    function d()
+    {
+        array_map(function ($x) {
+            var_dump($x);
+        }, func_get_args());
+    }
+}
+
 if (!function_exists('dd')) {
     /**
      * Dump Variable and Die
@@ -32,9 +41,7 @@ if (!function_exists('dd')) {
      */
     function dd()
     {
-        array_map(function ($x) {
-            var_dump($x);
-        }, func_get_args());
+        d(func_get_args());
         die(1);
     }
 }
@@ -103,4 +110,3 @@ if (!function_exists('segment')) {
         return false;
     }
 }
-

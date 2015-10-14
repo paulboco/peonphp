@@ -22,6 +22,9 @@
             <ul class="nav navbar-nav">
                 <li class="<?php echo segment(2, 'requirements', 'active') ?>"><a href="/page/requirements">Requirements</a></li>
             </ul>
+            <ul class="nav navbar-nav">
+                <li class="<?php echo segment(2, 'api', 'active') ?>"><a href="/page/api">API</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:alert('Just a dummy logout link');">Logout</a></li>
             </ul>
