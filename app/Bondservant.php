@@ -12,7 +12,13 @@ class Bondservant extends Gopher
     public function index()
     {
         $rows = $this->getAll();
-        dd('Bondservant::index()', $rows);
+        d('Bondservant::index()', $rows);
+    }
+
+    public function show($id)
+    {
+        $row = $this->find($id);
+        d("Bondservant::show({$id})", $row);
     }
 
     public function create($name, $rating)

@@ -29,16 +29,16 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `bondservants` (
   `id` int(10) unsigned NOT NULL,
   `name` varchar(100) NOT NULL,
-  `ratin` int(11) NOT NULL DEFAULT '0'
+  `rating` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bondservants`
 --
 
-INSERT INTO `bondservants` (`id`, `name`, `ratin`) VALUES
+INSERT INTO `bondservants` (`id`, `name`, `rating`) VALUES
 (1, 'Harold Whitchaser', 0),
-(2, 'Edward Schlowdern', 0);
+(2, 'Edward Schloushdern', 0);
 
 --
 -- Indexes for dumped tables

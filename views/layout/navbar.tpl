@@ -25,6 +25,9 @@
             <ul class="nav navbar-nav">
                 <li class="<?php echo segment(2, 'api', 'active') ?>"><a href="/page/api">API</a></li>
             </ul>
+            <ul class="nav navbar-nav">
+                <li class="<?php echo segment(2, 'bondservant', 'active') ?>"><a href="/bondservant/index">Bondservants</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="javascript:alert('Just a dummy logout link');">Logout</a></li>
             </ul>
