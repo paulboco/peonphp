@@ -69,6 +69,8 @@ class Config
             $this->config = include $file;
             return true;
         }
+
+        return false;
     }
 
     /**

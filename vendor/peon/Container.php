@@ -54,7 +54,7 @@ abstract class Container
     {
         $className = strtolower($className);
 
-        // if($this->containerHas($className)) {
+        // if($this->has($className)) {
         //     throw new Exception("Class is already registered!", 1);
         // }
 

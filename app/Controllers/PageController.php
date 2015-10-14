@@ -5,9 +5,6 @@ namespace App\Controllers;
 use Peon\Controller;
 use Peon\View;
 
-/**
- * The Page Controller
- */
 class PageController extends Controller
 {
     /**

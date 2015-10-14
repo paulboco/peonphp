@@ -23,16 +23,6 @@ final class App extends Container
     {
     }
 
-   public static function instance()
-    {
-        static $inst = null;
-
-        if ($inst === null) {
-            $inst = new UserFactory();
-        }
-        return $inst;
-    }
-
     /**
      * Set The Application's Root Path
      *
@@ -55,7 +45,7 @@ final class App extends Container
     }
 
     /**
-     * Get the globally available instance of the container.
+     * Get App Instance
      *
      * @return static
      */
@@ -66,15 +56,5 @@ final class App extends Container
         }
 
         return self::$instance;
-    }
-
-    /**
-     * Register Configured Services
-     *
-     * @return void
-     */
-    public function registerServices()
-    {
-        parent::registerServices();
     }
 }

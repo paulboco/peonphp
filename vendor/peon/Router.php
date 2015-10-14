@@ -7,7 +7,7 @@ use Peon\App;
 /**
  * Peon Router
  *
- * The Peon Router is a VERY simple router based the assumption that segment one
+ * The Peon Router is based the assumption that segment one
  * of the requested URI is a controller name (without the 'Controller' appendage)
  * and segment two is name of the controller's method.
  *
@@ -38,6 +38,7 @@ use Peon\App;
  * 'http://example.com'. In this case, the router will map to controller
  * 'PageController' and its 'home' method.
  */
+
 class Router
 {
     /**

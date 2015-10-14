@@ -4,10 +4,16 @@ namespace Peon;
 
 class View
 {
+    /**
+     * Create a new view
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->view = $this;
     }
+
     /**
      * Make A View
      *

@@ -41,7 +41,9 @@ if (!function_exists('dd')) {
      */
     function dd()
     {
-        d(func_get_args());
+        array_map(function ($x) {
+            var_dump($x);
+        }, func_get_args());
         die(1);
     }
 }
