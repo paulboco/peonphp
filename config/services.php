@@ -9,13 +9,15 @@ return array(
     */
 
     'bondservant' => function() {
-        return new App\Bondservant(
-            new PDO('mysql:dbname=peon;host=localhost', 'root', 'root')
-        );
+        return new App\Bondservant;
     },
 
     'config' => function() {
         return new Peon\Config();
+    },
+
+    'pdo' => function() {
+        return new PDO('mysql:dbname=peon;host=localhost', 'root', 'root');
     },
 
     'request' => function() {

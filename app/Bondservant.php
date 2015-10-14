@@ -3,19 +3,16 @@
 namespace App;
 
 use PDO;
+use Peon\Gopher;
 
-class Bondservant
+class Bondservant extends Gopher
 {
-    protected $pdo;
-
-    public function __construct(PDO $pdo)
-    {
-        $this->pdo = $pdo;
-    }
+    protected $table = 'bondservants';
 
     public function index()
     {
-        //
+        $rows = $this->getAll();
+        dd('Bondservant::index()', $rows);
     }
 
     public function create($name, $rating)

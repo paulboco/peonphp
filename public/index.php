@@ -37,6 +37,7 @@ $app = require_once __DIR__ . '/../boot/app.php';
 */
 
 $bondservant = $app->make('bondservant');
+$bondservant->index();
 dd($bondservant);
 
 
