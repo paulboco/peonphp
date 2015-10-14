@@ -14,7 +14,7 @@ class Gopher
     protected $pdo;
 
     /**
-     * Create new gopher
+     * Create a new gopher
      *
      * @return void
      */

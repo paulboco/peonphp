@@ -9,6 +9,7 @@ return array(
     */
 
     'namespaces' => array(
+        'Geary\\' => 'vendor/geary/',
         'Peon\\' => 'vendor/peon/',
         'App\\' => 'app/',
     ),

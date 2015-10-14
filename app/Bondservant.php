@@ -7,18 +7,32 @@ use Peon\Gopher;
 
 class Bondservant extends Gopher
 {
+    /**
+     * The table name
+     *
+     * @var string
+     */
     protected $table = 'bondservants';
 
+    /**
+     * Index
+     *
+     * @return array
+     */
     public function index()
     {
-        $rows = $this->getAll();
-        d('Bondservant::index()', $rows);
+        return $this->getAll();
     }
 
+    /**
+     * Show
+     *
+     * @param  integer  $id
+     * @return array
+     */
     public function show($id)
     {
-        $row = $this->find($id);
-        d("Bondservant::show({$id})", $row);
+        return $this->find($id);
     }
 
     public function create($name, $rating)

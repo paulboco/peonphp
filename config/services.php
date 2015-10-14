@@ -8,12 +8,8 @@ return array(
     |--------------------------------------------------------------------------
     */
 
-    'bondservant' => function() {
-        return new App\Bondservant;
-    },
-
     'config' => function() {
-        return new Peon\Config();
+        return new Peon\Config;
     },
 
     'pdo' => function() {
@@ -21,7 +17,11 @@ return array(
     },
 
     'request' => function() {
-        return new Peon\Request();
+        return new Peon\Request;
+    },
+
+    'resolver' => function() {
+        return new Geary\Resolver;
     },
 
     'router' => function() {
@@ -29,7 +29,7 @@ return array(
     },
 
     'view' => function() {
-        return new Peon\View();
+        return new Peon\View;
     },
 
 );

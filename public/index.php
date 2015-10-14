@@ -36,14 +36,5 @@ $app = require_once __DIR__ . '/../boot/app.php';
 |--------------------------------------------------------------------------
 */
 
-// $bondservant = $app->make('bondservant');
-// $bondservant->index();
-// $bondservant->show(2);
-// die;
-
-
-
-
-
 $router = $app->make('router');
 $router->dispatch();
