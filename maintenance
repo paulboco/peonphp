@@ -1,0 +1,29 @@
+<?php
+
+if ($argc < 2) {
+    echo 'Not enough arguments.';
+    die;
+}
+
+if ($argc > 2) {
+    echo 'Too many arguments.';
+    die;
+}
+
+$command = $argv[1];
+
+if ($command != 'on' and $command != 'off') {
+    echo 'Unrecognized argument "' . $command . '".';
+    echo "\nValid arguments are " . '"on" and "off".';
+    die;
+}
+
+if ($command == 'on') {
+    touch('./storage/app/maintenance');
+    echo 'Maintenance mode is now on.';
+}
+
+if ($command == 'off') {
+    unlink('./storage/app/maintenance');
+    echo 'Maintenance mode is now off.';
+}
