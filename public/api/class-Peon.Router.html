@@ -41,6 +41,7 @@
 				<li><a href="class-Peon.Config.html">Config</a></li>
 				<li><a href="class-Peon.Container.html">Container</a></li>
 				<li><a href="class-Peon.Controller.html">Controller</a></li>
+				<li><a href="class-Peon.Gopher.html">Gopher</a></li>
 				<li><a href="class-Peon.Request.html">Request</a></li>
 				<li class="active"><a href="class-Peon.Router.html">Router</a></li>
 				<li><a href="class-Peon.View.html">View</a></li>
@@ -88,7 +89,7 @@
 	<div class="description">
 	<p>Peon Router</p>
 
-<p>The Peon Router is a VERY simple router based the assumption that segment one
+<p>The Peon Router is based the assumption that segment one
 of the requested URI is a controller name (without the 'Controller' appendage)
 and segment two is name of the controller's method.</p>
 
@@ -126,7 +127,7 @@ Therefore, if segment one is 'user', the full class name would be
 		<b>Namespace:</b> <a href="namespace-Peon.html">Peon</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-Peon.Router.html#7-221" title="Go to source code">Router.php</a>
+			<b>Located at</b> <a href="source-class-Peon.Router.html#8-219" title="Go to source code">Router.php</a>
 		<br>
 	</div>
 
@@ -146,7 +147,7 @@ Therefore, if segment one is 'user', the full class name would be
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Peon.Router.html#85-96" title="Go to source code">__construct</a>( <span><code><a href="class-Peon.App.html">Peon\App</a></code> <var>$app</var></span> )</code>
+		<code><a href="source-class-Peon.Router.html#86-97" title="Go to source code">__construct</a>( <span><code><a href="class-Peon.App.html">Peon\App</a></code> <var>$app</var></span> )</code>
 
 		<div class="description short">
 			<p>Create a new router</p>
@@ -176,7 +177,7 @@ Therefore, if segment one is 'user', the full class name would be
 
 		<td class="name"><div>
 		<a class="anchor" href="#_dispatch">#</a>
-		<code><a href="source-class-Peon.Router.html#98-107" title="Go to source code">dispatch</a>( )</code>
+		<code><a href="source-class-Peon.Router.html#99-108" title="Go to source code">dispatch</a>( )</code>
 
 		<div class="description short">
 			<p>Dispatch The Route</p>
@@ -206,7 +207,7 @@ Therefore, if segment one is 'user', the full class name would be
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getSegment">#</a>
-		<code><a href="source-class-Peon.Router.html#109-123" title="Go to source code">getSegment</a>( <span>integer <var>$position</var></span>, <span>string <var>$default</var> = <span class="php-quote">''</span></span> )</code>
+		<code><a href="source-class-Peon.Router.html#110-124" title="Go to source code">getSegment</a>( <span>integer <var>$position</var></span>, <span>string <var>$default</var> = <span class="php-quote">''</span></span> )</code>
 
 		<div class="description short">
 			<p>Get A URI Segment By Position</p>
@@ -257,7 +258,7 @@ Therefore, if segment one is 'user', the full class name would be
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Peon.Router.html#43-48" title="Go to source code"><var>$app</var></a>
+				<a href="source-class-Peon.Router.html#44-49" title="Go to source code"><var>$app</var></a>
 
 			<div class="description short">
 				<p>The app instance</p>
@@ -282,7 +283,7 @@ Therefore, if segment one is 'user', the full class name would be
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Peon.Router.html#50-55" title="Go to source code"><var>$uri</var></a>
+				<a href="source-class-Peon.Router.html#51-56" title="Go to source code"><var>$uri</var></a>
 
 			<div class="description short">
 				<p>The Current URI</p>
@@ -307,7 +308,7 @@ Therefore, if segment one is 'user', the full class name would be
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Peon.Router.html#57-62" title="Go to source code"><var>$segments</var></a>
+				<a href="source-class-Peon.Router.html#58-63" title="Go to source code"><var>$segments</var></a>
 
 			<div class="description short">
 				<p>The URI Segments</p>
@@ -332,7 +333,7 @@ Therefore, if segment one is 'user', the full class name would be
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Peon.Router.html#64-69" title="Go to source code"><var>$controller</var></a>
+				<a href="source-class-Peon.Router.html#65-70" title="Go to source code"><var>$controller</var></a>
 
 			<div class="description short">
 				<p>The Controller</p>
@@ -357,7 +358,7 @@ Therefore, if segment one is 'user', the full class name would be
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Peon.Router.html#71-76" title="Go to source code"><var>$method</var></a>
+				<a href="source-class-Peon.Router.html#72-77" title="Go to source code"><var>$method</var></a>
 
 			<div class="description short">
 				<p>The Controller's Method</p>
@@ -382,7 +383,7 @@ Therefore, if segment one is 'user', the full class name would be
 		</code></td>
 
 		<td class="name">
-				<a href="source-class-Peon.Router.html#78-83" title="Go to source code"><var>$params</var></a>
+				<a href="source-class-Peon.Router.html#79-84" title="Go to source code"><var>$params</var></a>
 
 			<div class="description short">
 				<p>The Route Parameters</p>
