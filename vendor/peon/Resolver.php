@@ -1,6 +1,6 @@
 <?php
 
-namespace Geary;
+namespace Peon;
 
 use Exception;
 use ReflectionClass;
@@ -8,7 +8,6 @@ use ReflectionParameter;
 
 /**
  * Resolver
- *
  *
  * Automatic dependency injection with PHP’s reflection API.
  *
@@ -84,6 +83,6 @@ class Resolver
             return $parameter->getDefaultValue();
         }
 
-        throw new Exception("Erm.. Cannot resolve the unknown!?");
+        throw new Exception("Cannot bind unknown parameter.");
     }
 }

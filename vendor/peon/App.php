@@ -17,13 +17,6 @@ final class App extends Container
     protected $rootPath;
 
     /**
-     * The Resolver
-     *
-     * @var Geary\Resolver
-     */
-    public $resolver;
-
-    /**
      * Private constructor
      */
     private function __construct()
@@ -63,16 +56,5 @@ final class App extends Container
     public function getRootPath()
     {
         return $this->rootPath;
-    }
-
-    /**
-     * Set the resolver
-     *
-     * @param Geary\Resolver
-     * @return void
-     */
-    public function setResolver($resolver)
-    {
-        $this->resolver = $resolver;
     }
 }

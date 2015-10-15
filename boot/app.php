@@ -24,12 +24,4 @@ $app->setRootPath(realpath(__DIR__.'/../'));
 
 $app->registerServices();
 
-/*
-|-------------------------------------------------------------------------------
-| Set A Resolver On The App
-|-------------------------------------------------------------------------------
-*/
-
-$app->setResolver($app->make('resolver'));
-
 return $app;

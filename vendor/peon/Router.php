@@ -2,8 +2,6 @@
 
 namespace Peon;
 
-use Peon\App;
-
 /**
  * Peon Router
  *
@@ -42,11 +40,18 @@ use Peon\App;
 class Router
 {
     /**
-     * The app instance
+     * The resolver instance
      *
-     * @var Peon\App
+     * @var Peon\Resolver
      */
-    protected $app;
+    protected $resolver;
+
+    /**
+     * The response instance
+     *
+     * @var Peon\Response
+     */
+    protected $response;
 
     /**
      * The Current URI
@@ -88,9 +93,10 @@ class Router
      *
      * @return void
      */
-    public function __construct(App $app)
+    public function __construct(Resolver $resolver, Response $response)
     {
-        $this->app = $app;
+        $this->resolver = $resolver;
+        $this->response = $response;
 
         $this->prepareUri();
         $this->extractSegments();
@@ -188,21 +194,8 @@ class Router
     {
         // Send a 404 if the controller method doesn't exist
         if (!method_exists($this->controller, $this->method)) {
-            $this->app->make('response')->send404();
+            $this->response->send404();
         }
-    }
-
-    /**
-     * Send 404
-     *
-     * @return void
-     */
-    private function send404()
-    {
-
-        header('Page Not Found', true, 404);
-        view('errors/404');
-        exit();
     }
 
     /**
@@ -213,7 +206,7 @@ class Router
     private function callControllerMethod()
     {
         call_user_func_array(array(
-            $this->app->make('resolver')->resolve($this->controller),
+            $this->resolver->resolve($this->controller),
             $this->method,
         ), $this->params);
     }

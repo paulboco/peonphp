@@ -21,7 +21,7 @@ return array(
     },
 
     'resolver' => function() {
-        return new Geary\Resolver;
+        return new Peon\Resolver;
     },
 
     'response' => function() {
@@ -29,7 +29,7 @@ return array(
     },
 
     'router' => function() {
-        return new Peon\Router(Peon\App::getInstance());
+        return new Peon\Router(new Peon\Resolver, new Peon\Response(new Peon\View));
     },
 
     'view' => function() {
