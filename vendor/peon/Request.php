@@ -20,7 +20,7 @@ class Request
     }
 
     /**
-     * Get Request Variables
+     * Get A Request Variable
      *
      * @param  string  $key
      * @param  string  $default

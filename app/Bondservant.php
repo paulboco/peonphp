@@ -2,7 +2,6 @@
 
 namespace App;
 
-use PDO;
 use Peon\Gopher;
 
 class Bondservant extends Gopher

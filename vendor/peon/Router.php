@@ -40,14 +40,14 @@ namespace Peon;
 class Router
 {
     /**
-     * The resolver instance
+     * The Resolver Instance
      *
      * @var Peon\Resolver
      */
     protected $resolver;
 
     /**
-     * The response instance
+     * The Response Instance
      *
      * @var Peon\Response
      */
@@ -158,7 +158,7 @@ class Router
     }
 
     /**
-     * Format the Controller Segment
+     * Format The Controller Segment
      *
      * @param  string  $controller
      * @return void
@@ -171,7 +171,7 @@ class Router
     }
 
     /**
-     * Format the Controller Method Segment
+     * Format The Controller Method Segment
      *
      * @param  string  $method
      * @return void
@@ -199,7 +199,7 @@ class Router
     }
 
     /**
-     * Call the Controller Method
+     * Call The Controller Method
      *
      * @return void
      */

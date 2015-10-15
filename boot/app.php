@@ -24,4 +24,14 @@ $app->setRootPath(realpath(__DIR__.'/../'));
 
 $app->registerServices();
 
+/*
+|-------------------------------------------------------------------------------
+| Check For Maintenance Mode
+|-------------------------------------------------------------------------------
+*/
+
+if ($app->inMaintenance()) {
+    $app->showMaintenance();
+}
+
 return $app;

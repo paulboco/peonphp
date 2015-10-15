@@ -19,7 +19,7 @@ class Resolver
 {
 
     /**
-     * Build an instance of the given class
+     * Build An Instance Of The Given Class
      *
      * @param string $class
      * @return mixed
@@ -47,7 +47,7 @@ class Resolver
     }
 
     /**
-     * Build up a list of dependencies for a given methods parameters
+     * Build A List Of Dependencies For A Given Method's Parameters
      *
      * @param array $parameters
      * @return array
@@ -70,7 +70,7 @@ class Resolver
     }
 
     /**
-     * Determine what to do with a non-class value
+     * Determine What To Do With A Non-class Value
      *
      * @param ReflectionParameter $parameter
      * @return mixed

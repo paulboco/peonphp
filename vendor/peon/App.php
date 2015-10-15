@@ -57,4 +57,24 @@ final class App extends Container
     {
         return $this->rootPath;
     }
+
+    /**
+     * Check For Maintenance Mode
+     *
+     * @return boolean
+     */
+    public function inMaintenance()
+    {
+        return file_exists($this->rootPath . '/storage/app/maintenance');
+    }
+
+    /**
+     * Show Maintenance Mode Page
+     *
+     * @return void
+     */
+    public function showMaintenance()
+    {
+        $this->make('response')->send503();
+    }
 }

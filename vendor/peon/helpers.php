@@ -73,19 +73,6 @@ if (!function_exists('path')) {
     }
 }
 
-if (!function_exists('redirect')) {
-    /**
-     * Redirect To The Specified URI
-     *
-     * @param  string|null  $uri
-     * @return void
-     */
-    function redirect($uri = null)
-    {
-        header('Location: ' . "http://{$_SERVER['SERVER_NAME']}/{$uri}");
-    }
-}
-
 if (!function_exists('segment')) {
     /**
      * Check A URI Segment For Equality
