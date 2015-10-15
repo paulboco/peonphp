@@ -3,10 +3,16 @@
 namespace App\Controllers;
 
 use Peon\View;
-use Peon\Request;
 
 class PageController
 {
+    /**
+     * The view instance
+     *
+     * @var Peon\View
+     */
+    protected $view;
+
     /**
      * Create a new page controller
      *
@@ -14,10 +20,9 @@ class PageController
      * @param  Peon\Request  $request
      * @return void
      */
-    public function __construct(View $view, Request $request)
+    public function __construct(View $view)
     {
         $this->view = $view;
-        $this->request = $request;
     }
 
     /**

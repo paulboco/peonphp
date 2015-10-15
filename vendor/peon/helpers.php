@@ -1,7 +1,6 @@
 <?php
 
 use Peon\App;
-use Peon\Config;
 
 if (!function_exists('config')) {
     /**

@@ -24,6 +24,10 @@ return array(
         return new Geary\Resolver;
     },
 
+    'response' => function() {
+        return new Peon\Response(new Peon\View);
+    },
+
     'router' => function() {
         return new Peon\Router(Peon\App::getInstance());
     },

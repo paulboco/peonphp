@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Bondservant;
 use Peon\Request;
+use Peon\Response;
 use Peon\View;
 
 class BondservantController
@@ -30,15 +31,23 @@ class BondservantController
     protected $request;
 
     /**
+     * The response instance
+     *
+     * @var Peon\Response
+     */
+    protected $response;
+
+    /**
      * Create a new bondservant controller
      *
      * @return void
      */
-    public function __construct(Bondservant $bondservant, View $view, Request $request)
+    public function __construct(Bondservant $bondservant, View $view, Request $request, Response $response)
     {
         $this->bondservant = $bondservant;
         $this->view = $view;
         $this->request = $request;
+        $this->response = $response;
     }
 
     /**

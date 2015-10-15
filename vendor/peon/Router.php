@@ -188,7 +188,7 @@ class Router
     {
         // Send a 404 if the controller method doesn't exist
         if (!method_exists($this->controller, $this->method)) {
-            $this->send404();
+            $this->app->make('response')->send404();
         }
     }
 
@@ -199,6 +199,7 @@ class Router
      */
     private function send404()
     {
+
         header('Page Not Found', true, 404);
         view('errors/404');
         exit();
