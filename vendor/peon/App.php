@@ -17,10 +17,31 @@ final class App extends Container
     protected $rootPath;
 
     /**
+     * The Resolver
+     *
+     * @var Geary\Resolver
+     */
+    public $resolver;
+
+    /**
      * Private constructor
      */
     private function __construct()
     {
+    }
+
+    /**
+     * Get App Instance
+     *
+     * @return static
+     */
+    public static function getInstance()
+    {
+        if (self::$instance == null) {
+            self::$instance = new self;
+        }
+
+        return self::$instance;
     }
 
     /**
@@ -45,16 +66,13 @@ final class App extends Container
     }
 
     /**
-     * Get App Instance
+     * Set the resolver
      *
-     * @return static
+     * @param Geary\Resolver
+     * @return void
      */
-    public static function getInstance()
+    public function setResolver($resolver)
     {
-        if (self::$instance == null) {
-            self::$instance = new self;
-        }
-
-        return self::$instance;
+        $this->resolver = $resolver;
     }
 }

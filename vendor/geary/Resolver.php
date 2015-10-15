@@ -16,29 +16,28 @@ use ReflectionParameter;
  * @see http://www.ltconsulting.co.uk/automatic-dependency-injection-with-phps-reflection-api/
  */
 
-class Resolver {
+class Resolver
+{
 
     /**
-    * Build an instance of the given class
-    *
-    * @param string $class
-    * @return mixed
-    *
-    * @throws Exception
-    */
+     * Build an instance of the given class
+     *
+     * @param string $class
+     * @return mixed
+     *
+     * @throws Exception
+     */
     public function resolve($class)
     {
         $reflector = new ReflectionClass($class);
 
-        if( ! $reflector->isInstantiable())
-        {
+        if (!$reflector->isInstantiable()) {
             throw new Exception("[$class] is not instantiable");
         }
 
         $constructor = $reflector->getConstructor();
 
-        if(is_null($constructor))
-        {
+        if (is_null($constructor)) {
             return new $class;
         }
 
@@ -58,16 +57,12 @@ class Resolver {
     {
         $dependencies = array();
 
-        foreach($parameters as $parameter)
-        {
+        foreach ($parameters as $parameter) {
             $dependency = $parameter->getClass();
 
-            if(is_null($dependency))
-            {
+            if (is_null($dependency)) {
                 $dependencies[] = $this->resolveNonClass($parameter);
-            }
-            else
-            {
+            } else {
                 $dependencies[] = $this->resolve($dependency->name);
             }
         }
@@ -85,8 +80,7 @@ class Resolver {
      */
     public function resolveNonClass(ReflectionParameter $parameter)
     {
-        if($parameter->isDefaultValueAvailable())
-        {
+        if ($parameter->isDefaultValueAvailable()) {
             return $parameter->getDefaultValue();
         }
 

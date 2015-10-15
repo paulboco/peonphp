@@ -8,15 +8,37 @@ use Peon\View;
 
 class BondservantController
 {
-    protected $view;
-    protected $request;
+    /**
+     * The bondservant
+     *
+     * @var App\Bondservant
+     */
     protected $bondservant;
 
-    public function __construct(View $view, Request $request, \App\Bondservant $bondservant)
+    /**
+     * The view instance
+     *
+     * @var Peon\View
+     */
+    protected $view;
+
+    /**
+     * The request instance
+     *
+     * @var Peon\Request
+     */
+    protected $request;
+
+    /**
+     * Create a new bondservant controller
+     *
+     * @return void
+     */
+    public function __construct(Bondservant $bondservant, View $view, Request $request)
     {
-        $this->request = $request;
-        $this->view = $view;
         $this->bondservant = $bondservant;
+        $this->view = $view;
+        $this->request = $request;
     }
 
     /**

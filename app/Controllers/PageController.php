@@ -2,11 +2,24 @@
 
 namespace App\Controllers;
 
-use Peon\Controller;
 use Peon\View;
+use Peon\Request;
 
-class PageController extends Controller
+class PageController
 {
+    /**
+     * Create a new page controller
+     *
+     * @param  Peon\View  $view
+     * @param  Peon\Request  $request
+     * @return void
+     */
+    public function __construct(View $view, Request $request)
+    {
+        $this->view = $view;
+        $this->request = $request;
+    }
+
     /**
      * Home Page
      *
