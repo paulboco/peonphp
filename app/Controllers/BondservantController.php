@@ -6,6 +6,7 @@ use App\Bondservant;
 use App\Validators\BondservantValidator;
 use Peon\Config;
 use Peon\Response;
+use Peon\Session;
 use Peon\View;
 
 class BondservantController {
@@ -31,6 +32,13 @@ class BondservantController {
     protected $response;
 
     /**
+     * The Session Instance
+     *
+     * @var Peon\Session
+     */
+    protected $session;
+
+    /**
      * The Config Instance
      *
      * @var Peon\Config
@@ -50,14 +58,16 @@ class BondservantController {
      * @param  Bondservant  $bondservant
      * @param  Validator  $validator
      * @param  Response  $response
+     * @param  Session  $session
      * @param  Config  $config
      * @param  View  $view
      * @return void
      */
-    public function __construct(Bondservant $bondservant, BondservantValidator $validator, Response $response, Config $config, View $view) {
+    public function __construct(Bondservant $bondservant, BondservantValidator $validator, Response $response, Session $session, Config $config, View $view) {
         $this->bondservant = $bondservant;
         $this->validator = $validator;
         $this->response = $response;
+        $this->session = $session;
         $this->config = $config;
         $this->view = $view;
     }
@@ -83,7 +93,7 @@ class BondservantController {
         $this->view->make('bondservant/edit', array(
             'row' => $this->bondservant->show($id),
             'ratings' => $this->config->get('selects/rating'),
-            'errors' => flash('errors'),
+            'errors' => $this->session->flash('errors'),
         ));
     }
 
@@ -95,12 +105,10 @@ class BondservantController {
      */
     public function update($id) {
         if ($this->validator->fails()) {
-            flash('danger', 'Errors were found in your form submission.');
-            flash('errors', $this->validator->errors());
             $this->response->redirect('bondservant/edit/' . $id);
         }
 
-        flash('success', "Bondservant #{$id} was successfully updated.");
+        $this->session->flash('success', "Bondservant #{$id} was successfully updated.");
         $this->response->redirect('bondservant/index');
     }
 }

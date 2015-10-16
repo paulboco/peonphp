@@ -32,6 +32,10 @@ return array(
         return new Peon\Router(new Peon\Resolver, new Peon\Response(new Peon\View));
     },
 
+    'session' => function() {
+        return new Peon\Session;
+    },
+
     'view' => function() {
         return new Peon\View;
     },

@@ -2,23 +2,6 @@
 
 use Peon\App;
 
-function flash($name, $value = null) {
-    //No value, create it
-    if (!empty($value) && empty($_SESSION[$name])) {
-        if (!empty($_SESSION[$name])) {
-            unset($_SESSION[$name]);
-        }
-
-        $_SESSION[$name] = $value;
-    }
-    //value exists, display it
-    elseif (!empty($_SESSION[$name]) && empty($value)) {
-        $value = $_SESSION[$name];
-        unset($_SESSION[$name]);
-        return $value;
-    }
-}
-
 if (!function_exists('config')) {
     /**
      * Get Configuration Data

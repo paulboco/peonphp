@@ -15,6 +15,13 @@ class Validator extends ValidatorRules
     protected $request;
 
     /**
+     * The Session Instance
+     *
+     * @var Session
+     */
+    protected $session;
+
+    /**
      * The Errors Array
      *
      * @var array
@@ -25,10 +32,12 @@ class Validator extends ValidatorRules
      * Create A New Validator
      *
      * @param Request $request
+     * @return void
      */
-    public function __construct(Request $request)
+    public function __construct(Request $request, Session $session)
     {
         $this->input = $request->all();
+        $this->session = $session;
     }
 
     /**
@@ -60,13 +69,18 @@ class Validator extends ValidatorRules
      */
     protected function validate()
     {
+        $this->session->flash('old_input', $this->input);
+
         foreach ($this->rules as $key => $rule) {
             if ($error = $this->$rule($key, $this->input[$key])) {
                 $this->errors[$key] = $error;
             }
         }
 
-        // SESSION FLASH ERRORS HERE
+        if ($this->errors) {
+            $this->session->flash('danger', 'Errors were found in your form submission.');
+            $this->session->flash('errors', $this->errors());
+        }
 
         return empty($this->errors);
     }
