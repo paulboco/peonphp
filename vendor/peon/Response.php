@@ -29,7 +29,7 @@ class Response
     public function redirect($uri = null)
     {
         header('Location: ' . "http://{$_SERVER['SERVER_NAME']}/{$uri}");
-        exit();
+        die;
     }
 
     /**
@@ -41,7 +41,7 @@ class Response
     {
         header("HTTP/1.0 404 Not Found");
         $this->view->make('errors/404');
-        exit();
+        die;
     }
 
     /**
@@ -55,6 +55,6 @@ class Response
         header('Status: 503 Service Temporarily Unavailable');
         header('Retry-After: 3600');
         include path('/views/errors/503.tpl');
-        exit();
+        die;
     }
 }
