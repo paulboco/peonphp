@@ -8,8 +8,7 @@ use Peon\Config;
 use Peon\Response;
 use Peon\View;
 
-class BondservantController
-{
+class BondservantController {
     /**
      * The Bondservant
      *
@@ -55,8 +54,7 @@ class BondservantController
      * @param  View  $view
      * @return void
      */
-    public function __construct(Bondservant $bondservant, BondservantValidator $validator, Response $response, Config $config, View $view)
-    {
+    public function __construct(Bondservant $bondservant, BondservantValidator $validator, Response $response, Config $config, View $view) {
         $this->bondservant = $bondservant;
         $this->validator = $validator;
         $this->response = $response;
@@ -69,8 +67,7 @@ class BondservantController
      *
      * @return void
      */
-    public function index()
-    {
+    public function index() {
         $this->view->make('bondservant/index', array(
             'rows' => $this->bondservant->index(),
         ));
@@ -82,11 +79,11 @@ class BondservantController
      * @param  integer  $id
      * @return void
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         $this->view->make('bondservant/edit', array(
             'row' => $this->bondservant->show($id),
             'ratings' => $this->config->get('selects/rating'),
+            'errors' => flash('errors'),
         ));
     }
 
@@ -96,12 +93,14 @@ class BondservantController
      * @param  integer  $id
      * @return void
      */
-    public function update($id)
-    {
+    public function update($id) {
         if ($this->validator->fails()) {
+            flash('danger', 'Errors were found in your form submission.');
+            flash('errors', $this->validator->errors());
             $this->response->redirect('bondservant/edit/' . $id);
         }
 
+        flash('success', "Bondservant #{$id} was successfully updated.");
         $this->response->redirect('bondservant/index');
     }
 }

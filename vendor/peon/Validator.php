@@ -61,9 +61,7 @@ class Validator extends ValidatorRules
     protected function validate()
     {
         foreach ($this->rules as $key => $rule) {
-            $rule = 'rule' . ucfirst(strtolower($rule));
-
-            if ($error = $this->$rule($this->input[$key])) {
+            if ($error = $this->$rule($key, $this->input[$key])) {
                 $this->errors[$key] = $error;
             }
         }
@@ -71,5 +69,15 @@ class Validator extends ValidatorRules
         // SESSION FLASH ERRORS HERE
 
         return empty($this->errors);
+    }
+
+    /**
+     * Get Errors
+     *
+     * @return array
+     */
+    public function errors()
+    {
+        return $this->errors;
     }
 }

@@ -2,6 +2,23 @@
 
 use Peon\App;
 
+function flash($name, $value = null) {
+    //No value, create it
+    if (!empty($value) && empty($_SESSION[$name])) {
+        if (!empty($_SESSION[$name])) {
+            unset($_SESSION[$name]);
+        }
+
+        $_SESSION[$name] = $value;
+    }
+    //value exists, display it
+    elseif (!empty($_SESSION[$name]) && empty($value)) {
+        $value = $_SESSION[$name];
+        unset($_SESSION[$name]);
+        return $value;
+    }
+}
+
 if (!function_exists('config')) {
     /**
      * Get Configuration Data
@@ -10,8 +27,7 @@ if (!function_exists('config')) {
      * @param  mixed   $default
      * @return mixed
      */
-    function config($path, $default = null)
-    {
+    function config($path, $default = null) {
         $config = App::getInstance()->make('config');
 
         return $config->get($path, $default);
@@ -24,8 +40,7 @@ if (!function_exists('d')) {
      *
      * @return void
      */
-    function d()
-    {
+    function d() {
         array_map(function ($x) {
             var_dump($x);
         }, func_get_args());
@@ -38,8 +53,7 @@ if (!function_exists('dd')) {
      *
      * @return void
      */
-    function dd()
-    {
+    function dd() {
         array_map(function ($x) {
             var_dump($x);
         }, func_get_args());
@@ -54,8 +68,7 @@ if (!function_exists('e')) {
      * @param  string  $string
      * @return void
      */
-    function e($string)
-    {
+    function e($string) {
         echo htmlentities($string);
     }
 }
@@ -67,8 +80,7 @@ if (!function_exists('path')) {
      * @param  string  $children
      * @return string
      */
-    function path($children = '')
-    {
+    function path($children = '') {
         return App::getInstance()->getRootPath() . $children;
     }
 }
@@ -87,8 +99,7 @@ if (!function_exists('segment')) {
      * @param  mixed  $default
      * @return mixed
      */
-    function segment($position, $value, $default = null)
-    {
+    function segment($position, $value, $default = null) {
         $router = App::getInstance()->make('router');
 
         if ($router->getSegment($position) == $value) {

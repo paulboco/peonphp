@@ -5,19 +5,19 @@
 <div class="row">
     <div class="col-md-6">
         <form action="/bondservant/update/<?php echo $row['id'] ?>" method="post">
-            <div class="form-group has-error">
+            <div class="form-group<?php echo isset($errors['name']) ? ' has-error' : '' ?>">
                 <label class="control-label" for="inputName">Name</label>
                 <input type="text" name="name" class="form-control" id="inputName" aria-describedby="helpName">
-                <span id="helpName" class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+                <span id="helpName" class="help-block"><?php echo isset($errors['name']) ? $errors['name'] : '' ?></span>
             </div>
-            <div class="form-group has-error">
+            <div class="form-group<?php echo isset($errors['rating']) ? ' has-error' : '' ?>">
                 <label class="control-label" for="inputRating">Rating</label>
                 <select name="rating" class="form-control" id="inputRating" aria-describedby="helpRating">
                     <?php foreach ($ratings as $value): ?>
                         <option value="<?php echo $value ?>"><?php echo $value ?></option>
                      <?php endforeach ?> ?>
                 </select>
-                <span id="helpRating" class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+                <span id="helpRating" class="help-block"><?php echo isset($errors['rating']) ? $errors['rating'] : '' ?></span>
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
             <a href="/bondservant/index" class="btn btn-default">Cancel</a>

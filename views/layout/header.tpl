@@ -7,3 +7,13 @@
 <body>
     <?php $this->view->make('layout/navbar') ?>
     <div class="container">
+        <?php if ($danger = flash('danger')): ?>
+            <div class="alert alert-danger" role="alert">
+                <?php echo $danger ?>
+            </div>
+        <?php endif ?>
+        <?php if ($success = flash('success')): ?>
+            <div class="alert alert-success" role="alert">
+                <?php echo $success ?>
+            </div>
+        <?php endif ?>
