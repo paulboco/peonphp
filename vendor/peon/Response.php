@@ -29,6 +29,7 @@ class Response
     public function redirect($uri = null)
     {
         header('Location: ' . "http://{$_SERVER['SERVER_NAME']}/{$uri}");
+        exit();
     }
 
     /**

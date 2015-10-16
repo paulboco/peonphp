@@ -34,7 +34,7 @@ class Bondservant extends Gopher
         return $this->find($id);
     }
 
-    public function create($name, $rating)
+    public function store($name, $rating)
     {
         //
     }
