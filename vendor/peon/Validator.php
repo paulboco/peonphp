@@ -80,6 +80,7 @@ class Validator extends ValidatorRules
         if ($this->errors) {
             $this->session->flash('danger', 'Errors were found in your form submission.');
             $this->session->flash('errors', $this->errors());
+            $this->session->flash('old_input', $this->input);
         }
 
         return empty($this->errors);

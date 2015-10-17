@@ -1,4 +1,4 @@
-<?php $this->view->make('layout/header') ?>
+<?php $this->inject('layout/header') ?>
 
 <h1 class="page-header">Requirements</h1>
 
@@ -13,4 +13,4 @@
     </div>
 </div>
 
-<?php $this->view->make('layout/footer') ?>
+<?php $this->inject('layout/footer') ?>

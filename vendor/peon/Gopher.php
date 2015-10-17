@@ -30,7 +30,7 @@ class Gopher
      *
      * @return array
      */
-    public function getAll()
+    public function all()
     {
         $statement = $this->pdo->prepare("select * from `{$this->table}`");
         $statement->execute();
@@ -38,7 +38,7 @@ class Gopher
     }
 
     /**
-     * Find a row
+     * Find A Row
      *
      * @param  integer  $id
      * @return array
@@ -49,5 +49,31 @@ class Gopher
         $statement->execute(array('id' => $id));
 
         return $statement->fetch();
+    }
+
+    /**
+     * Update A Row
+     *
+     * @param  integer  $id
+     * @param  array  $pairs
+     * @return void
+     */
+
+    public function update($id, $pairs)
+    {
+        // build sets of key/value pairs to update
+        $sets = '';
+        foreach ($pairs as $key => $value) {
+            $sets .= "`{$key}` = :{$key},";
+        }
+
+        // build the sql string
+        $sql  = "update `{$this->table}` ";
+        $sql .= 'set ' . rtrim($sets, ',') . ' ';
+        $sql .= 'where id=:id';
+
+        // prepare and execute
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute($pairs + array('id' => $id));
     }
 }

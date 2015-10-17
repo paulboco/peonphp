@@ -2,9 +2,9 @@
 <html>
 <head>
     <title><?php e(config('app.name')) ?></title>
-    <?php echo $this->view->make('layout/style') ?>
+    <?php $this->inject('layout/style') ?>
 </head>
 <body>
-    <?php $this->view->make('layout/navbar') ?>
+    <?php $this->inject('layout/navbar') ?>
     <div class="container">
-        <?php $this->view->make('layout/alert') ?>
+        <?php $this->inject('layout/alert') ?>
