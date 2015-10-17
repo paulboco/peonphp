@@ -17,14 +17,49 @@ class Session
     }
 
     /**
+     * Set A Session Variable
+     *
+     * @param  string  $key
+     * @param  mixed  $value
+     * @return void
+     */
+    public function set($key, $value)
+    {
+        $_SESSION[$key] = $value;
+    }
+
+    /**
      * Get A Session Variable
      *
      * @param  string  $key
+     * @param  mixed  $default
      * @return mixed
      */
-    public function get($key)
+    public function get($key, $default = null)
     {
-        return $_SESSION[$key];
+        return isset($_SESSION[$key]) ? $_SESSION[$key] : $default;
+    }
+
+    /**
+     * Forget A Session Variable
+     *
+     * @param  string  $key
+     * @return void
+     */
+    public function forget($key)
+    {
+        unset($_SESSION[$key]);
+    }
+
+    /**
+     * Session Has A Variable
+     *
+     * @param  string  $key
+     * @return boolean
+     */
+    public function has($key)
+    {
+        return isset($_SESSION[$key]);
     }
 
     /**

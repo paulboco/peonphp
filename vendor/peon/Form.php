@@ -12,7 +12,7 @@ class Form
      * @param  string  $method
      * @return void
      */
-    public static function open($uri, $parameters, $method = 'post')
+    public static function open($uri, $parameters = array(), $method = 'post')
     {
         $uri .= '/' . implode('/', $parameters);
         echo '<form action="' . $uri . '" method="' . $method .'">';
@@ -29,9 +29,10 @@ class Form
      */
     public static function text($label, $name, $value, $errors)
     {
-        $old_input = App::getInstance()->make('session')->get('old_input');
+        $session = App::getInstance()->make('session');
+        $old_input = $session->get('old_input');
 
-        $value = isset($errors[$name]) ? $old_input[$name] : $value;
+        $value = isset($errors[$name]) ? isset($old_input[$name]) ? $old_input[$name] : $value : $value;
         $hasError = isset($errors[$name]) ? ' has-error' : '';
         $id = 'text-' . $name;
         $help = 'help-' . $id;

@@ -72,7 +72,10 @@ class Validator extends ValidatorRules
         $this->session->flash('old_input', $this->input);
 
         foreach ($this->rules as $key => $rule) {
-            if ($error = $this->$rule($key, $this->input[$key])) {
+            if ($error = $this->$rule(
+                    $key,
+                    $this->input[$key]
+            )) {
                 $this->errors[$key] = $error;
             }
         }
