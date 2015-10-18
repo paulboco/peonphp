@@ -2,6 +2,8 @@
 
 namespace Peon;
 
+use Illuminate\Arr;
+
 class Session
 {
     /**
@@ -14,18 +16,29 @@ class Session
         if (!session_id()) {
             session_start();
         }
+
+        $this->prepareFlash();
     }
 
     /**
-     * Set A Session Variable
+     * Flush The Entire Session
      *
-     * @param  string  $key
-     * @param  mixed  $value
      * @return void
      */
-    public function set($key, $value)
+    public function flush()
     {
-        $_SESSION[$key] = $value;
+        $_SESSION = array();
+    }
+
+    /**
+     * Forget A Session Variable
+     *
+     * @param  string  $keys
+     * @return void
+     */
+    public function forget($keys)
+    {
+        Arr::forget($_SESSION, $keys);
     }
 
     /**
@@ -37,51 +50,59 @@ class Session
      */
     public function get($key, $default = null)
     {
-        return isset($_SESSION[$key]) ? $_SESSION[$key] : $default;
+        return Arr::get($_SESSION, $key, $default);
     }
 
     /**
-     * Forget A Session Variable
+     * Get A Previously Flashed Variable
      *
      * @param  string  $key
-     * @return void
+     * @param  mixed  $default
+     * @return mixed
      */
-    public function forget($key)
+    public function getFlash($key, $default = null)
     {
-        unset($_SESSION[$key]);
+        return $this->get('flash-available.' . $key, $default);
     }
 
     /**
-     * Session Has A Variable
+     * Check For A Session Variable
      *
      * @param  string  $key
-     * @return boolean
+     * @return mixed
      */
     public function has($key)
     {
-        return isset($_SESSION[$key]);
+        return Arr::has($_SESSION, $key);
     }
 
     /**
-     *  Flash A Session Variable
+     * Set A Session Variable
      *
-     * @param  string  $name
+     * @param  string  $key
      * @param  mixed  $value
      * @return mixed
      */
-    public function flash($name, $value = null) {
-        if (!empty($value) && empty($_SESSION[$name])) {
-            if (!empty($_SESSION[$name])) {
-                unset($_SESSION[$name]);
-            }
+    public function set($key, $value)
+    {
+        return Arr::set($_SESSION, $key, $value);
+    }
 
-            $_SESSION[$name] = $value;
-        }
-        //value exists, display it
-        elseif (!empty($_SESSION[$name]) && empty($value)) {
-            $value = $_SESSION[$name];
-            unset($_SESSION[$name]);
-            return $value;
-        }
+    /**
+     * Set A Flashed Variable
+     *
+     * @param  string  $key
+     * @param  mixed  $value
+     * @return mixed
+     */
+    public function setFlash($key, $value = null)
+    {
+        return $this->set('flash-pending.' . $key, $value);
+    }
+
+    private function prepareFlash()
+    {
+        $this->set('flash-available', $this->get('flash-pending'));
+        $this->forget('flash-pending');
     }
 }

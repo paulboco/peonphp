@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\User;
-use App\Validators\UserValidator;
+use App\Validators\SessionValidator;
 use Peon\Request;
 use Peon\Response;
 use Peon\Session;
@@ -50,12 +50,18 @@ class SessionController
      * Create a new session controller
      *
      * @param  Session  $session
-     * @param  Validator  $validator
+     * @param  SessionValidator  $validator
      * @param  Response  $response
      * @param  View  $view
      * @return void
      */
-    public function __construct(Session $session, UserValidator $validator, Response $response, Request $request, View $view)
+    public function __construct(
+        Session $session,
+        SessionValidator $validator,
+        Response $response,
+        Request $request,
+        View $view
+    )
     {
         $this->session = $session;
         $this->validator = $validator;
@@ -91,7 +97,7 @@ class SessionController
         $this->session->set('authenticated', true);
 
         // flash success message and redirect to index
-        $this->session->flash('success', "You are now logged in.");
+        $this->session->setFlash('success', "You are now logged in.");
         $this->response->redirect('page/home');
     }
 
@@ -106,7 +112,7 @@ class SessionController
         $this->session->forget('authenticated');
 
         // flash success message and redirect to index
-        $this->session->flash('success', "You are now logged out.");
-        $this->response->redirect('page/home');
+        $this->session->setFlash('success', "You are now logged out.");
+        $this->response->redirect('/');
     }
 }

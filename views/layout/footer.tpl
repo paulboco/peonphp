@@ -5,6 +5,5 @@
     </footer>
 
     <?php $this->inject('layout/scripts') ?>
-<?php d($_SESSION) ?>
 </body>
 </html>

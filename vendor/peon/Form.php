@@ -14,7 +14,8 @@ class Form
      */
     public static function open($uri, $parameters = array(), $method = 'post')
     {
-        $uri .= '/' . implode('/', $parameters);
+        $uri .= $parameters ? '/' . implode('/', $parameters) : '';
+
         echo '<form action="' . $uri . '" method="' . $method .'">';
     }
 
@@ -24,13 +25,13 @@ class Form
      * @param  string  $label
      * @param  string  $name
      * @param  mixed  $value
-     * @param  array  $errors
      * @return void
      */
-    public static function text($label, $name, $value, $errors)
+    public static function text($label, $name, $value)
     {
         $session = App::getInstance()->make('session');
-        $old_input = $session->get('old_input');
+        $old_input = $session->getFlash('old_input');
+        $errors = $session->getFlash('errors');
 
         $value = isset($errors[$name]) ? isset($old_input[$name]) ? $old_input[$name] : $value : $value;
         $hasError = isset($errors[$name]) ? ' has-error' : '';
@@ -52,11 +53,12 @@ class Form
      * @param  string  $name
      * @param  mixed  $value
      * @param  array  $options
-     * @param  array  errors
      * @return void
      */
-    public static function select($label, $name, $value, $options, $errors)
+    public static function select($label, $name, $value, $options)
     {
+        $session = App::getInstance()->make('session');
+        $errors = $session->getFlash('errors');
         $hasError = isset($errors[$name]) ? ' has-error' : '';
         $id = 'text-' . $name;
         $help = 'help-' . $id;

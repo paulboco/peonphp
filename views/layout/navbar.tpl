@@ -29,6 +29,7 @@
                 <li class="<?php echo segment(2, 'bondservant', 'active') ?>"><a href="/bondservant/index">Bondservants</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="/session/destroy">Logout</a></li>
                 <li><a href="/session/create">Login</a></li>
             </ul>
         </div>

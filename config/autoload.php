@@ -9,8 +9,9 @@ return array(
     */
 
     'namespaces' => array(
-        'Peon\\' => 'vendor/peon/',
         'App\\' => 'app/',
+        'Illuminate\\' => 'vendor/illuminate/',
+        'Peon\\' => 'vendor/peon/',
     ),
 
     /*
@@ -21,6 +22,7 @@ return array(
 
     'files' => array(
         'vendor/peon/helpers.php',
+        'vendor/ircmaxell/password.php'
     ),
 
 );

@@ -4,7 +4,7 @@ namespace App\Validators;
 
 use Peon\Validator;
 
-class UserValidator extends Validator
+class SessionValidator extends Validator
 {
     protected $rules = array(
         'username' => 'required',

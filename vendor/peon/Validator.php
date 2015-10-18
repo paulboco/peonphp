@@ -3,6 +3,7 @@
 namespace Peon;
 
 use Peon\Request;
+use Peon\Session;
 use Peon\ValidatorRules;
 
 class Validator extends ValidatorRules
@@ -10,14 +11,14 @@ class Validator extends ValidatorRules
     /**
      * The Request Instance
      *
-     * @var Request
+     * @var Peon\Request
      */
     protected $request;
 
     /**
      * The Session Instance
      *
-     * @var Session
+     * @var Peon\Session
      */
     protected $session;
 
@@ -69,8 +70,6 @@ class Validator extends ValidatorRules
      */
     protected function validate()
     {
-        $this->session->flash('old_input', $this->input);
-
         foreach ($this->rules as $key => $rule) {
             if ($error = $this->$rule(
                     $key,
@@ -81,9 +80,9 @@ class Validator extends ValidatorRules
         }
 
         if ($this->errors) {
-            $this->session->flash('danger', 'Errors were found in your form submission.');
-            $this->session->flash('errors', $this->errors());
-            $this->session->flash('old_input', $this->input);
+            $this->session->setFlash('danger', 'Errors were found in your form submission.');
+            $this->session->setFlash('errors', $this->errors());
+            $this->session->setFlash('old_input', $this->input);
         }
 
         return empty($this->errors);

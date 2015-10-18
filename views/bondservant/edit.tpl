@@ -6,8 +6,8 @@
     <div class="col-md-6">
         <?php Peon\Form::open('/bondservant/update', array($row['id'])) ?>
 
-            <?php Peon\Form::text('Name', 'name', $row['name'], $errors) ?>
-            <?php Peon\Form::select('Rating', 'rating', $row['rating'], $ratings, $errors) ?>
+            <?php Peon\Form::text('Name', 'name', '') ?>
+            <?php Peon\Form::select('Rating', 'rating', $row['rating'], $ratings) ?>
 
             <button type="submit" class="btn btn-primary">Save</button>
             <a href="/bondservant/index" class="btn btn-default">Cancel</a>

@@ -72,7 +72,15 @@ class BondservantController
      * @param  View  $view
      * @return void
      */
-    public function __construct(Bondservant $bondservant, BondservantValidator $validator, Response $response, Request $request, Session $session, Config $config, View $view)
+    public function __construct(
+        Bondservant $bondservant,
+        BondservantValidator $validator,
+        Response $response,
+        Request $request,
+        Session $session,
+        Config $config,
+        View $view
+    )
     {
         $this->bondservant = $bondservant;
         $this->validator = $validator;
@@ -107,7 +115,6 @@ class BondservantController
         $this->view->make('bondservant/edit', array(
             'row' => $this->bondservant->find($id),
             'ratings' => $this->config->get('selects/rating'),
-            'errors' => $this->session->flash('errors'),
         ));
     }
 
@@ -131,7 +138,7 @@ class BondservantController
         ));
 
         // flash success message and redirect to index
-        $this->session->flash('success', "Bondservant #{$id} was successfully updated.");
+        $this->session->setFlash('success', "Bondservant #{$id} was successfully updated.");
         $this->response->redirect('bondservant/index');
     }
 }
