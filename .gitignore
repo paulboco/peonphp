@@ -1,2 +1,2 @@
 .vagrant
-/public/api/
+public/api/*
