@@ -11,15 +11,13 @@ class MysqlPdo
 
     public function __construct()
     {
-        $this->pdo = App::make('pdo');
-
         $options = array(
             PDO::ATTR_PERSISTENT => true,
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         );
 
         try {
-            $this->pdo = new PDO($dsn, $this->user, $this->pass, $options);
+            $this->pdo = App::getInstance()->make('pdo');
         }
         catch (PDOException $e) {
             $this->error = $e->getMessage();
@@ -37,6 +35,16 @@ class MysqlPdo
         return $this->isConnected();
     }
 
+    public function all()
+    {
+        $sql = "SELECT * FROM `{$this->table}`";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
+
     public function findById($id)
     {
         $sql = "SELECT * FROM `{$this->table}` WHERE id=:id";
@@ -47,6 +55,21 @@ class MysqlPdo
         ));
 
         return $statement->fetch();
+    }
+
+    public function updateById($id, $values)
+    {
+        $pairs = array_map(function($key) {
+            return "{$key}=:{$key}";
+        }, array_keys($values));
+
+        $pairs = implode(', ', $pairs);
+
+        $sql = "UPDATE `{$this->table}` SET {$pairs} WHERE id=:id";
+
+        $statement = $this->pdo->prepare($sql);
+
+        return $statement->execute($values + array('id' => $id));
     }
 
     public function replaceValues($values)

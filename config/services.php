@@ -34,17 +34,17 @@ return array(
         return new PDO("{$type}:dbname={$name};host={$host}", $user, $pass);
     },
 
-    'request' => function() {
-        return new Peon\Request;
-    },
+    // 'request' => function() {
+    //     return new Peon\Request;
+    // },
 
-    'resolver' => function() {
-        return new Peon\Resolver;
-    },
+    // 'resolver' => function() {
+    //     return new Peon\Resolver;
+    // },
 
-    'response' => function() {
-        return new Peon\Response(new Peon\View);
-    },
+    // 'response' => function() {
+    //     return new Peon\Response(new Peon\View);
+    // },
 
     'router' => function() {
         return new Peon\Router(new Peon\Resolver, new Peon\Response(new Peon\View));
@@ -54,8 +54,8 @@ return array(
         return new Peon\Session;
     },
 
-    'view' => function() {
-        return new Peon\View;
-    },
+    // 'view' => function() {
+    //     return new Peon\View;
+    // },
 
 );
