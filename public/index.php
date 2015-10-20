@@ -39,6 +39,7 @@ $app = require_once __DIR__ . '/../boot/app.php';
 |--------------------------------------------------------------------------
 */
 
+$app->make('sessionhandler');
 $app->make('session')->start();
 // dd(session_save_path());
 /*

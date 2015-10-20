@@ -54,6 +54,10 @@ return array(
         return new Peon\Session;
     },
 
+    'sessionhandler' => function() {
+        return new Peon\SessionHandler;
+    },
+
     'view' => function() {
         return new Peon\View;
     },
