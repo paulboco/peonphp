@@ -1,5 +1,17 @@
 <?php
 
+################################################################################
+################################################################################
+# MOVE THIS TO THE WEBSERVER
+################################################################################
+################################################################################
+putenv('DB_TYPE=mysql');
+putenv('DB_NAME=peon');
+putenv('DB_HOST=localhost');
+putenv('DB_USER=root');
+putenv('DB_PASS=root');
+
+
 return array(
 
     /*
@@ -13,7 +25,13 @@ return array(
     },
 
     'pdo' => function() {
-        return new PDO('mysql:dbname=peon;host=localhost', 'root', 'root');
+        $type = getenv('DB_TYPE');
+        $name = getenv('DB_NAME');
+        $host = getenv('DB_HOST');
+        $user = getenv('DB_USER');
+        $pass = getenv('DB_PASS');
+
+        return new PDO("{$type}:dbname={$name};host={$host}", $user, $pass);
     },
 
     'request' => function() {

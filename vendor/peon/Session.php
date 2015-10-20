@@ -100,6 +100,11 @@ class Session
         return $this->set('flash-pending.' . $key, $value);
     }
 
+    /**
+     * Prepare Flash Variables
+     *
+     * @return void
+     */
     private function prepareFlash()
     {
         $this->set('flash-available', $this->get('flash-pending'));
