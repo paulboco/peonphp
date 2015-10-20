@@ -59,6 +59,17 @@ class MysqlPdo
         return $statement->execute($values);
     }
 
+    public function deleteWhere($where)
+    {
+        $sql = "DELETE FROM `{$this->table}` WHERE {$where[0]} {$where[1]} :{$where[0]}";
+
+        $statement = $this->pdo->prepare($sql);
+
+        return $statement->execute(array(
+            $where[0] => $where[2]
+        ));
+    }
+
     public function deleteById($id)
     {
         $sql = "DELETE FROM `{$this->table}` WHERE id = :id";
