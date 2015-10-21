@@ -113,7 +113,7 @@ class BondservantController
     {
         // show the edit form
         $this->view->make('bondservant/edit', array(
-            'row' => $this->bondservant->find($id),
+            'row' => $this->bondservant->findById($id),
             'ratings' => $this->config->get('selects/rating'),
         ));
     }

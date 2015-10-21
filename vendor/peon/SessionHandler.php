@@ -4,8 +4,18 @@ namespace Peon;
 
 class SessionHandler extends MysqlPdo
 {
+    /**
+     * The Sessions Table Name
+     *
+     * @var string
+     */
     protected $table = 'sessions';
 
+    /**
+     * Create A New SessionHandler
+     *
+     * @return void
+     */
     public function __construct()
     {
         parent::__construct();
@@ -18,10 +28,14 @@ class SessionHandler extends MysqlPdo
             array($this, "_destroy"),
             array($this, "_gc")
         );
+
+        register_shutdown_function('session_write_close');
     }
 
     /**
      * Open
+     *
+     * @return boolean
      */
     public function _open()
     {
@@ -30,22 +44,32 @@ class SessionHandler extends MysqlPdo
 
     /**
      * Close
+     *
+     * @return boolean
      */
     public function _close()
     {
-        return $this->closeConnection();
+        $this->closeConnection();
+
+        return true;
     }
 
     /**
      * Read
+     *
+     * @return string
      */
     public function _read($id)
     {
-        return $this->findById($id);
+        $row = $this->findById($id);
+
+        return $row['data'];
     }
 
     /**
      * Write
+     *
+     * @return boolean
      */
     public function _write($id, $data)
     {
@@ -58,6 +82,8 @@ class SessionHandler extends MysqlPdo
 
     /**
      * Destroy
+     *
+     * @return boolean
      */
     public function _destroy($id)
     {
@@ -66,6 +92,8 @@ class SessionHandler extends MysqlPdo
 
     /**
      * Garbage Collection
+     *
+     * @return boolean
      */
     public function _gc($max)
     {

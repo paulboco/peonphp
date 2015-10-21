@@ -8,17 +8,6 @@
 
 /*
 |--------------------------------------------------------------------------
-| Error Reporting
-|--------------------------------------------------------------------------
-*/
-
-error_reporting(E_ALL);
-ini_set('xdebug.var_display_max_depth', -1);
-ini_set('xdebug.var_display_max_children', -1);
-ini_set('xdebug.var_display_max_data', -1);
-
-/*
-|--------------------------------------------------------------------------
 | Register The Auto Loader
 |--------------------------------------------------------------------------
 */
@@ -39,9 +28,8 @@ $app = require_once __DIR__ . '/../boot/app.php';
 |--------------------------------------------------------------------------
 */
 
-$app->make('sessionhandler');
-$app->make('session')->start();
-// dd(session_save_path());
+$app->make('session')->start($app);
+
 /*
 |--------------------------------------------------------------------------
 | Dispatch The Route

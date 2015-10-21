@@ -3,6 +3,7 @@
 namespace Peon;
 
 use Illuminate\Arr;
+use Peon\App;
 
 class Session
 {
@@ -11,12 +12,15 @@ class Session
      *
      * @return void
      */
-    public function start()
+    public function start($app)
     {
+        $app->make('sessionhandler');
+
         if (!session_id()) {
             session_start();
         }
 
+        $app->make('sessionhandler');
         $this->prepareFlash();
     }
 

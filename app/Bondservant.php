@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Peon\Gopher;
+use Peon\MysqlPdo;
 
-class Bondservant extends Gopher
+class Bondservant extends MysqlPdo
 {
     /**
      * The table name

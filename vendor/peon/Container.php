@@ -33,7 +33,7 @@ abstract class Container
     public function make($className)
     {
         $className = strtolower($className);
-d($this);
+
         if ($this->has($className)) {
             return call_user_func($this->services[$className]);
         } else {
