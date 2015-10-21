@@ -17,6 +17,7 @@ class Session
         $app->make('sessionhandler');
 
         if (!session_id()) {
+            session_name('peon');
             session_start();
         }
 

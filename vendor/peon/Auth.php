@@ -2,8 +2,17 @@
 
 namespace Peon;
 
+use App\User;
+
 class Auth
 {
+    /**
+     * The User Instance
+     *
+     * @var Peon\User
+     */
+    private $user;
+
     /**
      * The Session Instance
      *
@@ -14,11 +23,13 @@ class Auth
     /**
      * Create A New Auth
      *
+     * @param  Peon\User  $user
      * @param  Peon\Session  $session
      * @return void
      */
-    public function __construct(Session $session)
+    public function __construct(User $user, Session $session)
     {
+        $this->user = $user;
         $this->session = $session;
     }
 
@@ -30,12 +41,18 @@ class Auth
      */
     public function attempt($credentials)
     {
-        if (password_verify('rasmuslerdorf', $hash)) {
-            echo 'Password is valid!';
-        } else {
-            echo 'Invalid password.';
+        // get user by username
+        // check password
+        // write session id to user if authenticated
+
+        // FAKE LOGIN
+        if ($credentials['username'] == 'asdf' and $credentials['password'] == 'asdf') {
+            $id = session_id();
+
+// dd($id, $credentials);
+            return true;
         }
-        return isset('authenticated');
+
     }
 
     /**
@@ -55,6 +72,6 @@ class Auth
      */
     public function logout()
     {
-        $this->session['']
+        $this->session[''];
     }
 }

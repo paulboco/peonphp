@@ -20,6 +20,10 @@ return array(
     |--------------------------------------------------------------------------
     */
 
+    'auth' => function() {
+        return new Peon\Auth(new Peon\Session, new Peon\User);
+    },
+
     'config' => function() {
         return new Peon\Config;
     },
