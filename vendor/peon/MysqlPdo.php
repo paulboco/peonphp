@@ -11,7 +11,7 @@ class MysqlPdo
      *
      * @var PDO
      */
-    private $pdo;
+    protected $pdo;
 
     /**
      * The Errors Array

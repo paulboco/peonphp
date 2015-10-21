@@ -41,18 +41,16 @@ class Auth
      */
     public function attempt($credentials)
     {
-        // get user by username
-        // check password
-        // write session id to user if authenticated
+        if (!$user = $this->user->findByUsername($credentials['username'])) {
+            return false;
+        }
 
-        // FAKE LOGIN
-        if ($credentials['username'] == 'asdf' and $credentials['password'] == 'asdf') {
-            $id = session_id();
-
-// dd($id, $credentials);
+        if (password_verify($credentials['password'], $user['password'])) {
+            $this->session->set(session_id(), $user);
             return true;
         }
 
+        return false;
     }
 
     /**
@@ -60,9 +58,23 @@ class Auth
      *
      * @return boolean
      */
-    public function check()
+    public static function check()
     {
-        return true;
+        $session = App::getInstance()->make('session');
+
+        return $session->has(session_id());
+    }
+
+    /**
+     * Get The Authenticated User
+     *
+     * @return stdClass
+     */
+    public static function user()
+    {
+        $session = App::getInstance()->make('session');
+
+        return (object) $session->get(session_id());
     }
 
     /**
@@ -72,6 +84,9 @@ class Auth
      */
     public function logout()
     {
-        $this->session[''];
+        session_destroy();
+        session_write_close();
+
+        return true;
     }
 }

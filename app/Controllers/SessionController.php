@@ -101,15 +101,13 @@ class SessionController
             $this->response->redirect('session/create');
         }
 
-        // $auth = App::getInstance()->make('auth');
-d($this->auth);
-        $this->auth->attempt($this->request->all());
+        if ($this->auth->attempt($this->request->all())) {
+            $this->session->setFlash('success', "You are now logged in.");
+            $this->response->redirect('page/home');
+        }
 
-// dd($auth);
-
-        // flash success message and redirect to index
-        $this->session->setFlash('success', "You are now logged in.");
-        $this->response->redirect('page/home');
+        $this->session->setFlash('danger', "Your credentials could not be verified.");
+        $this->response->redirect('session/create');
     }
 
     /**
@@ -120,7 +118,7 @@ d($this->auth);
     public function destroy()
     {
         // rescind authentication
-        $this->session->forget('authenticated');
+        $this->auth->logout();
 
         // flash success message and redirect to index
         $this->session->setFlash('success', "You are now logged out.");

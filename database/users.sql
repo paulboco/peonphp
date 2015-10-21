@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 17, 2015 at 08:17 PM
+-- Generation Time: Oct 21, 2015 at 08:04 PM
 -- Server version: 5.5.44-0ubuntu0.12.04.1
 -- PHP Version: 5.3.10-1ubuntu3.20
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(10) unsigned NOT NULL,
   `username` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `level` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
@@ -38,8 +38,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `level`) VALUES
-(1, 'admin', '$2y$10$3e6.F7RfFskrVOHavPLzoeenOwNPF0ohavm6DtliDxJsOekkkM1AW', 0),
-(2, 'mike', '$2y$10$CS7/MbZd/t.XNg.nLjP1E.I3ec9fYKhyw9fh7O9f8asIfat4V7CLO', 0);
+(1, 'admin', '$2y$10$sRm46trzv5osoTmGAs2FcuF/.d8ppAPYf4H3dshv/vu1G7bJB323G', 1),
+(2, 'manager', '$2y$10$sRm46trzv5osoTmGAs2FcuF/.d8ppAPYf4H3dshv/vu1G7bJB323G', 10);
 
 --
 -- Indexes for dumped tables

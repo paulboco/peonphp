@@ -21,7 +21,7 @@ return array(
     */
 
     'auth' => function() {
-        return new Peon\Auth(new Peon\Session, new Peon\User);
+        return new Peon\Auth(new App\User, new Peon\Session);
     },
 
     'config' => function() {
