@@ -20,6 +20,10 @@ return array(
     |--------------------------------------------------------------------------
     */
 
+    'auth' => function() {
+        return new Peon\Auth(new App\User, new Peon\Session);
+    },
+
     'config' => function() {
         return new Peon\Config;
     },
@@ -54,8 +58,12 @@ return array(
         return new Peon\Session;
     },
 
-    // 'view' => function() {
-    //     return new Peon\View;
-    // },
+    'sessionhandler' => function() {
+        return new Peon\SessionHandler;
+    },
+
+    'view' => function() {
+        return new Peon\View;
+    },
 
 );

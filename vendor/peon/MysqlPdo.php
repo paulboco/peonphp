@@ -6,9 +6,25 @@ use PDO;
 
 class MysqlPdo
 {
-    private $pdo;
+    /**
+     * The PDO Instance
+     *
+     * @var PDO
+     */
+    protected $pdo;
+
+    /**
+     * The Errors Array
+     *
+     * @var array
+     */
     private $error;
 
+    /**
+     * Create A New PDO
+     *
+     * @return void
+     */
     public function __construct()
     {
         $options = array(
@@ -24,83 +40,129 @@ class MysqlPdo
         }
     }
 
+    /**
+     * Is PDO Connected?
+     *
+     * @return boolean
+     */
     public function isConnected()
     {
-        return is_null($this->pdo);
+        return $this->pdo instanceof PDO;
     }
 
+    /**
+     * Close PDO
+     *
+     * @return void
+     */
     public function closeConnection()
     {
         $this->pdo = null;
-        return $this->isConnected();
     }
 
+    /**
+     * Get All Rows
+     *
+     * @return array
+     */
     public function all()
     {
-        $sql = "SELECT * FROM `{$this->table}`";
+        $statement = $this->pdo->query(
+            "SELECT * FROM `{$this->table}`"
+        );
 
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute();
-
-        return $statement->fetchAll();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Find By ID
+     *
+     * @param  integer  $id
+     * @return array
+     */
     public function findById($id)
     {
-        $sql = "SELECT * FROM `{$this->table}` WHERE id=:id";
+        $statement = $this->pdo->prepare(
+            "SELECT * FROM `{$this->table}` WHERE id=:id"
+        );
 
-        $statement = $this->pdo->prepare($sql);
         $statement->execute(array(
-            'id' => $id
+            'id' => $id,
         ));
 
-        return $statement->fetch();
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function updateById($id, $values)
+    /**
+     * Update By ID
+     *
+     * @param  integer  $id
+     * @param  array  $data
+     * @return @todo What type ???????????
+     */
+    public function update($id, $data)
     {
-        $pairs = array_map(function($key) {
+        $pairs = array_map(function ($key) {
             return "{$key}=:{$key}";
-        }, array_keys($values));
+        }, array_keys($data));
 
         $pairs = implode(', ', $pairs);
 
-        $sql = "UPDATE `{$this->table}` SET {$pairs} WHERE id=:id";
+        $statement = $this->pdo->prepare(
+            "UPDATE `{$this->table}` SET {$pairs} WHERE id=:id"
+        );
 
-        $statement = $this->pdo->prepare($sql);
-
-        return $statement->execute($values + array('id' => $id));
+        return $statement->execute($data + array('id' => $id));
     }
 
+    /**
+     * Replace Values
+     *
+     * @param  array  $values
+     * @return @todo What type ???????????
+     */
     public function replaceValues($values)
     {
         $keys = ':' . implode(', :', array_keys($values));
-        $sql = "REPLACE INTO `{$this->table}` VALUES ({$keys})";
 
-        $statement = $this->pdo->prepare($sql);
+        $statement = $this->pdo->prepare(
+            "REPLACE INTO `{$this->table}` VALUES ({$keys})"
+        );
 
         return $statement->execute($values);
     }
 
+    /**
+     * Delete Where
+     *
+     * @param  array  $where
+     * @return @todo What type ???????????
+     */
     public function deleteWhere($where)
     {
-        $sql = "DELETE FROM `{$this->table}` WHERE {$where[0]} {$where[1]} :{$where[0]}";
-
-        $statement = $this->pdo->prepare($sql);
+        $statement = $this->pdo->prepare(
+            "DELETE FROM `{$this->table}` WHERE {$where[0]} {$where[1]} :{$where[0]}"
+        );
 
         return $statement->execute(array(
-            $where[0] => $where[2]
+            $where[0] => $where[2],
         ));
     }
 
+    /**
+     * Delete By ID
+     *
+     * @param  integer  $id
+     * @return @todo What type ???????????
+     */
     public function deleteById($id)
     {
-        $sql = "DELETE FROM `{$this->table}` WHERE id = :id";
-
-        $statement = $this->pdo->prepare($sql);
+        $statement = $this->pdo->prepare(
+            "DELETE FROM `{$this->table}` WHERE id = :id"
+        );
 
         return $statement->execute(array(
-            'id' => $id
+            'id' => $id,
         ));
     }
 }

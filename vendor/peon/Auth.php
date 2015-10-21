@@ -2,8 +2,17 @@
 
 namespace Peon;
 
+use App\User;
+
 class Auth
 {
+    /**
+     * The User Instance
+     *
+     * @var Peon\User
+     */
+    private $user;
+
     /**
      * The Session Instance
      *
@@ -14,11 +23,13 @@ class Auth
     /**
      * Create A New Auth
      *
+     * @param  Peon\User  $user
      * @param  Peon\Session  $session
      * @return void
      */
-    public function __construct(Session $session)
+    public function __construct(User $user, Session $session)
     {
+        $this->user = $user;
         $this->session = $session;
     }
 
@@ -30,12 +41,16 @@ class Auth
      */
     public function attempt($credentials)
     {
-        if (password_verify('rasmuslerdorf', $hash)) {
-            echo 'Password is valid!';
-        } else {
-            echo 'Invalid password.';
+        if (!$user = $this->user->findByUsername($credentials['username'])) {
+            return false;
         }
-        return isset('authenticated');
+
+        if (password_verify($credentials['password'], $user['password'])) {
+            $this->session->set(session_id(), $user);
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -43,9 +58,23 @@ class Auth
      *
      * @return boolean
      */
-    public function check()
+    public static function check()
     {
-        return true;
+        $session = App::getInstance()->make('session');
+
+        return $session->has(session_id());
+    }
+
+    /**
+     * Get The Authenticated User
+     *
+     * @return stdClass
+     */
+    public static function user()
+    {
+        $session = App::getInstance()->make('session');
+
+        return (object) $session->get(session_id());
     }
 
     /**
@@ -55,6 +84,9 @@ class Auth
      */
     public function logout()
     {
-        $this->session['']
+        session_destroy();
+        session_write_close();
+
+        return true;
     }
 }

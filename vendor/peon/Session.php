@@ -3,6 +3,7 @@
 namespace Peon;
 
 use Illuminate\Arr;
+use Peon\App;
 
 class Session
 {
@@ -11,9 +12,18 @@ class Session
      *
      * @return void
      */
-    public function start()
+    public function start($app)
     {
+        $app->make('sessionhandler');
+
+        $duration = 1*60;
+
         if (!session_id()) {
+            ini_set('session.gc_maxlifetime', $duration); // 1 minute
+            ini_set('session.gc_probability', 10);
+            ini_set('session.gc_divisor', 100);
+            session_set_cookie_params($duration);
+            session_name('peon_session');
             session_start();
         }
 

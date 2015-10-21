@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\User;
 use App\Validators\SessionValidator;
+use Peon\Auth;
 use Peon\Request;
 use Peon\Response;
 use Peon\Session;
@@ -11,6 +11,13 @@ use Peon\View;
 
 class SessionController
 {
+    /**
+     * The Auth Instance
+     *
+     * @var Peon\Auth;
+     */
+    protected $auth;
+
     /**
      * The Session
      *
@@ -56,13 +63,14 @@ class SessionController
      * @return void
      */
     public function __construct(
+        Auth $auth,
         Session $session,
         SessionValidator $validator,
         Response $response,
         Request $request,
         View $view
-    )
-    {
+    ) {
+        $this->auth = $auth;
         $this->session = $session;
         $this->validator = $validator;
         $this->response = $response;
@@ -93,12 +101,13 @@ class SessionController
             $this->response->redirect('session/create');
         }
 
-        // session authenticated
-        $this->session->set('authenticated', true);
+        if ($this->auth->attempt($this->request->all())) {
+            $this->session->setFlash('success', "You are now logged in.");
+            $this->response->redirect('page/home');
+        }
 
-        // flash success message and redirect to index
-        $this->session->setFlash('success', "You are now logged in.");
-        $this->response->redirect('page/home');
+        $this->session->setFlash('danger', "Your credentials could not be verified.");
+        $this->response->redirect('session/create');
     }
 
     /**
@@ -109,7 +118,7 @@ class SessionController
     public function destroy()
     {
         // rescind authentication
-        $this->session->forget('authenticated');
+        $this->auth->logout();
 
         // flash success message and redirect to index
         $this->session->setFlash('success', "You are now logged out.");

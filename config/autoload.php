@@ -21,6 +21,7 @@ return array(
     */
 
     'files' => array(
+        'boot/php.php',
         'vendor/peon/helpers.php',
         'vendor/ircmaxell/password.php'
     ),
