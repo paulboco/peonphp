@@ -1,12 +1,13 @@
+#!/usr/bin/php
 <?php
 
 if ($argc < 2) {
-    echo 'Not enough arguments.';
+    echo 'Not enough arguments.' . PHP_EOL;
     die;
 }
 
 if ($argc > 2) {
-    echo 'Too many arguments.';
+    echo 'Too many arguments.' . PHP_EOL;
     die;
 }
 
@@ -14,16 +15,16 @@ $command = $argv[1];
 
 if ($command != 'on' and $command != 'off') {
     echo 'Unrecognized argument "' . $command . '".';
-    echo "\nValid arguments are " . '"on" and "off".';
+    echo "\nValid arguments are " . '"on" and "off".' . PHP_EOL;
     die;
 }
 
 if ($command == 'on') {
     touch('./storage/app/maintenance');
-    echo 'Maintenance mode is now on.';
+    echo 'Maintenance mode is now on.' . PHP_EOL;
 }
 
 if ($command == 'off') {
     unlink('./storage/app/maintenance');
-    echo 'Maintenance mode is now off.';
+    echo 'Maintenance mode is now off.' . PHP_EOL;
 }

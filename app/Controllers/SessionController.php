@@ -122,6 +122,6 @@ class SessionController
 
         // flash success message and redirect to index
         $this->session->setFlash('success', "You are now logged out.");
-        $this->response->redirect('/');
+        $this->response->redirect();
     }
 }
