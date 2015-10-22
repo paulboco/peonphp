@@ -7,6 +7,14 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "lamp53"
   config.vm.network "private_network", ip: "192.168.33.10"
   config.vm.synced_folder ".", "/vagrant", :mount_options => ["dmode=777", "fmode=666"]
+
+  # set auto_update to false, if you do NOT want to check the correct
+  # additions version when booting this machine
+  config.vbguest.auto_update = false
+
+  # do NOT download the iso file from a webserver
+  config.vbguest.no_remote = true
+
   config.vm.provision "shell", inline: <<-SHELL
 echo "Droping database 'peon' if it already exists.";
 mysql -uroot -proot -e "DROP DATABASE IF EXISTS peon";
@@ -14,6 +22,7 @@ echo "Creating new database 'peon'";
 mysql -uroot -proot -e "create database peon";
 echo "Importing tables";
 mysql -uroot -proot peon < /vagrant/database/bondservants.sql
+mysql -uroot -proot peon < /vagrant/database/sessions.sql
 mysql -uroot -proot peon < /vagrant/database/users.sql
   SHELL
 
