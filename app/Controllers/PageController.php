@@ -26,6 +26,16 @@ class PageController
     }
 
     /**
+     * Welcome Page
+     *
+     * @return void
+     */
+    public function welcome()
+    {
+        $this->view->make('page/welcome');
+    }
+
+    /**
      * Home Page
      *
      * @return void

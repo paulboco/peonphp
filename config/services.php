@@ -46,9 +46,9 @@ return array(
     //     return new Peon\Resolver;
     // },
 
-    // 'response' => function() {
-    //     return new Peon\Response(new Peon\View);
-    // },
+    'response' => function() {
+        return new Peon\Response(new Peon\View);
+    },
 
     'router' => function() {
         return new Peon\Router(new Peon\Resolver, new Peon\Response(new Peon\View));
