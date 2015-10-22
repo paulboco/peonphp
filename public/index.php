@@ -40,4 +40,4 @@ $router = $app->make('router');
 $router->dispatch();
 
 
-dd($_SESSION);
+// dd($_SESSION);

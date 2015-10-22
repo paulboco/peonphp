@@ -4,9 +4,21 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/default.min.css">
 <link rel="stylesheet" type="text/css" href="/css/railscasts.css">
 <style type="text/css">
+    @font-face {
+        font-family: museo-thick;
+        src: url(/fonts/museo_sans_900.woff2);
+    }
+    @font-face {
+        font-family: museo-medium;
+        src: url(/fonts/museo_sans_500.woff2);
+    }
+    @font-face {
+        font-family: museo;
+        src: url(/fonts/museo_300.woff2);
+    }
     * {
-       font-size: 16px;
-       line-height: 2;
+        font-size: 17px;
+        line-height: 2;
     }
     html {
         overflow-y: scroll;
@@ -18,6 +30,7 @@
         border-bottom: none;
     }
     h1, h2, h3, h4 {
+        font-family: museo-medium;
         border-bottom: dotted 2px #ccc;
         text-shadow: 1px 1px 2px #888;
         padding: 10px 0;
@@ -38,10 +51,6 @@
         background-color: #fff;
         color: #a00;
         font-size: 15px;
-    }
-    a.navbar-brand {
-        text-transform: uppercase;
-        font-weight: bold;
     }
     div.target {
         margin-top: 70px;
@@ -125,7 +134,11 @@
         box-shadow: 4px 2px 15px #000;
     }
     .navbar-inverse .navbar-brand {
-        letter-spacing: 2px;
+        font-size: 130%;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-family: museo-thick;
+        letter-spacing: .3em;
         color: #eee;
     }
     .navbar-inverse .navbar-nav>.active>a,
