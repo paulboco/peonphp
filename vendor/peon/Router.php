@@ -37,7 +37,7 @@ namespace Peon;
  * 'PageController' and its 'home' method.
  */
 
-class Router
+class Router extends RouteFilterApplicator
 {
     /**
      * The Resolver Instance
@@ -110,6 +110,7 @@ class Router
     public function dispatch()
     {
         $this->validateRoute();
+        $this->applyFilters($this->controller, $this->method);
         $this->callControllerMethod();
     }
 
@@ -139,7 +140,7 @@ class Router
         $uri = str_replace('?' . $_SERVER['QUERY_STRING'], '', $_SERVER['REQUEST_URI']);
         $uri = preg_replace('~/+~', '/', $uri);
 
-        $this->uri = trim($uri, '/') ?: 'page/home';
+        $this->uri = trim($uri, '/') ?: 'page/welcome';
     }
 
     /**
