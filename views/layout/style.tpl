@@ -52,9 +52,10 @@
         color: #a00;
         font-size: 15px;
     }
-    div.target {
-        margin-top: 70px;
-        height: 100px;
+    div.alert-danger {
+        color: #ffb;
+        background-color: rgba(255, 24, 0, 0.71);
+        border-color: brown;
     }
     div.function-definition {
         border-radius: 9px;
