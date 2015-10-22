@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 21, 2015 at 08:04 PM
+-- Generation Time: Oct 22, 2015 at 02:02 AM
 -- Server version: 5.5.44-0ubuntu0.12.04.1
 -- PHP Version: 5.3.10-1ubuntu3.20
 
@@ -38,8 +38,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `level`) VALUES
-(1, 'admin', '$2y$10$sRm46trzv5osoTmGAs2FcuF/.d8ppAPYf4H3dshv/vu1G7bJB323G', 1),
-(2, 'manager', '$2y$10$sRm46trzv5osoTmGAs2FcuF/.d8ppAPYf4H3dshv/vu1G7bJB323G', 10);
+(1, 'paulboco', '$2y$10$doBSDgl4dGepE8LIZ5pb/Os8gagGu13SzUCC36jBfnmspWcACVrvS', 1),
+(2, 'jazzmole', '$2y$10$doBSDgl4dGepE8LIZ5pb/Os8gagGu13SzUCC36jBfnmspWcACVrvS', 10);
 
 --
 -- Indexes for dumped tables
