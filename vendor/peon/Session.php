@@ -7,6 +7,8 @@ use Peon\App;
 
 class Session
 {
+    protected $duration = 1800;
+
     /**
      * Start The Session
      *
@@ -16,18 +18,38 @@ class Session
     {
         $app->make('sessionhandler');
 
-        $duration = 1*60;
-
         if (!session_id()) {
-            ini_set('session.gc_maxlifetime', $duration); // 1 minute
-            ini_set('session.gc_probability', 10);
+            ini_set('session.gc_maxlifetime', $this->duration);
+            ini_set('session.gc_probability', 100);
             ini_set('session.gc_divisor', 100);
-            session_set_cookie_params($duration);
+
             session_name('peon_session');
             session_start();
         }
 
+        $this->checkLastActivity();
+        $this->checkWhenCreated();
         $this->prepareFlash();
+    }
+
+    protected function checkLastActivity()
+    {
+        if ($this->has('session.last_active') && (time() - $this->get('session.last_active') > $this->duration)) {
+            session_unset();
+            session_destroy();
+        }
+
+        $this->set('session.last_active', time());
+    }
+
+    protected function checkWhenCreated()
+    {
+        if (!$this->has('session.created')) {
+            $this->set('session.created', time());
+        } else if (time() - $this->get('session.created') > $this->duration) {
+            session_regenerate_id(true);
+            $this->set('session.created', time());
+        }
     }
 
     /**
