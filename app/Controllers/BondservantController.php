@@ -132,7 +132,7 @@ class BondservantController
         }
 
         // update the database
-        $this->bondservant->updateById($id, array(
+        $this->bondservant->update($id, array(
             'name' => $this->request->get('name'),
             'rating' => $this->request->get('rating'),
         ));
