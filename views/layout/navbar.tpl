@@ -27,9 +27,11 @@ $auth = Peon\App::getInstance()->make('auth');
                 <ul class="nav navbar-nav">
                     <li class="<?php echo segment(2, 'requirements', 'active') ?>"><a href="/page/requirements">Requirements</a></li>
                 </ul>
-                <ul class="nav navbar-nav">
-                    <li class="<?php echo segment(2, 'api', 'active') ?>"><a href="/page/api">API</a></li>
-                </ul>
+                <?php if (Peon\Auth::user()->level == 1): ?>
+                    <ul class="nav navbar-nav">
+                        <li class="<?php echo segment(2, 'api', 'active') ?>"><a href="/page/api">API</a></li>
+                    </ul>
+                <?php endif ?>
                 <ul class="nav navbar-nav">
                     <li class="<?php echo segment(2, 'bondservant', 'active') ?>"><a href="/bondservant/index">Bondservants</a></li>
                 </ul>
