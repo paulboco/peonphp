@@ -4,12 +4,9 @@ namespace App\Controllers;
 
 use App\Validators\SessionValidator;
 use Peon\Auth;
-use Peon\Request;
-use Peon\Response;
-use Peon\Session;
-use Peon\View;
+use Peon\Controller;
 
-class SessionController
+class SessionController extends Controller
 {
     /**
      * The Auth Instance
@@ -19,13 +16,6 @@ class SessionController
     protected $auth;
 
     /**
-     * The Session
-     *
-     * @var Peon\Session
-     */
-    protected $session;
-
-    /**
      * The Validator Instance
      *
      * @var Peon\Validator
@@ -33,49 +23,18 @@ class SessionController
     protected $validator;
 
     /**
-     * The Response Instance
-     *
-     * @var Peon\Response
-     */
-    protected $response;
-
-    /**
-     * The Request Instance
-     *
-     * @var Peon\Request
-     */
-    protected $request;
-
-    /**
-     * The View Instance
-     *
-     * @var Peon\View
-     */
-    protected $view;
-
-    /**
      * Create a new session controller
      *
-     * @param  Session  $session
      * @param  SessionValidator  $validator
-     * @param  Response  $response
-     * @param  View  $view
+     * @param  Auth  $auth
      * @return void
      */
-    public function __construct(
-        Auth $auth,
-        Session $session,
-        SessionValidator $validator,
-        Response $response,
-        Request $request,
-        View $view
-    ) {
-        $this->auth = $auth;
-        $this->session = $session;
+    public function __construct(SessionValidator $validator, Auth $auth)
+    {
+        parent::__construct();
+
         $this->validator = $validator;
-        $this->response = $response;
-        $this->request = $request;
-        $this->view = $view;
+        $this->auth = $auth;
     }
 
     /**

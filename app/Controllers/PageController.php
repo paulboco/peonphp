@@ -2,29 +2,10 @@
 
 namespace App\Controllers;
 
-use Peon\View;
+use Peon\Controller;
 
-class PageController
+class PageController extends Controller
 {
-    /**
-     * The view instance
-     *
-     * @var Peon\View
-     */
-    protected $view;
-
-    /**
-     * Create a new page controller
-     *
-     * @param  Peon\View  $view
-     * @param  Peon\Request  $request
-     * @return void
-     */
-    public function __construct(View $view)
-    {
-        $this->view = $view;
-    }
-
     /**
      * Welcome Page
      *

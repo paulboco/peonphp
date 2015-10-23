@@ -4,11 +4,6 @@ namespace App\Controllers;
 
 use App\Bondservant;
 use App\Validators\BondservantValidator;
-use Peon\Config;
-use Peon\Request;
-use Peon\Response;
-use Peon\Session;
-use Peon\View;
 
 class BondservantController
 {
@@ -27,68 +22,16 @@ class BondservantController
     protected $validator;
 
     /**
-     * The Response Instance
-     *
-     * @var Peon\Response
-     */
-    protected $response;
-
-    /**
-     * The Request Instance
-     *
-     * @var Peon\Request
-     */
-    protected $request;
-
-    /**
-     * The Session Instance
-     *
-     * @var Peon\Session
-     */
-    protected $session;
-
-    /**
-     * The Config Instance
-     *
-     * @var Peon\Config
-     */
-    protected $config;
-
-    /**
-     * The View Instance
-     *
-     * @var Peon\View
-     */
-    protected $view;
-
-    /**
      * Create a new bondservant controller
      *
      * @param  Bondservant  $bondservant
      * @param  Validator  $validator
-     * @param  Response  $response
-     * @param  Session  $session
-     * @param  Config  $config
-     * @param  View  $view
      * @return void
      */
-    public function __construct(
-        Bondservant $bondservant,
-        BondservantValidator $validator,
-        Response $response,
-        Request $request,
-        Session $session,
-        Config $config,
-        View $view
-    )
+    public function __construct(Bondservant $bondservant, BondservantValidator $validator)
     {
         $this->bondservant = $bondservant;
         $this->validator = $validator;
-        $this->response = $response;
-        $this->request = $request;
-        $this->session = $session;
-        $this->config = $config;
-        $this->view = $view;
     }
 
     /**

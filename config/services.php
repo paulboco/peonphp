@@ -26,9 +26,9 @@ return array(
         return new PDO("{$type}:dbname={$name};host={$host}", $user, $pass);
     },
 
-    // 'request' => function() {
-    //     return new Peon\Request;
-    // },
+    'request' => function() {
+        return new Peon\Request;
+    },
 
     // 'resolver' => function() {
     //     return new Peon\Resolver;
