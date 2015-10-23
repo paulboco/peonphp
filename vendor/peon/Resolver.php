@@ -10,14 +10,9 @@ use ReflectionParameter;
  * Resolver
  *
  * Automatic dependency injection with PHP’s reflection API.
- *
- * @author Christopher Geary
- * @see http://www.ltconsulting.co.uk/automatic-dependency-injection-with-phps-reflection-api/
  */
-
 class Resolver
 {
-
     /**
      * Build An Instance Of The Given Class
      *
@@ -58,12 +53,7 @@ class Resolver
 
         foreach ($parameters as $parameter) {
             $dependency = $parameter->getClass();
-
-            if (is_null($dependency)) {
-                $dependencies[] = $this->resolveNonClass($parameter);
-            } else {
-                $dependencies[] = $this->resolve($dependency->name);
-            }
+            $dependencies[] = $this->chooseResolver($dependency, $parameter);
         }
 
         return $dependencies;
@@ -84,5 +74,22 @@ class Resolver
         }
 
         throw new Exception("Cannot bind unknown parameter.");
+    }
+
+    /**
+     * Choose The Resolver
+     *
+     * @param  ReflectionClass  $dependency
+     * @param  ReflectionParameter  $parameter
+     * @return object
+     * @todo Find the data types for this docblock
+     */
+    protected function chooseResolver($dependency, $parameter)
+    {
+        if (is_null($dependency)) {
+            return $this->resolveNonClass($parameter);
+        } else {
+            return $this->resolve($dependency->name);
+        }
     }
 }

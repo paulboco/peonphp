@@ -65,7 +65,6 @@ class Validator extends ValidatorRules
      * Validate The Request
      *
      * @todo we're only applying one rule per key at this point
-     * @todo store errors in the session
      * @return void
      */
     protected function validate()

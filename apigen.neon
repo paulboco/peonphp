@@ -1,0 +1,6 @@
+source:
+    - ./vendor/peon
+
+destination: ./public/api
+
+todo: true
