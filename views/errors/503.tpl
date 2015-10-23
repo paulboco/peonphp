@@ -13,12 +13,12 @@
         }
         * { font-size: 17px; line-height: 2; }
         html { overflow-y: scroll; }
-        body { margin-top: 60px; }
+        body { margin-top: 60px; background-image: url("/images/water-lillies.jpg"); opacity: 0.72; }
         h1.page-header { border-bottom: none; }
         h1, h2, h3, h4 {
+            color: #fff;
             font-family: museo-medium;
-            border-bottom: dotted 2px #ccc;
-            text-shadow: 1px 1px 2px #888;
+            text-shadow: 1px 1px 2px #ab8;
             padding: 10px 0;
         }
         h1.page-header>small { text-shadow: none; }
@@ -54,7 +54,7 @@
     </h1>
     <div class="row">
         <div class="col-md-8">
-            <p>We will be back shortly</p>
+            <h2>We'll be back soon. ;)</h2>
         </div>
     </div>
 </div>
