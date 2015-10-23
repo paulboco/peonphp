@@ -80,7 +80,7 @@ class Form
              '</div>';
     }
 
-    public function password($label, $name, $value = null, $autofocus = false)
+    public static function password($label, $name, $value = null, $autofocus = false)
     {
         Form::text($label, $name, $value, $autofocus, 'password');
     }
