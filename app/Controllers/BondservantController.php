@@ -4,8 +4,9 @@ namespace App\Controllers;
 
 use App\Bondservant;
 use App\Validators\BondservantValidator;
+use Peon\Controller;
 
-class BondservantController
+class BondservantController extends Controller
 {
     /**
      * The Bondservant
@@ -30,6 +31,8 @@ class BondservantController
      */
     public function __construct(Bondservant $bondservant, BondservantValidator $validator)
     {
+        parent::__construct();
+
         $this->bondservant = $bondservant;
         $this->validator = $validator;
     }

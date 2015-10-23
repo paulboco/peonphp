@@ -34,8 +34,7 @@ class MysqlPdo
 
         try {
             $this->pdo = App::getInstance()->make('pdo');
-        }
-        catch (PDOException $e) {
+        } catch (PDOException $e) {
             $this->error = $e->getMessage();
         }
     }
@@ -98,7 +97,8 @@ class MysqlPdo
      *
      * @param  integer  $id
      * @param  array  $data
-     * @return @todo What type ???????????
+     * @return ???????????
+     * @todo What type for docblock
      */
     public function update($id, $data)
     {
@@ -119,7 +119,8 @@ class MysqlPdo
      * Replace Values
      *
      * @param  array  $values
-     * @return @todo What type ???????????
+     * @return ???????????
+     * @todo What type for docblock
      */
     public function replaceValues($values)
     {
@@ -136,7 +137,8 @@ class MysqlPdo
      * Delete Where
      *
      * @param  array  $where
-     * @return @todo What type ???????????
+     * @return ???????????
+     * @todo What type for docblock
      */
     public function deleteWhere($where)
     {
@@ -153,7 +155,8 @@ class MysqlPdo
      * Delete By ID
      *
      * @param  integer  $id
-     * @return @todo What type ???????????
+     * @return ???????????
+     * @todo What type for docblock
      */
     public function deleteById($id)
     {

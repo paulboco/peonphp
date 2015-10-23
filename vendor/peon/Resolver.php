@@ -82,7 +82,6 @@ class Resolver
      * @param  ReflectionClass  $dependency
      * @param  ReflectionParameter  $parameter
      * @return object
-     * @todo Find the data types for this docblock
      */
     protected function chooseResolver($dependency, $parameter)
     {
