@@ -1,2 +1,3 @@
 .vagrant
 public/api/*
+public/fpdf/*
