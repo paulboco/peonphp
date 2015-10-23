@@ -9,8 +9,8 @@
             <?php Peon\Form::text('Name', 'name', $row['name']) ?>
             <?php Peon\Form::select('Rating', 'rating', $row['rating'], $ratings) ?>
 
-            <button type="submit" class="btn btn-primary">Save</button>
-            <a href="/bondservant/index" class="btn btn-default">Cancel</a>
+            <button type="submit" class="btn btn-primary btn-lg">Save</button>
+            <a href="/bondservant/index" class="btn btn-default btn-lg">Cancel</a>
         </form>
     </div>
 </div>

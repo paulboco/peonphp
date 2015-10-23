@@ -1,8 +1,9 @@
-<?php
+<div class="row">
+    <div class="col-md-offset-2 col-md-8">
 
+<?php
 $levels = array('danger', 'warning', 'info', 'success');
 $session = Peon\App::getInstance()->make('session');
-
 foreach ($levels as $level) {
     if ($message = $session->getFlash($level)) {
         echo "<div class=\"alert alert-{$level}\" role=\"alert\">";
@@ -11,3 +12,7 @@ foreach ($levels as $level) {
         echo '</div>';
     }
 }
+?>
+
+    </div>
+</div>

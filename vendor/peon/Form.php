@@ -39,7 +39,7 @@ class Form
 
         echo '<div class="form-group' . $hasError . '">' . PHP_EOL .
              '    <label class="control-label" for="' . $id . '">' . $label . '</label>' . PHP_EOL .
-             '    <select name="rating" class="form-control" id="' . $id . '" aria-describedby="' . $help . '">' . PHP_EOL;
+             '    <select name="rating" class="form-control input-lg" id="' . $id . '" aria-describedby="' . $help . '">' . PHP_EOL;
 
         foreach ($options as $key => $option) {
             $selected = $value == $option ? ' selected' : '';
@@ -57,9 +57,10 @@ class Form
      * @param  string  $label
      * @param  string  $name
      * @param  mixed  $value
+     * @param  boolean  $autofocus
      * @return void
      */
-    public static function text($label, $name, $value)
+    public static function text($label, $name, $value = null, $autofocus = false, $type = 'text')
     {
         $session = App::getInstance()->make('session');
         $old_input = $session->getFlash('old_input');
@@ -70,11 +71,17 @@ class Form
         $id = 'text-' . $name;
         $help = 'help-' . $id;
         $error = isset($errors[$name]) ? $errors[$name] : '';
+        $autofocus = $autofocus ? 'autofocus' : '';
 
         echo '<div class="form-group' . $hasError . '">' . PHP_EOL .
              '    <label class="control-label" for="' . $id . '">' . $label . '</label>' . PHP_EOL .
-             '    <input type="text" name="' . $name . '" value="' . $value . '" class="form-control" id="' . $id . '" aria-describedby="' . $help . '">' . PHP_EOL .
+             '    <input type="' . $type . '" name="' . $name . '" value="' . $value . '" class="form-control input-lg" id="' . $id . '" aria-describedby="' . $help . '"' . $autofocus . '>' . PHP_EOL .
              '    <span id="' . $help . '" class="help-block">' . $error . '</span>' . PHP_EOL .
              '</div>';
+    }
+
+    public function password($label, $name, $value = null, $autofocus = false)
+    {
+        Form::text($label, $name, $value, $autofocus, 'password');
     }
 }

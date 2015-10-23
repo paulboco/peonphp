@@ -96,13 +96,11 @@ class SessionController
      */
     public function store()
     {
-        // redirect back to the form if validation fails
         if ($this->validator->fails()) {
             $this->response->redirect('session/create');
         }
 
         if ($this->auth->attempt($this->request->all())) {
-            $this->session->setFlash('success', "You are now logged in.");
             $this->response->redirect('page/home');
         }
 
@@ -117,7 +115,6 @@ class SessionController
      */
     public function destroy()
     {
-        // rescind authentication
         $this->auth->logout();
 
         // flash success message and redirect to index

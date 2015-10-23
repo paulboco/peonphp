@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-md-8">
-        <p>Welcome to the user area!</p>
+        <p>Welcome to your user area!</p>
     </div>
 </div>
 

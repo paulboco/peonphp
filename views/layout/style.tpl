@@ -52,10 +52,13 @@
         color: #a00;
         font-size: 15px;
     }
+    div.alert-success, .alert-info, .alert-warning, .alert-danger {
+        text-align: center;
+        margin-top: -15px;
+    }
     div.alert-danger {
-        color: #ffb;
-        background-color: rgba(255, 24, 0, 0.71);
-        border-color: brown;
+        color: brown;
+        background-color: rgba(255, 50, 0, 0.25);
     }
     div.function-definition {
         border-radius: 9px;
