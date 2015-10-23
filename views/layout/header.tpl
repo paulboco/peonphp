@@ -5,6 +5,5 @@
     <?php $this->inject('layout/style') ?>
 </head>
 <body>
-    <?php $this->inject('layout/navbar') ?>
-    <div class="container">
-        <?php $this->inject('layout/alert') ?>
+<?php $this->inject('layout/navbar') ?>
+<?php $this->inject('layout/alert') ?>
