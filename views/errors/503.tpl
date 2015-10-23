@@ -13,15 +13,15 @@
         }
         * { font-size: 17px; line-height: 2; }
         html { overflow-y: scroll; }
-        body { margin-top: 60px; background-image: url("/images/water-lillies.jpg"); opacity: 0.72; }
-        h1.page-header { border-bottom: none; }
+        body { margin-top: 60px; background-image: url("/images/water-lillies.jpg"); opacity: 0.72; background-color: #22280C; background-repeat: no-repeat; }
+        h1.page-header { font-size: 48px; border-bottom: none; }
         h1, h2, h3, h4 {
             color: #fff;
             font-family: museo-medium;
-            text-shadow: 1px 1px 2px #ab8;
+            text-shadow: 0px 0px 10px #F00;
             padding: 10px 0;
         }
-        h1.page-header>small { text-shadow: none; }
+        h1.page-header>small { color: #fff; text-shadow: none; }
         a { color: #008; }
         footer {
             margin-top: 50px;
