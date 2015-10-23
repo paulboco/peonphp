@@ -38,9 +38,17 @@ $auth = Peon\App::getInstance()->make('auth');
             <?php endif ?>
             <ul class="nav navbar-nav navbar-right">
                 <?php if (Peon\Auth::check()): ?>
-                    <li><a href="/session/destroy">Logout <?php echo Peon\Auth::user()->username ?></a></li>
+                    <li>
+                        <a href="/session/destroy">
+                            <span class="glyphicon glyphicon-log-out" title="Logout <?php echo Peon\Auth::user()->username ?>" aria-hidden="true"></span>
+                        </a>
+                    </li>
                 <?php else: ?>
-                    <li><a href="/session/create">Login</a></li>
+                    <li>
+                        <a href="/session/create">
+                            <span class="glyphicon glyphicon-log-in" title="Login" aria-hidden="true"></span>
+                        </a>
+                    </li>
                 <?php endif ?>
             </ul>
         </div>
