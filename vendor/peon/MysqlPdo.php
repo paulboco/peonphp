@@ -93,6 +93,25 @@ class MysqlPdo
     }
 
     /**
+     * Insert A New Row
+     *
+     * @param  array  $data
+     * @return ?????????????
+     * @todo find return type for docblock
+     */
+    public function insert($data)
+    {
+        $names = 'title,author';
+        $names = implode(',', array_keys($data));
+        $sql = "INSERT INTO books ({$names}) VALUES (:title,:author)";
+dd($data, $sql);
+        $q = $conn->prepare($sql);
+        $q->execute(array(':author'=>$author,
+            ':title'=>$title
+        ));
+    }
+
+    /**
      * Update By ID
      *
      * @param  integer  $id

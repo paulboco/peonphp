@@ -50,6 +50,42 @@ class BondservantController extends Controller
     }
 
     /**
+     * Create
+     *
+     * @return void
+     */
+    public function create()
+    {
+        // show the create form
+        $this->view->make('bondservant/create', array(
+            'ratings' => $this->config->get('selects/rating'),
+        ));
+    }
+
+    /**
+     * Store
+     *
+     * @return void
+     */
+    public function store()
+    {
+        // redirect back to the form if validation fails
+        if ($this->validator->fails()) {
+            $this->response->redirect('bondservant/create');
+        }
+
+        // insert into database
+        $this->bondservant->insert(array(
+            'name' => $this->request->get('name'),
+            'rating' => $this->request->get('rating'),
+        ));
+
+        // flash success message and redirect to index
+        $this->session->setFlash('success', "Bondservant was successfully created.");
+        $this->response->redirect('bondservant/index');
+    }
+
+    /**
      * Edit
      *
      * @param  integer  $id
