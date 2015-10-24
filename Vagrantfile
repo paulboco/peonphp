@@ -21,9 +21,7 @@ mysql -uroot -proot -e "DROP DATABASE IF EXISTS peon";
 echo "Creating new database 'peon'";
 mysql -uroot -proot -e "create database peon";
 echo "Importing tables";
-mysql -uroot -proot peon < /vagrant/database/bondservants.sql
-mysql -uroot -proot peon < /vagrant/database/sessions.sql
-mysql -uroot -proot peon < /vagrant/database/users.sql
+mysql -uroot -proot peon < /vagrant/database/peon.sql
   SHELL
 
 end
