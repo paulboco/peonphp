@@ -8,11 +8,11 @@ return array(
         'concepts'     => array('auth'),
         'helpers'      => array('auth'),
         'requirements' => array('auth'),
-        'api'          => array('auth', 'admin'),
+        'api'          => array('auth'),
     ),
 
     'BondservantController' => array(
-        ':any' => array('auth'),
+        ':any' => array('auth', 'admin'),
     ),
 
 );
