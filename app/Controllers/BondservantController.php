@@ -40,7 +40,7 @@ class BondservantController extends Controller
     /**
      * Index
      *
-     * @return void
+     * @return View
      */
     public function index()
     {
@@ -52,7 +52,7 @@ class BondservantController extends Controller
     /**
      * Create
      *
-     * @return void
+     * @return View
      */
     public function create()
     {
@@ -65,7 +65,7 @@ class BondservantController extends Controller
     /**
      * Store
      *
-     * @return void
+     * @return Response
      */
     public function store()
     {
@@ -94,7 +94,7 @@ class BondservantController extends Controller
      * Edit
      *
      * @param  integer  $id
-     * @return void
+     * @return View
      */
     public function edit($id)
     {
@@ -109,7 +109,7 @@ class BondservantController extends Controller
      * Update
      *
      * @param  integer  $id
-     * @return void
+     * @return Response
      */
     public function update($id)
     {
@@ -129,6 +129,29 @@ class BondservantController extends Controller
             $this->session->setFlash('success', "Bondservant #{$id} was successfully updated.");
         } else {
             $this->session->setFlash('danger', 'Bondservant #{$id} failed to be updated.');
+        }
+
+        return $this->response->redirect('bondservant/index');
+    }
+
+    /**
+     * Destroy
+     *
+     * @param  integer  $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        // update the database
+        $result = $this->bondservant->update($id, array(
+            'deleted' => 1,
+        ));
+
+        // flash message and redirect to index
+        if ($result) {
+            $this->session->setFlash('success', "Bondservant #{$id} was successfully deleted.");
+        } else {
+            $this->session->setFlash('danger', 'Bondservant #{$id} failed to be deleted.');
         }
 
         return $this->response->redirect('bondservant/index');

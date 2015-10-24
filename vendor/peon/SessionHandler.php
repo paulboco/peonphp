@@ -87,7 +87,7 @@ class SessionHandler extends MysqlPdo
      */
     public function _destroy($id)
     {
-        return $this->deleteById($id);
+        return $this->delete($id);
     }
 
     /**

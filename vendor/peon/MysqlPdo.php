@@ -4,7 +4,7 @@ namespace Peon;
 
 use PDO;
 
-class MysqlPdo
+abstract class MysqlPdo
 {
     /**
      * The PDO Instance
@@ -67,7 +67,7 @@ class MysqlPdo
     public function all()
     {
         $statement = $this->pdo->query(
-            "SELECT * FROM `{$this->table}`"
+            "SELECT * FROM `{$this->table}` WHERE `deleted` = 0"
         );
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -176,7 +176,7 @@ class MysqlPdo
      * @param  integer  $id
      * @return boolean
      */
-    public function deleteById($id)
+    public function delete($id)
     {
         $statement = $this->pdo->prepare(
             "DELETE FROM `{$this->table}` WHERE id = :id"

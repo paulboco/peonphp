@@ -133,6 +133,12 @@
         font-size: 30px;
         color: gray;
     }
+    .modal-open[style] {
+        padding-right: 0px !important;
+    }
+    .modal-header, .modal-footer {
+        border: none;
+    }
     .navbar-inverse {
         background-color: #AA0000;
         box-shadow: 4px 2px 15px #000;
