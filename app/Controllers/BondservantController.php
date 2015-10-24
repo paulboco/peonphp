@@ -44,7 +44,7 @@ class BondservantController extends Controller
      */
     public function index()
     {
-        $this->view->make('bondservant/index', array(
+        return $this->view->make('bondservant/index', array(
             'rows' => $this->bondservant->all(),
         ));
     }
@@ -94,7 +94,7 @@ class BondservantController extends Controller
     public function edit($id)
     {
         // show the edit form
-        $this->view->make('bondservant/edit', array(
+        return $this->view->make('bondservant/edit', array(
             'row' => $this->bondservant->findById($id),
             'ratings' => $this->config->get('selects/rating'),
         ));
@@ -110,7 +110,7 @@ class BondservantController extends Controller
     {
         // redirect back to the form if validation fails
         if ($this->validator->fails()) {
-            $this->response->redirect('bondservant/edit/' . $id);
+            return $this->response->redirect('bondservant/edit/' . $id);
         }
 
         // update the database
@@ -121,6 +121,6 @@ class BondservantController extends Controller
 
         // flash success message and redirect to index
         $this->session->setFlash('success', "Bondservant #{$id} was successfully updated.");
-        $this->response->redirect('bondservant/index');
+        return $this->response->redirect('bondservant/index');
     }
 }

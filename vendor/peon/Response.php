@@ -24,11 +24,32 @@ class Response
     /**
      * Redirect To A URL
      *
+     * @param  string  $uri
      * @return void
      */
     public function redirect($uri = null)
     {
-        header('Location: ' . "http://{$_SERVER['SERVER_NAME']}/{$uri}");
+        return function() use ($uri) {
+            header('Location: ' . "http://{$_SERVER['SERVER_NAME']}/{$uri}");
+        };
+    }
+
+    /**
+     * Send The Response
+     *
+     * @param  mixed  $response
+     * @return void
+     */
+    public function send($response)
+    {
+        if (is_callable($response)) {
+            call_user_func($response);
+        }
+
+        if (is_string($response)) {
+            echo $response;
+        }
+
         die;
     }
 
@@ -40,7 +61,7 @@ class Response
     public function send404()
     {
         header("HTTP/1.0 404 Not Found");
-        $this->view->make('errors/404');
+        $this->view->render('errors/404');
         die;
     }
 
@@ -54,7 +75,7 @@ class Response
         header('HTTP/1.1 503 Service Temporarily Unavailable');
         header('Status: 503 Service Temporarily Unavailable');
         header('Retry-After: 3600');
-        $this->view->make('errors/503');
+        $this->view->render('errors/503');
         die;
     }
 }

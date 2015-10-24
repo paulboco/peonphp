@@ -1,4 +1,4 @@
 .env
 .vagrant
 public/api/*
-public/fpdf/*
+public/bart/*

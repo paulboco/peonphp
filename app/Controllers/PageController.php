@@ -13,7 +13,7 @@ class PageController extends Controller
      */
     public function welcome()
     {
-        $this->view->make('page/welcome');
+        return $this->view->make('page/welcome');
     }
 
     /**
@@ -23,7 +23,7 @@ class PageController extends Controller
      */
     public function home()
     {
-        $this->view->make('page/home');
+        return $this->view->make('page/home');
     }
 
     /**
@@ -33,7 +33,7 @@ class PageController extends Controller
      */
     public function concepts()
     {
-        $this->view->make('page/concepts');
+        return $this->view->make('page/concepts');
     }
 
     /**
@@ -43,7 +43,7 @@ class PageController extends Controller
      */
     public function helpers()
     {
-        $this->view->make('page/helpers');
+        return $this->view->make('page/helpers');
     }
 
     /**
@@ -53,7 +53,7 @@ class PageController extends Controller
      */
     public function requirements()
     {
-        $this->view->make('page/requirements');
+        return $this->view->make('page/requirements');
     }
 
     /**
@@ -63,6 +63,6 @@ class PageController extends Controller
      */
     public function api()
     {
-        $this->view->make('page/api');
+        return $this->view->make('page/api');
     }
 }

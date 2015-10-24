@@ -33,7 +33,7 @@ $auth = Peon\App::getInstance()->make('auth');
                     </ul>
                 <?php endif ?>
                 <ul class="nav navbar-nav">
-                    <li class="<?php echo segment(2, 'bondservant', 'active') ?>"><a href="/bondservant/index">Bondservants</a></li>
+                    <li class="<?php echo segment(1, 'bondservant', 'active') ?>"><a href="/bondservant/index">Bondservants</a></li>
                 </ul>
             <?php endif ?>
             <ul class="nav navbar-nav navbar-right">

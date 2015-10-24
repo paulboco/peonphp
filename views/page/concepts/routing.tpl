@@ -34,7 +34,7 @@ class UserController
         data-toggle="popover"
         data-trigger="focus"
         data-placement="top"
-        title="Studly Caps"
+        title="StudlyCaps"
         data-content="Words strung together without spaces and the first letter of each word capitalized. e.g. MyStudlyClassName ">
         studly caps
     </em>
