@@ -111,7 +111,8 @@ class Router extends RouteFilterApplicator
     {
         $this->validateRoute();
         $this->applyFilters($this->controller, $this->method);
-        $this->callControllerMethod();
+
+        return $this->callControllerMethod();
     }
 
     /**
@@ -206,7 +207,7 @@ class Router extends RouteFilterApplicator
      */
     private function callControllerMethod()
     {
-        call_user_func_array(array(
+        return call_user_func_array(array(
             $this->resolver->resolve($this->controller),
             $this->method,
         ), $this->params);
