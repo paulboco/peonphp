@@ -73,7 +73,7 @@ class SessionHandler extends MysqlPdo
      */
     public function _write($id, $data)
     {
-        return $this->replaceValues(array(
+        return $this->replaceInto(array(
             'id' => $id,
             'access' => time(),
             'data' => $data,

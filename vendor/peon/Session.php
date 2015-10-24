@@ -27,29 +27,7 @@ class Session
             session_start();
         }
 
-        $this->checkLastActivity();
-        $this->checkWhenCreated();
         $this->prepareFlash();
-    }
-
-    protected function checkLastActivity()
-    {
-        if ($this->has('session.last_active') && (time() - $this->get('session.last_active') > $this->duration)) {
-            session_unset();
-            session_destroy();
-        }
-
-        $this->set('session.last_active', time());
-    }
-
-    protected function checkWhenCreated()
-    {
-        if (!$this->has('session.created')) {
-            $this->set('session.created', time());
-        } else if (time() - $this->get('session.created') > $this->duration) {
-            session_regenerate_id(true);
-            $this->set('session.created', time());
-        }
     }
 
     /**

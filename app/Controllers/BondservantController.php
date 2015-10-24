@@ -57,7 +57,7 @@ class BondservantController extends Controller
     public function create()
     {
         // show the create form
-        $this->view->make('bondservant/create', array(
+        return $this->view->make('bondservant/create', array(
             'ratings' => $this->config->get('selects/rating'),
         ));
     }
@@ -71,18 +71,23 @@ class BondservantController extends Controller
     {
         // redirect back to the form if validation fails
         if ($this->validator->fails()) {
-            $this->response->redirect('bondservant/create');
+            return $this->response->redirect('bondservant/create');
         }
 
         // insert into database
-        $this->bondservant->insert(array(
+        $result = $this->bondservant->insert(array(
             'name' => $this->request->get('name'),
             'rating' => $this->request->get('rating'),
         ));
 
-        // flash success message and redirect to index
-        $this->session->setFlash('success', "Bondservant was successfully created.");
-        $this->response->redirect('bondservant/index');
+        // flash message and redirect to index
+        if ($result) {
+            $this->session->setFlash('success', "Bondservant #{$result} was successfully created.");
+        } else {
+            $this->session->setFlash('danger', 'Bondservant failed to be created.');
+        }
+
+        return $this->response->redirect('bondservant/index');
     }
 
     /**
@@ -114,13 +119,18 @@ class BondservantController extends Controller
         }
 
         // update the database
-        $this->bondservant->update($id, array(
+        $result = $this->bondservant->update($id, array(
             'name' => $this->request->get('name'),
             'rating' => $this->request->get('rating'),
         ));
 
-        // flash success message and redirect to index
-        $this->session->setFlash('success', "Bondservant #{$id} was successfully updated.");
+        // flash message and redirect to index
+        if ($result) {
+            $this->session->setFlash('success', "Bondservant #{$id} was successfully updated.");
+        } else {
+            $this->session->setFlash('danger', 'Bondservant #{$id} failed to be updated.');
+        }
+
         return $this->response->redirect('bondservant/index');
     }
 }

@@ -96,19 +96,22 @@ class MysqlPdo
      * Insert A New Row
      *
      * @param  array  $data
-     * @return ?????????????
-     * @todo find return type for docblock
+     * @return integer
      */
     public function insert($data)
     {
-        $names = 'title,author';
         $names = implode(',', array_keys($data));
-        $sql = "INSERT INTO books ({$names}) VALUES (:title,:author)";
-dd($data, $sql);
-        $q = $conn->prepare($sql);
-        $q->execute(array(':author'=>$author,
-            ':title'=>$title
-        ));
+        $values = implode(',', array_map(function($v) {
+            return ':' . $v;
+        }, array_keys($data)));
+
+        $statement = $this->pdo->prepare(
+            "INSERT INTO `{$this->table}` ({$names}) VALUES ($values)"
+        );
+
+        $statement->execute($data);
+
+        return (integer) $this->pdo->lastInsertId();
     }
 
     /**
@@ -116,8 +119,7 @@ dd($data, $sql);
      *
      * @param  integer  $id
      * @param  array  $data
-     * @return ???????????
-     * @todo What type for docblock
+     * @return boolean
      */
     public function update($id, $data)
     {
@@ -138,10 +140,9 @@ dd($data, $sql);
      * Replace Values
      *
      * @param  array  $values
-     * @return ???????????
-     * @todo What type for docblock
+     * @return boolean
      */
-    public function replaceValues($values)
+    public function replaceInto($values)
     {
         $keys = ':' . implode(', :', array_keys($values));
 
@@ -156,8 +157,7 @@ dd($data, $sql);
      * Delete Where
      *
      * @param  array  $where
-     * @return ???????????
-     * @todo What type for docblock
+     * @return boolean
      */
     public function deleteWhere($where)
     {
@@ -174,8 +174,7 @@ dd($data, $sql);
      * Delete By ID
      *
      * @param  integer  $id
-     * @return ???????????
-     * @todo What type for docblock
+     * @return boolean
      */
     public function deleteById($id)
     {
