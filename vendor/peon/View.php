@@ -5,6 +5,13 @@ namespace Peon;
 class View
 {
     /**
+     * Shared Data
+     *
+     * @var array
+     */
+    protected $shared = array();
+
+    /**
      * Make A View
      *
      * @param  string  $template
@@ -28,9 +35,22 @@ class View
      */
     public function render($template, $data = array())
     {
+        extract($this->shared);
         extract($data);
+
         $errors = isset($errors) ? $errors : array();
         include path("/views/{$template}.tpl");
+    }
+
+    /**
+     * Share Data With All Views
+     *
+     * @param  array  $data
+     * @return void
+     */
+    public function share($data)
+    {
+        $this->shared = array_merge($this->shared, $data);
     }
 
     /**

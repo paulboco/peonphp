@@ -36,7 +36,7 @@
                                 <?php if ($row['deleted']): ?>
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                 <?php elseif (Peon\Auth::level(Peon\Auth::ADMIN)): ?>
-                                    <a href="#" title="Delete" data-toggle="modal" data-target="#deleteModal" data-bondservant-id="<?php e($row['id']) ?>" data-bondservant-name="<?php e($row['name']) ?>">
+                                    <a href="#" title="Delete" data-toggle="modal" data-target="#deleteModal" data-delete-id="<?php e($row['id']) ?>" data-delete-name="<?php e($row['name']) ?>">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     </a>
                                 <?php endif ?>
@@ -53,42 +53,11 @@
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="deleteModalLabel">Delete Bondservant</h3>
-            </div>
-            <div class="modal-body">
-                Are you sure you want to delete this Bondservant?
-            </div>
-            <div class="modal-footer">
-                <form id="deleteForm" action="/bondservant/destroy/" method="post">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-danger">Delete Bondservant</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+<?php
 
-<?php $javascript = <<<JS
-<script type="text/javascript">
-$(document).ready(function () {
-    $('#deleteModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var bondservantId = button.data('bondservant-id');
-        var bondservantName = button.data('bondservant-name');
+$this->inject('shared/modal_delete', array(
+    'label' => 'Bondservant',
+    'name' => 'bondservant'
+));
 
-        var modal = $(this);
-        modal.find('.modal-body').html('Are you sure you want to delete the bondservant: <strong>' + bondservantName + '</strong>?');
-        $('#deleteForm').attr('action', '/bondservant/destroy/' + bondservantId);
-    })
-});
-</script>
-JS;
-?>
-
-<?php $this->inject('layout/footer', array('javascript' => $javascript)) ?>
+$this->inject('layout/footer') ;
