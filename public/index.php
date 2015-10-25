@@ -1,10 +1,6 @@
 <?php
 
-/**
- * Peon - A Very Simple PHP Framework
- *
- * @author PaulboCo
- */
+define('PEON_START', microtime(true));
 
 /*
 |--------------------------------------------------------------------------
@@ -53,5 +49,3 @@ $response = $app->make('response');
 */
 
 $response->send($router->dispatch());
-
-// dd($_SESSION);

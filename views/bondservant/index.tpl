@@ -21,6 +21,9 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php if (empty($rows)): ?>
+                        <td colspan="5">No records found! Click the plus sign to add some.</td>
+                    <?php endif ?>
                     <?php foreach ($rows as $row): ?>
                         <?php echo $row['deleted'] ? '<tr class="muted">' : '<tr>' ?>
                             <td><?php e($row['id']) ?></td>
@@ -30,17 +33,17 @@
                                 <td class="center"><?php e($row['deleted'] ? 'Yes' : 'No') ?></td>
                             <?php endif ?>
                             <td class="right">
-                                <a href="/bondservant/edit/<?php echo $row['id'] ?>" title="Edit">
-                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                </a>
-                                &nbsp;
                                 <?php if ($row['deleted']): ?>
                                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                <?php else: ?>
+                                <?php elseif (Peon\Auth::level(Peon\Auth::ADMIN)): ?>
                                     <a href="#" title="Delete" data-toggle="modal" data-target="#deleteModal" data-bondservant-id="<?php e($row['id']) ?>" data-bondservant-name="<?php e($row['name']) ?>">
                                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     </a>
                                 <?php endif ?>
+                                &nbsp;
+                                <a href="/bondservant/edit/<?php echo $row['id'] ?>" title="Edit">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                </a>
                             </td>
                         </tr>
                     <?php endforeach ?>
@@ -78,7 +81,7 @@ $(document).ready(function () {
         var button = $(event.relatedTarget);
         var bondservantId = button.data('bondservant-id');
         var bondservantName = button.data('bondservant-name');
-console.log(bondservantId);
+
         var modal = $(this);
         modal.find('.modal-body').html('Are you sure you want to delete the bondservant: <strong>' + bondservantName + '</strong>?');
         $('#deleteForm').attr('action', '/bondservant/destroy/' + bondservantId);

@@ -47,6 +47,9 @@ class Response
         }
 
         if (is_string($response)) {
+            $execution_time = round((microtime(true) - PEON_START) * 1000, 1);
+            $response = str_replace('%%EXECUTION_TIME%%', $execution_time, $response);
+
             echo $response;
         }
 

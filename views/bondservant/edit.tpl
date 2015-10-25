@@ -8,7 +8,7 @@
 
                 <?php Peon\Form::text('Name', 'name', $row['name'], true) ?>
                 <?php Peon\Form::select('Rating', 'rating', $row['rating'], $ratings) ?>
-                <?php if ($row['deleted']): ?>
+                <?php if (Peon\Auth::level(Peon\Auth::SUPER) and $row['deleted']): ?>
                     <?php Peon\Form::radio('Deleted', 'deleted', $row['deleted'], $no_yes) ?>
                 <?php endif ?>
 

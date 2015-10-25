@@ -45,7 +45,7 @@ class BondservantController extends Controller
     public function index()
     {
         return $this->view->make('bondservant/index', array(
-            'rows' => $this->bondservant->all(),
+            'rows' => $this->bondservant->all(true),
         ));
     }
 
@@ -81,12 +81,7 @@ class BondservantController extends Controller
         ));
 
         // flash message and redirect to index
-        if ($result) {
-            $this->session->setFlash('success', "Bondservant #{$result} was successfully created.");
-        } else {
-            $this->session->setFlash('danger', 'Bondservant failed to be created.');
-        }
-
+        $this->flashMessage($result, $result);
         return $this->response->redirect('bondservant/index');
     }
 
@@ -98,9 +93,13 @@ class BondservantController extends Controller
      */
     public function edit($id)
     {
+        if (!$row = $this->bondservant->findById($id, true)) {
+            return $this->response->redirect('bondservant/index');
+        }
+
         // show the edit form
         return $this->view->make('bondservant/edit', array(
-            'row' => $this->bondservant->findById($id),
+            'row' => $row,
             'ratings' => $this->config->get('lists/rating'),
             'no_yes' => $this->config->get('lists/no_yes'),
         ));
@@ -127,12 +126,7 @@ class BondservantController extends Controller
         ));
 
         // flash message and redirect to index
-        if ($result) {
-            $this->session->setFlash('success', "Bondservant #{$id} was successfully updated.");
-        } else {
-            $this->session->setFlash('danger', 'Bondservant #{$id} failed to be updated.');
-        }
-
+        $this->flashMessage($result, $id);
         return $this->response->redirect('bondservant/index');
     }
 
@@ -150,12 +144,7 @@ class BondservantController extends Controller
         ));
 
         // flash message and redirect to index
-        if ($result) {
-            $this->session->setFlash('success', "Bondservant #{$id} was successfully deleted.");
-        } else {
-            $this->session->setFlash('danger', 'Bondservant #{$id} failed to be deleted.');
-        }
-
+        $this->flashMessage($result, $id);
         return $this->response->redirect('bondservant/index');
     }
 }

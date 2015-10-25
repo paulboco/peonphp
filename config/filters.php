@@ -12,7 +12,7 @@ return array(
     ),
 
     'BondservantController' => array(
-        ':any' => array('auth', 'admin'),
+        ':any' => array('auth', 'manager'),
     ),
 
 );

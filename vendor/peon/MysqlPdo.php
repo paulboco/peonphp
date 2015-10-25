@@ -62,11 +62,12 @@ abstract class MysqlPdo
     /**
      * Get All Rows
      *
+     * @param  boolean  $includeDeleted
      * @return array
      */
-    public function all()
+    public function all($includeDeleted = false)
     {
-        $where = Auth::level(Auth::SUPER) ? '' : 'WHERE `deleted` = 0';
+        $where = $this->whereDeleted($includeDeleted);
 
         $statement = $this->pdo->query(
             "SELECT * FROM `{$this->table}`{$where}"
@@ -79,12 +80,15 @@ abstract class MysqlPdo
      * Find By ID
      *
      * @param  integer  $id
+     * @param  boolean  $includeDeleted
      * @return array
      */
-    public function findById($id)
+    public function findById($id, $includeDeleted = false)
     {
+        $andWhere = $this->andDeleted($includeDeleted);
+
         $statement = $this->pdo->prepare(
-            "SELECT * FROM `{$this->table}` WHERE id=:id"
+            "SELECT * FROM `{$this->table}` WHERE id=:id{$andWhere}"
         );
 
         $statement->execute(array(
@@ -103,7 +107,7 @@ abstract class MysqlPdo
     public function insert($data)
     {
         $names = implode(',', array_keys($data));
-        $values = implode(',', array_map(function($v) {
+        $values = implode(',', array_map(function ($v) {
             return ':' . $v;
         }, array_keys($data)));
 
@@ -187,5 +191,31 @@ abstract class MysqlPdo
         return $statement->execute(array(
             'id' => $id,
         ));
+    }
+
+    /**
+     * Build Where Deleted Clause For Super User
+     *
+     * @param  boolean  $includeDeleted
+     * @return string
+     */
+    protected function whereDeleted($includeDeleted = false)
+    {
+        if ($includeDeleted) {
+            return Auth::level(Auth::SUPER) ? '' : ' WHERE deleted=0';
+        }
+    }
+
+    /**
+     * Build And Clause For Deleted Column
+     *
+     * @param  boolean  $includeDeleted
+     * @return string
+     */
+    protected function andDeleted($includeDeleted = false)
+    {
+        if ($where = $this->whereDeleted($includeDeleted)) {
+            return str_replace('WHERE', 'AND', $where);
+        }
     }
 }
