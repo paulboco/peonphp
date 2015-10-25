@@ -66,8 +66,10 @@ abstract class MysqlPdo
      */
     public function all()
     {
+        $where = Auth::level(Auth::SUPER) ? '' : 'WHERE `deleted` = 0';
+
         $statement = $this->pdo->query(
-            "SELECT * FROM `{$this->table}` WHERE `deleted` = 0"
+            "SELECT * FROM `{$this->table}`{$where}"
         );
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);

@@ -58,7 +58,7 @@ class BondservantController extends Controller
     {
         // show the create form
         return $this->view->make('bondservant/create', array(
-            'ratings' => $this->config->get('selects/rating'),
+            'ratings' => $this->config->get('lists/rating'),
         ));
     }
 
@@ -101,7 +101,8 @@ class BondservantController extends Controller
         // show the edit form
         return $this->view->make('bondservant/edit', array(
             'row' => $this->bondservant->findById($id),
-            'ratings' => $this->config->get('selects/rating'),
+            'ratings' => $this->config->get('lists/rating'),
+            'no_yes' => $this->config->get('lists/no_yes'),
         ));
     }
 
@@ -122,6 +123,7 @@ class BondservantController extends Controller
         $result = $this->bondservant->update($id, array(
             'name' => $this->request->get('name'),
             'rating' => $this->request->get('rating'),
+            'deleted' => $this->request->get('deleted'),
         ));
 
         // flash message and redirect to index

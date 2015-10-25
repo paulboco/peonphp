@@ -8,6 +8,9 @@
 
                 <?php Peon\Form::text('Name', 'name', $row['name'], true) ?>
                 <?php Peon\Form::select('Rating', 'rating', $row['rating'], $ratings) ?>
+                <?php if ($row['deleted']): ?>
+                    <?php Peon\Form::radio('Deleted', 'deleted', $row['deleted'], $no_yes) ?>
+                <?php endif ?>
 
                 <button type="submit" class="btn btn-primary btn-lg">Save changes</button>
                 <a href="/bondservant/index" class="btn btn-default btn-lg">Cancel</a>

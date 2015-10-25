@@ -82,6 +82,20 @@ class Auth
     }
 
     /**
+     * Check That User Is A Given Level
+     *
+     * @param  integer  $level
+     * @return boolean
+     */
+    public static function level($level)
+    {
+        $session = App::getInstance()->make('session');
+        $user = $session->get(session_id());
+
+        return $user['level'] <= $level;
+    }
+
+    /**
      * Logout The User
      *
      * @return void
