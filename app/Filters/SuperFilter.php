@@ -4,7 +4,7 @@ namespace App\Filters;
 
 use Peon\Filter;
 
-class AdminFilter extends Filter
+class SuperFilter extends Filter
 {
     /**
      * Run The Filter
@@ -17,7 +17,7 @@ class AdminFilter extends Filter
             $this->response->send404();
         }
 
-        if ($this->auth->user()->level > 10) {
+        if ($this->auth->user()->level > Auth::SUPER) {
             $this->response->send404();
         }
     }

@@ -1,7 +1,3 @@
-<?php
-$auth = Peon\App::getInstance()->make('auth');
-// dd($auth);
-?>
 <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -30,7 +26,7 @@ $auth = Peon\App::getInstance()->make('auth');
                 <ul class="nav navbar-nav">
                     <li class="<?php echo segment(2, 'api', 'active') ?>"><a href="/page/api">API</a></li>
                 </ul>
-                <?php if (Peon\Auth::user()->level == 1): ?>
+                <?php if (Peon\Auth::user()->level <= Peon\Auth::MANAGER): ?>
                     <ul class="nav navbar-nav">
                         <li class="<?php echo segment(1, 'bondservant', 'active') ?>"><a href="/bondservant/index">Bondservants</a></li>
                     </ul>

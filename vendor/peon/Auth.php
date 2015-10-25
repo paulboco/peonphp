@@ -6,6 +6,10 @@ use App\Models\User;
 
 class Auth
 {
+    const SUPER = 1;
+    const ADMIN = 10;
+    const MANAGER = 100;
+
     /**
      * The User Instance
      *

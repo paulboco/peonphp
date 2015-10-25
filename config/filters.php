@@ -3,7 +3,7 @@
 return array(
 
     'PageController' => array(
-        'welcome'      => array('home'),
+        'welcome'      => array('guest'),
         'home'         => array('auth'),
         'concepts'     => array('auth'),
         'helpers'      => array('auth'),

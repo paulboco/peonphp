@@ -2,11 +2,9 @@
 
 namespace App\Filters;
 
-use Peon\Auth;
 use Peon\Filter;
-use Peon\Response;
 
-class HomeFilter extends Filter
+class GuestFilter extends Filter
 {
     /**
      * Run The Filter
