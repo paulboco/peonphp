@@ -43,7 +43,7 @@
 <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">Peon</a>
+            <a class="navbar-brand">Peon</a>
         </div>
     </div>
 </nav>
