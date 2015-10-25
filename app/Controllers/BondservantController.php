@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Bondservant;
+use App\Models\Bondservant;
 use App\Validators\BondservantValidator;
 use Peon\Controller;
 

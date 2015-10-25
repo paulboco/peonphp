@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use PDO;
 use Peon\MysqlPdo;

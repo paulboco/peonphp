@@ -167,9 +167,11 @@ class Router extends RouteFilterApplicator
      */
     private function formatController($controller)
     {
-        return "App\\Controllers\\"
-        . ucfirst($controller)
-        . 'Controller';
+        $controller = array_map(function($v) {
+            return ucfirst(strtolower($v));
+        }, explode('-', $controller));
+
+        return "App\\Controllers\\" . implode('\\', $controller) . 'Controller';
     }
 
     /**

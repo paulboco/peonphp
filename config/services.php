@@ -9,7 +9,7 @@ return array(
     */
 
     'auth' => function() {
-        return new Peon\Auth(new App\User, new Peon\Session);
+        return new Peon\Auth(new App\Models\User, new Peon\Session);
     },
 
     'config' => function() {

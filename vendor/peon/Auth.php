@@ -2,7 +2,7 @@
 
 namespace Peon;
 
-use App\User;
+use App\Models\User;
 
 class Auth
 {
