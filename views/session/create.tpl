@@ -2,7 +2,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-offset-3 col-md-6">
+        <div class="col-md-offset-4 col-md-4">
             <h1 class="page-header">Login</h1>
             <?php Peon\Form::open('/session/store') ?>
                 <?php Peon\Form::text('Username', 'username', null, true) ?>

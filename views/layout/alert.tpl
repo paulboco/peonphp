@@ -15,9 +15,11 @@ foreach ($levels as $level) {
 ?>
 
 <?php if ($messages): ?>
-    <div class="row">
-        <div class="col-md-offset-2 col-md-8">
-            <?php echo $messages ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+                <?php echo $messages ?>
+            </div>
         </div>
     </div>
 <?php endif ?>

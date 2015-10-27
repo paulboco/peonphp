@@ -53,13 +53,6 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   `data` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `sessions`
---
-
-INSERT INTO `sessions` (`id`, `access`, `data`) VALUES
-('4bp8qj8j80mecftv42if56doj2', 1445724429, 'flash-available|N;4bp8qj8j80mecftv42if56doj2|a:4:{s:2:"id";s:1:"1";s:8:"username";s:8:"paulboco";s:8:"password";s:60:"$2y$10$doBSDgl4dGepE8LIZ5pb/Os8gagGu13SzUCC36jBfnmspWcACVrvS";s:5:"level";s:1:"1";}');
-
 -- --------------------------------------------------------
 
 --
