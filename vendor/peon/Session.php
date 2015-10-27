@@ -18,14 +18,8 @@ class Session
     {
         $app->make('sessionhandler');
 
-        if (!session_id()) {
-            ini_set('session.gc_maxlifetime', $this->duration);
-            ini_set('session.gc_probability', 100);
-            ini_set('session.gc_divisor', 100);
-
-            session_name('peon_session');
-            session_start();
-        }
+        session_name('peon_session');
+        session_start();
 
         $this->prepareFlash();
     }
