@@ -28,22 +28,34 @@ class PdoBase extends MysqlPdo
      */
     public function __construct()
     {
-        parent::__construct();
-
-        $options = array(
-            PDO::ATTR_PERSISTENT => true,
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        );
+        $dbConfig = $this->getConfig();
+        $dsn = $this->buildDsn($dbConfig);
 
         try {
-            dd($this->config->get('database.connections.mysql'));
             $this->pdo = App::getInstance()->make('pdo', array(
-                'dsn' => 'dsn string',
-                'user' => getenv('DB_USER'),
-                'pass' => getenv('DB_PASS'),
+                'dsn' => $dsn,
+                'user' => $dbConfig['user'],
+                'pass' => $dbConfig['pass'],
+                'options' => $dbConfig['options'],
             ));
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
         }
+    }
+
+    public function getConfig()
+    {
+        $config = App::getInstance()->make('config');
+        $default = $config->get('database.default');
+
+        return $config->get('database.connections.' . $default);
+    }
+
+    public function buildDsn($dbConfig)
+    {
+        $search = array('%host%', '%name%');
+        $replace = array($dbConfig['host'], $dbConfig['name']);
+
+        return str_replace($search, $replace, $dbConfig['dsn']);
     }
 }

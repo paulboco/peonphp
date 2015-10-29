@@ -8,13 +8,7 @@ use Peon\App;
 
 abstract class MysqlPdo
 {
-    protected $config;
-
-    public function __construct()
-    {
-        $this->config = App::make('config');
-dd('here');
-    }
+    protected $dsn;
 
     /**
      * Is PDO Connected?

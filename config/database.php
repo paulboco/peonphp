@@ -6,9 +6,16 @@ return array(
 
     'connections' => array(
         'mysql' => array(
-            'dsn' => 'mysql:host=localhost;dbname=peon',
-            'user' => 'root',
-            'pass' => 'root',
+            'dsn' => 'mysql:host=%host%;dbname=%name%',
+            'type' => getenv('DB_TYPE'),
+            'host' => getenv('DB_HOST'),
+            'name' => getenv('DB_NAME'),
+            'user' => getenv('DB_USER'),
+            'pass' => getenv('DB_PASS'),
+            'options' => array(
+                PDO::ATTR_PERSISTENT => true,
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            ),
         ),
     ),
 );

@@ -31,7 +31,7 @@ abstract class Container
      * @param  array  $params
      * @return mixed
      */
-    public function make($className, $params = null)
+    public function make($className, $params = array())
     {
         $className = strtolower($className);
 
