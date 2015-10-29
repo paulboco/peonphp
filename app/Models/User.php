@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use PDO;
-use Peon\Pdo\MysqlPdo;
+use Peon\Pdo\PdoBase;
 
-class User extends MysqlPdo
+class User extends PdoBase
 {
     /**
      * The Users Table Name
@@ -13,16 +13,6 @@ class User extends MysqlPdo
      * @var string
      */
     protected $table = 'users';
-
-    /**
-     * Create A New SessionHandler
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     /**
      * Find By Username

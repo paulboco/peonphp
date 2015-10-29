@@ -43,6 +43,11 @@ class PdoBase extends MysqlPdo
         }
     }
 
+    /**
+     * Get Database Configuration
+     *
+     * @return array
+     */
     public function getConfig()
     {
         $config = App::getInstance()->make('config');
@@ -51,6 +56,12 @@ class PdoBase extends MysqlPdo
         return $config->get('database.connections.' . $default);
     }
 
+    /**
+     * Build DSN String
+     *
+     * @param  array  $dbConfig
+     * @return string
+     */
     public function buildDsn($dbConfig)
     {
         $search = array('%host%', '%name%');

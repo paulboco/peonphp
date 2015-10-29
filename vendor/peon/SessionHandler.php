@@ -2,9 +2,9 @@
 
 namespace Peon;
 
-use Peon\Pdo\MysqlPdo;
+use Peon\Pdo\PdoBase;
 
-class SessionHandler extends MysqlPdo
+class SessionHandler extends PdoBase
 {
     /**
      * The Sessions Table Name
