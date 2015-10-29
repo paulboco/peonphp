@@ -17,7 +17,8 @@ require __DIR__ . '/../boot/autoloader.php';
 */
 
 $app = require_once __DIR__ . '/../boot/app.php';
-
+$user = new App\Models\User;
+// dd($user->all());
 /*
 |--------------------------------------------------------------------------
 | Start The Session

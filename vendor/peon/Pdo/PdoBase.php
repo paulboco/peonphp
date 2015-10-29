@@ -5,7 +5,7 @@ namespace Peon\Pdo;
 use PDO;
 use Peon\App;
 
-class PdoBase extends MysqlPdo
+class PdoBase extends SqlsrvPdo
 {
     /**
      * The PDO Instance
