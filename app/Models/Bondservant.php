@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Peon\MysqlPdo;
+use Peon\Pdo\PdoBase;
 
-class Bondservant extends MysqlPdo
+class Bondservant extends PdoBase
 {
     /**
      * The table name

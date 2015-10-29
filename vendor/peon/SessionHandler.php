@@ -2,6 +2,8 @@
 
 namespace Peon;
 
+use Peon\Pdo\MysqlPdo;
+
 class SessionHandler extends MysqlPdo
 {
     /**

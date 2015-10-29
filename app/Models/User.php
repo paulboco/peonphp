@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use PDO;
-use Peon\MysqlPdo;
+use Peon\Pdo\MysqlPdo;
 
 class User extends MysqlPdo
 {

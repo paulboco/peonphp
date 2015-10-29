@@ -28,14 +28,15 @@ abstract class Container
      * Return An Instance Of A Class
      *
      * @param  string  $className
+     * @param  array  $params
      * @return mixed
      */
-    public function make($className)
+    public function make($className, $params = null)
     {
         $className = strtolower($className);
 
         if ($this->has($className)) {
-            return call_user_func($this->services[$className]);
+            return call_user_func_array($this->services[$className], $params);
         } else {
             throw new Exception("No class found with the name '{$className}'.", 1);
         }

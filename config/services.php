@@ -16,8 +16,8 @@ return array(
         return new Peon\Config;
     },
 
-    'pdo' => function() {
-        return new PDO(build_dsn(), getenv('DB_USER'), getenv('DB_PASS'));
+    'pdo' => function($dsn, $user, $pass) {
+        return new PDO($dsn, $user, $pass);
     },
 
     'request' => function() {

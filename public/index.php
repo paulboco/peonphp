@@ -18,6 +18,9 @@ require __DIR__ . '/../boot/autoloader.php';
 
 $app = require_once __DIR__ . '/../boot/app.php';
 
+$user = new App\Models\Bondservant;
+$users = $user->all();
+dd($users);
 /*
 |--------------------------------------------------------------------------
 | Start The Session
