@@ -17,13 +17,7 @@ return array(
     },
 
     'pdo' => function() {
-        $type = getenv('DB_TYPE');
-        $name = getenv('DB_NAME');
-        $host = getenv('DB_HOST');
-        $user = getenv('DB_USER');
-        $pass = getenv('DB_PASS');
-
-        return new PDO("{$type}:dbname={$name};host={$host}", $user, $pass);
+        return new PDO(build_dsn(), getenv('DB_USER'), getenv('DB_PASS'));
     },
 
     'request' => function() {

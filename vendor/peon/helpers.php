@@ -2,6 +2,30 @@
 
 use Peon\App;
 
+if (!function_exists('build_dsn')) {
+    /**
+     * Build A DSN String From Environmental Variables
+     *
+     * @return string
+     */
+    function build_dsn() {
+        switch (getenv('DB_TYPE')) {
+            case 'sqlsrv':
+                $dsn = 'sqlsrv:server=' . getenv('DB_SERVER');
+                break;
+
+            case 'mysql':
+                $dsn = 'mysql:host=' . getenv('DB_HOST');
+                break;
+
+            default:
+                throw new Exception('Database type "' . getenv('DB_TYPE') . '" in function build_dsn().', 1);
+        }
+
+        return $dsn . ';dbname=' . getenv('DB_NAME');
+    }
+}
+
 if (!function_exists('config')) {
     /**
      * Get Configuration Data
