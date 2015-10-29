@@ -16,14 +16,8 @@ return array(
         return new Peon\Config;
     },
 
-    'pdo' => function() {
-        $type = getenv('DB_TYPE');
-        $name = getenv('DB_NAME');
-        $host = getenv('DB_HOST');
-        $user = getenv('DB_USER');
-        $pass = getenv('DB_PASS');
-
-        return new PDO("{$type}:dbname={$name};host={$host}", $user, $pass);
+    'pdo' => function($dsn, $user, $pass, $options = array()) {
+        return new PDO($dsn, $user, $pass, $options);
     },
 
     'request' => function() {

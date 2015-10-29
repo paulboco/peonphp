@@ -1,43 +1,14 @@
 <?php
 
-namespace Peon;
+namespace Peon\Pdo;
 
 use PDO;
+use Peon\Auth;
+use Peon\App;
 
 abstract class MysqlPdo
 {
-    /**
-     * The PDO Instance
-     *
-     * @var PDO
-     */
-    protected $pdo;
-
-    /**
-     * The Errors Array
-     *
-     * @var array
-     */
-    private $error;
-
-    /**
-     * Create A New PDO
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $options = array(
-            PDO::ATTR_PERSISTENT => true,
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        );
-
-        try {
-            $this->pdo = App::getInstance()->make('pdo');
-        } catch (PDOException $e) {
-            $this->error = $e->getMessage();
-        }
-    }
+    protected $dsn;
 
     /**
      * Is PDO Connected?
