@@ -24,10 +24,6 @@ return array(
         return new Peon\Request;
     },
 
-    // 'resolver' => function() {
-    //     return new Peon\Resolver;
-    // },
-
     'response' => function() {
         return new Peon\Response(new Peon\View);
     },
