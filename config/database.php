@@ -2,7 +2,7 @@
 
 return array(
 
-    'default' => 'sqlsrv',
+    'default' => 'mysql',
 
     'connections' => array(
 
