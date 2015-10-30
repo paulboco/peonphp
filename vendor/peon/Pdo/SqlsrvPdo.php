@@ -6,7 +6,7 @@ use PDO;
 use Peon\Auth;
 use Peon\App;
 
-abstract class MysqlPdo
+abstract class SqlsrvPdo
 {
     protected $dsn;
 
@@ -100,6 +100,10 @@ abstract class MysqlPdo
      */
     public function update($id, $data)
     {
+        $data = array_filter($data, function($v) {
+            return !is_null($v);
+        });
+
         $pairs = array_map(function ($key) {
             return "{$key}=:{$key}";
         }, array_keys($data));
@@ -121,13 +125,11 @@ abstract class MysqlPdo
      */
     public function replaceInto($values)
     {
+        $id = array_shift($values);
         $keys = ':' . implode(', :', array_keys($values));
 
-        $statement = $this->pdo->prepare(
-            "REPLACE INTO {$this->table} VALUES ({$keys})"
-        );
-
-        return $statement->execute($values);
+        $this->deleteWhere(array('id', '=', $id));
+        $rval = $this->insert(array('id' => $id) + $values);
     }
 
     /**
@@ -155,13 +157,7 @@ abstract class MysqlPdo
      */
     public function delete($id)
     {
-        $statement = $this->pdo->prepare(
-            "DELETE FROM {$this->table} WHERE id = :id"
-        );
-
-        return $statement->execute(array(
-            'id' => $id,
-        ));
+        return $this->deleteWhere(array('id', '=', $id));
     }
 
     /**
@@ -199,7 +195,7 @@ abstract class MysqlPdo
     public function findByUsername($username)
     {
         $statement = $this->pdo->prepare(
-            "SELECT * FROM {$this->table} WHERE username=:username LIMIT 1"
+            "SELECT TOP 1 * FROM {$this->table} WHERE username=:username"
         );
 
         $statement->execute(array(

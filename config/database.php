@@ -2,7 +2,7 @@
 
 return array(
 
-    'default' => 'mysql',
+    'default' => 'sqlsrv',
 
     'connections' => array(
 
@@ -26,10 +26,7 @@ return array(
             'name' => getenv('DB_NAME'),
             'user' => getenv('DB_USER'),
             'pass' => getenv('DB_PASS'),
-            'options' => array(
-                PDO::ATTR_PERSISTENT => true,
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            ),
+            'options' => array(),
         ),
     ),
 );

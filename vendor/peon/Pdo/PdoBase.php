@@ -5,7 +5,7 @@ namespace Peon\Pdo;
 use PDO;
 use Peon\App;
 
-class PdoBase extends MysqlPdo
+class PdoBase extends SqlsrvPdo
 {
     /**
      * The PDO Instance
@@ -41,6 +41,8 @@ class PdoBase extends MysqlPdo
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
         }
+
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     /**
