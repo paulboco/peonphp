@@ -41,7 +41,7 @@ abstract class MysqlPdo
         $where = $this->whereDeleted($includeDeleted);
 
         $statement = $this->pdo->query(
-            "SELECT * FROM `{$this->table}`{$where}"
+            "SELECT * FROM {$this->table}{$where}"
         );
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -59,7 +59,7 @@ abstract class MysqlPdo
         $andWhere = $this->andDeleted($includeDeleted);
 
         $statement = $this->pdo->prepare(
-            "SELECT * FROM `{$this->table}` WHERE id=:id{$andWhere}"
+            "SELECT * FROM {$this->table} WHERE id=:id{$andWhere}"
         );
 
         $statement->execute(array(
@@ -83,7 +83,7 @@ abstract class MysqlPdo
         }, array_keys($data)));
 
         $statement = $this->pdo->prepare(
-            "INSERT INTO `{$this->table}` ({$names}) VALUES ($values)"
+            "INSERT INTO {$this->table} ({$names}) VALUES ($values)"
         );
 
         $statement->execute($data);
@@ -107,7 +107,7 @@ abstract class MysqlPdo
         $pairs = implode(', ', $pairs);
 
         $statement = $this->pdo->prepare(
-            "UPDATE `{$this->table}` SET {$pairs} WHERE id=:id"
+            "UPDATE {$this->table} SET {$pairs} WHERE id=:id"
         );
 
         return $statement->execute($data + array('id' => $id));
@@ -124,7 +124,7 @@ abstract class MysqlPdo
         $keys = ':' . implode(', :', array_keys($values));
 
         $statement = $this->pdo->prepare(
-            "REPLACE INTO `{$this->table}` VALUES ({$keys})"
+            "REPLACE INTO {$this->table} VALUES ({$keys})"
         );
 
         return $statement->execute($values);
@@ -139,7 +139,7 @@ abstract class MysqlPdo
     public function deleteWhere($where)
     {
         $statement = $this->pdo->prepare(
-            "DELETE FROM `{$this->table}` WHERE {$where[0]} {$where[1]} :{$where[0]}"
+            "DELETE FROM {$this->table} WHERE {$where[0]} {$where[1]} :{$where[0]}"
         );
 
         return $statement->execute(array(
@@ -156,7 +156,7 @@ abstract class MysqlPdo
     public function delete($id)
     {
         $statement = $this->pdo->prepare(
-            "DELETE FROM `{$this->table}` WHERE id = :id"
+            "DELETE FROM {$this->table} WHERE id = :id"
         );
 
         return $statement->execute(array(
@@ -188,5 +188,24 @@ abstract class MysqlPdo
         if ($where = $this->whereDeleted($includeDeleted)) {
             return str_replace('WHERE', 'AND', $where);
         }
+    }
+
+    /**
+     * Find By Username
+     *
+     * @param  string  $username
+     * @return array
+     */
+    public function findByUsername($username)
+    {
+        $statement = $this->pdo->prepare(
+            "SELECT * FROM {$this->table} WHERE username=:username LIMIT 1"
+        );
+
+        $statement->execute(array(
+            'username' => $username,
+        ));
+
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 }

@@ -41,6 +41,8 @@ class PdoBase extends SqlsrvPdo
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
         }
+
+        $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     /**
