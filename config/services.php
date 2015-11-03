@@ -16,9 +16,9 @@ return array(
         return new Peon\Config;
     },
 
-    'pdo' => function ($dsn, $user, $pass, $options = array()) {
-        return new PDO($dsn, $user, $pass, $options);
-    },
+    // 'pdo' => function () {
+    //     return new PDO(new Peon\Config);
+    // },
 
     'request' => function () {
         return new Peon\Request;

@@ -28,16 +28,10 @@ class PdoBase extends MysqlPdo
      */
     public function __construct()
     {
-        $dbConfig = $this->getConfig();
-        $dsn = $this->buildDsn($dbConfig);
+        extract($this->connection());
 
         try {
-            $this->pdo = App::getInstance()->make('pdo', array(
-                'dsn' => $dsn,
-                'user' => $dbConfig['user'],
-                'pass' => $dbConfig['pass'],
-                'options' => $dbConfig['options'],
-            ));
+            $this->pdo = new PDO($dsn, $user, $pass);
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
         }
@@ -46,29 +40,16 @@ class PdoBase extends MysqlPdo
     }
 
     /**
-     * Get Database Configuration
+     * Get The Default Connection
      *
      * @return array
      */
-    public function getConfig()
+    protected function connection()
     {
-        $config = App::getInstance()->make('config');
-        $default = $config->get('database.default');
+        $database = App::getInstance()
+            ->make('config')
+            ->get('database');
 
-        return $config->get('database.connections.' . $default);
-    }
-
-    /**
-     * Build DSN String
-     *
-     * @param  array  $dbConfig
-     * @return string
-     */
-    public function buildDsn($dbConfig)
-    {
-        $search = array('%host%', '%name%');
-        $replace = array($dbConfig['host'], $dbConfig['name']);
-
-        return str_replace($search, $replace, $dbConfig['dsn']);
+        return $database['connections'][$database['default']];
     }
 }
