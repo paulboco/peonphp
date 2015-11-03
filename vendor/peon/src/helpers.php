@@ -28,7 +28,7 @@ if (!function_exists('d')) {
     {
         array_map(function ($x) {
             echo '<pre>';
-            var_dump($x, 1);
+            var_dump($x);
             echo '</pre>';
         }, func_get_args());
     }
@@ -44,7 +44,7 @@ if (!function_exists('dd')) {
     {
         array_map(function ($x) {
             echo '<pre>';
-            var_dump($x, 1);
+            var_dump($x);
             echo '</pre>';
         }, func_get_args());
         die();
