@@ -27,7 +27,7 @@ class PdoBase extends MysqlPdo
         if (is_null($dsn)) {
             extract($this->connection());
         }
-
+var_dump(get_defined_vars());
         $this->pdo = new PDO($dsn, $user, $pass);
 
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
