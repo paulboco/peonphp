@@ -17,11 +17,16 @@ class PdoBase extends MysqlPdo
     /**
      * Create A New PDO
      *
+     * @param  string  $dsn
+     * @param  string  $user
+     * @param  string  $pass
      * @return void
      */
-    public function __construct()
+    public function __construct($dsn = null, $user = null, $pass = null)
     {
-        extract($this->connection());
+        if (is_null($dsn)) {
+            extract($this->connection());
+        }
 
         $this->pdo = new PDO($dsn, $user, $pass);
 
@@ -35,7 +40,7 @@ class PdoBase extends MysqlPdo
      */
     protected function connection()
     {
-        // Call the App to get and get the database configuration
+        // Call the App to get the database configuration
         $database = App::getInstance()
             ->make('config')
             ->get('database');
