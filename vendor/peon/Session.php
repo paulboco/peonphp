@@ -3,7 +3,6 @@
 namespace Peon;
 
 use Illuminate\Arr;
-use Peon\App;
 
 class Session
 {

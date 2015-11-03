@@ -8,39 +8,39 @@ return array(
     |--------------------------------------------------------------------------
     */
 
-    'auth' => function() {
+    'auth' => function () {
         return new Peon\Auth(new App\Models\User, new Peon\Session);
     },
 
-    'config' => function() {
+    'config' => function () {
         return new Peon\Config;
     },
 
-    'pdo' => function($dsn, $user, $pass, $options = array()) {
+    'pdo' => function ($dsn, $user, $pass, $options = array()) {
         return new PDO($dsn, $user, $pass, $options);
     },
 
-    'request' => function() {
+    'request' => function () {
         return new Peon\Request;
     },
 
-    'response' => function() {
+    'response' => function () {
         return new Peon\Response(new Peon\View);
     },
 
-    'router' => function() {
+    'router' => function () {
         return new Peon\Router(new Peon\Resolver, new Peon\Response(new Peon\View));
     },
 
-    'session' => function() {
+    'session' => function () {
         return new Peon\Session;
     },
 
-    'sessionhandler' => function() {
+    'sessionhandler' => function () {
         return new Peon\SessionHandler;
     },
 
-    'view' => function() {
+    'view' => function () {
         return new Peon\View;
     },
 

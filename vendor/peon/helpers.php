@@ -10,7 +10,8 @@ if (!function_exists('config')) {
      * @param  mixed   $default
      * @return mixed
      */
-    function config($path, $default = null) {
+    function config($path, $default = null)
+    {
         $config = App::getInstance()->make('config');
 
         return $config->get($path, $default);
@@ -23,7 +24,8 @@ if (!function_exists('d')) {
      *
      * @return void
      */
-    function d() {
+    function d()
+    {
         array_map(function ($x) {
             echo '<pre>';
             var_dump($x, 1);
@@ -38,7 +40,8 @@ if (!function_exists('dd')) {
      *
      * @return void
      */
-    function dd() {
+    function dd()
+    {
         array_map(function ($x) {
             echo '<pre>';
             var_dump($x, 1);
@@ -55,7 +58,8 @@ if (!function_exists('e')) {
      * @param  string  $string
      * @return void
      */
-    function e($string) {
+    function e($string)
+    {
         echo htmlentities($string);
     }
 }
@@ -67,7 +71,8 @@ if (!function_exists('path')) {
      * @param  string  $children
      * @return string
      */
-    function path($children = '') {
+    function path($children = '')
+    {
         return App::getInstance()->getRootPath() . $children;
     }
 }
@@ -86,7 +91,8 @@ if (!function_exists('segment')) {
      * @param  mixed  $default
      * @return mixed
      */
-    function segment($position, $value, $default = null) {
+    function segment($position, $value, $default = null)
+    {
         $router = App::getInstance()->make('router');
 
         if ($router->getSegment($position) == $value) {

@@ -167,7 +167,7 @@ class Router extends RouteFilterApplicator
      */
     private function formatController($controller)
     {
-        $controller = array_map(function($segment) {
+        $controller = array_map(function ($segment) {
             return ucfirst(strtolower($segment));
         }, explode('-', $controller));
 

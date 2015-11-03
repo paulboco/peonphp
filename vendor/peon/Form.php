@@ -38,8 +38,8 @@ class Form
         $error = isset($errors[$name]) ? $errors[$name] : '';
 
         echo '<div class="form-group' . $hasError . '">' . PHP_EOL .
-        '    <label class="control-label" for="' . $id . '">' . $label . '</label>' . PHP_EOL .
-        '    <select name="rating" class="form-control input-lg" id="' . $id . '" aria-describedby="' . $help . '">' . PHP_EOL;
+            '    <label class="control-label" for="' . $id . '">' . $label . '</label>' . PHP_EOL .
+            '    <select name="rating" class="form-control input-lg" id="' . $id . '" aria-describedby="' . $help . '">' . PHP_EOL;
 
         foreach ($options as $key => $option) {
             $selected = $value == $option ? ' selected' : '';
@@ -47,8 +47,8 @@ class Form
         }
 
         echo '    </select>' . PHP_EOL .
-        '    <span id="' . $help . '" class="help-block">' . $error . '</span>' . PHP_EOL .
-        '</div>' . PHP_EOL;
+            '    <span id="' . $help . '" class="help-block">' . $error . '</span>' . PHP_EOL .
+            '</div>' . PHP_EOL;
     }
 
     /**
@@ -74,10 +74,10 @@ class Form
         $autofocus = $autofocus ? 'autofocus' : '';
 
         echo '<div class="form-group' . $hasError . '">' . PHP_EOL .
-        '    <label class="control-label" for="' . $id . '">' . $label . '</label>' . PHP_EOL .
-        '    <input type="' . $type . '" name="' . $name . '" value="' . $value . '" class="form-control input-lg" id="' . $id . '" aria-describedby="' . $help . '"' . $autofocus . '>' . PHP_EOL .
-        '    <span id="' . $help . '" class="help-block">' . $error . '</span>' . PHP_EOL .
-        '</div>';
+            '    <label class="control-label" for="' . $id . '">' . $label . '</label>' . PHP_EOL .
+            '    <input type="' . $type . '" name="' . $name . '" value="' . $value . '" class="form-control input-lg" id="' . $id . '" aria-describedby="' . $help . '"' . $autofocus . '>' . PHP_EOL .
+            '    <span id="' . $help . '" class="help-block">' . $error . '</span>' . PHP_EOL .
+            '</div>';
     }
 
     /**
@@ -114,19 +114,19 @@ class Form
         $help = 'help-' . $id;
 
         echo '<div class="form-group' . $hasError . '">' . PHP_EOL .
-        '    <label>' . $label . '</label>' . PHP_EOL .
-        '    <div class="radio">' . PHP_EOL;
+            '    <label>' . $label . '</label>' . PHP_EOL .
+            '    <div class="radio">' . PHP_EOL;
 
         foreach ($options as $key => $option) {
             $checked = $value == $option ? ' checked' : '';
             echo '        <label>' . PHP_EOL .
-            '            <input type="radio" name="' . $name . '" value="' . $option . '"' . $checked . '>' . PHP_EOL .
-            '            ' . $key . PHP_EOL .
-            '        </label>' . PHP_EOL;
+                '            <input type="radio" name="' . $name . '" value="' . $option . '"' . $checked . '>' . PHP_EOL .
+                '            ' . $key . PHP_EOL .
+                '        </label>' . PHP_EOL;
         }
 
         echo '    </div>' . PHP_EOL .
-        '    <span id="' . $help . '" class="help-block">' . $error . '</span>' . PHP_EOL .
-        '</div>' . PHP_EOL;
+            '    <span id="' . $help . '" class="help-block">' . $error . '</span>' . PHP_EOL .
+            '</div>' . PHP_EOL;
     }
 }
