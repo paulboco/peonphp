@@ -16,10 +16,6 @@ return array(
         return new Peon\Config;
     },
 
-    // 'pdo' => function () {
-    //     return new PDO(new Peon\Config);
-    // },
-
     'request' => function () {
         return new Peon\Request;
     },

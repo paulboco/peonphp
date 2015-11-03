@@ -14,8 +14,7 @@ class PdoConnectionTest extends PHPUnit_Framework_TestCase
 
     public function testConnectionIsValid()
     {
-        // test to ensure that the object from an fsockopen is valid
-        $connection = new PdoBase();
+        $connection = new MysqlPdo();
         // $serverName = 'www.google.com';
         // $this->assertTrue($connObj->connectToServer($serverName) !== false);
     }

@@ -6,6 +6,11 @@ use Illuminate\Arr;
 
 class Session
 {
+    /**
+     * The Session Duration
+     *
+     * @var integer
+     */
     protected $duration = 1800;
 
     /**
@@ -15,8 +20,6 @@ class Session
      */
     public function start($app)
     {
-        $app->make('sessionhandler');
-
         session_name('peon_session');
         session_start();
 

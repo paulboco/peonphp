@@ -15,13 +15,6 @@ class PdoBase extends MysqlPdo
     protected $pdo;
 
     /**
-     * The Errors Array
-     *
-     * @var array
-     */
-    private $error;
-
-    /**
      * Create A New PDO
      *
      * @return void
@@ -30,11 +23,7 @@ class PdoBase extends MysqlPdo
     {
         extract($this->connection());
 
-        try {
-            $this->pdo = new PDO($dsn, $user, $pass);
-        } catch (PDOException $e) {
-            $this->error = $e->getMessage();
-        }
+        $this->pdo = new PDO($dsn, $user, $pass);
 
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
@@ -46,6 +35,7 @@ class PdoBase extends MysqlPdo
      */
     protected function connection()
     {
+        // Call the App to get and get the database configuration
         $database = App::getInstance()
             ->make('config')
             ->get('database');

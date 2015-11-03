@@ -4,12 +4,9 @@ namespace Peon\Pdo;
 
 use PDO;
 use Peon\Auth;
-use Peon\App;
 
 abstract class MysqlPdo
 {
-    protected $dsn;
-
     /**
      * Is PDO Connected?
      *
