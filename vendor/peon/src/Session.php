@@ -3,19 +3,22 @@
 namespace Peon;
 
 use Illuminate\Arr;
+use Peon\SessionHandler;
 
 class Session
 {
-    protected $duration = 1800;
-
     /**
      * Start The Session
      *
+     * @param  string  $driver
+     * @param  string  $name
+     * @param  integer  $duration
      * @return void
      */
-    public function start($app)
+    public function start($driver = 'file', $name = 'peon_session', $duration = 1800)
     {
-        $app->make('sessionhandler');
+        $this->setHandler($driver);
+        $this->setDuration($duration);
 
         session_name('peon_session');
         session_start();
@@ -101,6 +104,37 @@ class Session
     public function setFlash($key, $value = null)
     {
         return $this->set('flash-pending.' . $key, $value);
+    }
+
+    /**
+     * Set The Session Handler
+     *
+     * @param  string  $driver
+     * @return void
+     */
+    private function setHandler($driver)
+    {
+        switch ($driver) {
+            case 'database':
+                $handler = new SessionHandler;
+                break;
+
+            case 'file':
+            default:
+                break;
+        }
+    }
+
+    /**
+     * Set Session Duration
+     *
+     * @param  integer  $duration
+     * @return void
+     */
+    private function setDuration($duration)
+    {
+        ini_set('session.gc_maxlifetime', $duration);
+        session_set_cookie_params($duration);
     }
 
     /**

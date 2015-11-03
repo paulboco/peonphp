@@ -11,7 +11,7 @@ return array(
     'files' => array(
         '.env',
         'boot/php.php',
-        'vendor/peon/helpers.php',
+        'vendor/peon/src/helpers.php',
         'vendor/ircmaxell/password.php',
     ),
 
@@ -24,7 +24,7 @@ return array(
     'namespaces' => array(
         'App\\' => 'app/',
         'Illuminate\\' => 'vendor/illuminate/',
-        'Peon\\' => 'vendor/peon/',
+        'Peon\\' => 'vendor/peon/src/',
     ),
 
 );

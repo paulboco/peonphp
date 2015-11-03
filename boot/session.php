@@ -2,29 +2,23 @@
 
 /*
 |--------------------------------------------------------------------------
-| Get The Application Configuration
+| Get The Session Configuration
 |--------------------------------------------------------------------------
 */
 
-$phpConfig = require __DIR__ . '/../config/app.php';
+$sessionConfig = require __DIR__ . '/../config/session.php';
 
 /*
 |--------------------------------------------------------------------------
-| Configure PHP
+| Start The Session
 |--------------------------------------------------------------------------
 */
 
-error_reporting(E_ALL);
-
-if ($phpConfig['debug']) {
-    ini_set('display_errors', 1);
-    ini_set('html_errors', 1);
-    ini_set('log_errors', 0);
-} else {
-    ini_set('display_errors', 0);
-    ini_set('html_errors', 0);
-    ini_set('log_errors', 1);
-}
+$app->make('session')->start(
+    $sessionConfig['driver'],
+    $sessionConfig['name'],
+    $sessionConfig['duration']
+);
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +26,4 @@ if ($phpConfig['debug']) {
 |--------------------------------------------------------------------------
 */
 
-unset($phpConfig);
+unset($sessionConfig);
