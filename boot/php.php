@@ -2,12 +2,34 @@
 
 /*
 |--------------------------------------------------------------------------
+| Get Application Configuration
+|--------------------------------------------------------------------------
+*/
+
+$phpConfig = require __DIR__ . '/../config/app.php';
+
+/*
+|--------------------------------------------------------------------------
 | Setup PHP
 |--------------------------------------------------------------------------
 */
 
 error_reporting(E_ALL);
 
-ini_set('xdebug.var_display_max_depth', -1);
-ini_set('xdebug.var_display_max_children', -1);
-ini_set('xdebug.var_display_max_data', -1);
+if ($phpConfig['debug']) {
+    ini_set('display_errors', 1);
+    ini_set('html_errors', 1);
+    ini_set('log_errors', 0);
+} else {
+    ini_set('display_errors', 0);
+    ini_set('html_errors', 0);
+    ini_set('log_errors', 1);
+}
+
+/*
+|--------------------------------------------------------------------------
+| Clean Up
+|--------------------------------------------------------------------------
+*/
+
+unset($phpConfig);

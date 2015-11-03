@@ -16,7 +16,17 @@ $autoloader->register();
 |--------------------------------------------------------------------------
 */
 
-$autoload = require __DIR__ . '/../config/autoload.php';
+$autoloaderConfig = require __DIR__ . '/../config/autoload.php';
+
+/*
+|--------------------------------------------------------------------------
+| Require Files
+|--------------------------------------------------------------------------
+*/
+
+foreach ($autoloaderConfig['files'] as $path) {
+    require(__DIR__ . '/../' . $path);
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -24,18 +34,8 @@ $autoload = require __DIR__ . '/../config/autoload.php';
 |--------------------------------------------------------------------------
 */
 
-foreach ($autoload['namespaces'] as $namespace => $path) {
+foreach ($autoloaderConfig['namespaces'] as $namespace => $path) {
     $autoloader->addNamespace($namespace, __DIR__ . '/../' . $path);
-}
-
-/*
-|--------------------------------------------------------------------------
-| Require Any Files
-|--------------------------------------------------------------------------
-*/
-
-foreach ($autoload['files'] as $path) {
-    require(__DIR__ . '/../' . $path);
 }
 
 /*
@@ -44,4 +44,4 @@ foreach ($autoload['files'] as $path) {
 |--------------------------------------------------------------------------
 */
 
-unset($autoload, $autoloader, $namespace, $path);
+unset($autoloaderConfig, $autoloader, $namespace, $path);

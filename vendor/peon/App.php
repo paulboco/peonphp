@@ -14,14 +14,7 @@ final class App extends Container
     /**
      * The Application's Root Path
      */
-    protected $rootPath;
-
-    /**
-     * Private constructor
-     */
-    private function __construct()
-    {
-    }
+    private $rootPath;
 
     /**
      * Get App Instance

@@ -29,7 +29,7 @@ class Response
      */
     public function redirect($uri = null)
     {
-        return function() use ($uri) {
+        return function () use ($uri) {
             header('Location: ' . "http://{$_SERVER['SERVER_NAME']}/{$uri}");
         };
     }
