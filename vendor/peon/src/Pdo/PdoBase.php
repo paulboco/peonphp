@@ -24,29 +24,37 @@ class PdoBase extends MysqlPdo
      */
     public function __construct($dsn = null, $user = null, $pass = null)
     {
-        // PDO connection credentials
-        if (is_null($dsn)) {
-            extract($this->connection());
-        }
+        extract($this->credentials($dsn, $user, $pass));
 
         $this->pdo = new PDO($dsn, $user, $pass);
-
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     /**
-     * Get The Default Connection
+     * Get The Default Connection Credentials
      *
      * @return array
      */
-    protected function connection()
+    protected function credentials($dsn, $user, $pass)
     {
-        // Call the App to get the database configuration
-        $database = App::getInstance()
-            ->make('config')
-            ->get('database');
+        if (is_null($dsn)) {
+            // Get the default database configuration
+            $database = App::getInstance()
+                ->make('config')
+                ->get('database');
 
-        return $database['connections'][$database['default']];
+            $default = $database['connections'][$database['default']];
+
+            $dsn  = $default['dsn'];
+            $user = $default['user'];
+            $pass = $default['pass'];
+        }
+
+        return array(
+            'dsn' => $dsn,
+            'user' => $user,
+            'pass' => $pass,
+        );
     }
 
     /**
