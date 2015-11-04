@@ -24,6 +24,7 @@ class PdoBase extends MysqlPdo
      */
     public function __construct($dsn = null, $user = null, $pass = null)
     {
+        // PDO connection credentials
         if (is_null($dsn)) {
             extract($this->connection());
         }
@@ -49,7 +50,7 @@ class PdoBase extends MysqlPdo
     }
 
     /**
-     * Get The PDO Connection
+     * Get The PDO Instance
      *
      * @return PDO
      */

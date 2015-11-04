@@ -47,10 +47,7 @@ class Response
         }
 
         if (is_string($response)) {
-            $execution_time = round((microtime(true) - PEON_START) * 1000, 1);
-            $response = str_replace('%%EXECUTION_TIME%%', $execution_time, $response);
-
-            echo $response;
+            echo $this->injectExecutionTime($response);
         }
 
         die;
@@ -64,7 +61,10 @@ class Response
     public function send404()
     {
         header("HTTP/1.0 404 Not Found");
-        $this->view->render('errors/404');
+        echo $this->injectExecutionTime(
+            $this->view->make('errors/404')
+        );
+
         die;
     }
 
@@ -78,7 +78,25 @@ class Response
         header('HTTP/1.1 503 Service Temporarily Unavailable');
         header('Status: 503 Service Temporarily Unavailable');
         header('Retry-After: 3600');
-        $this->view->render('errors/503');
+        echo $this->injectExecutionTime(
+            $this->view->make('errors/503')
+        );
+
         die;
+    }
+
+    /**
+     * Inject Execution Time
+     *
+     * @param  string  $html
+     * @return string
+     */
+    private function injectExecutionTime($html)
+    {
+        return str_replace(
+            '%%EXECUTION_TIME%%',
+            round((microtime(true) - PEON_START) * 1000, 1),
+            $html
+        );
     }
 }
