@@ -25,9 +25,20 @@ class AppTest extends PHPUnit_Framework_TestCase
 
     public function test_app_can_set_root_path()
     {
-        $app = App::setRootPath('foo/bar');
+        $app = new App;
 
-        $rootPath = App::getRootPath();
+        $app->setRootPath('foo/bar');
+
+        $rootPath = $app->getRootPath();
+        $this->assertEquals($rootPath, 'foo/bar');
+    }
+
+    public function test_app_can_get_root_path()
+    {
+        $app = new App;
+        $app->setRootPath('foo/bar');
+
+        $rootPath = $app->getRootPath();
 
         $this->assertEquals($rootPath, 'foo/bar');
     }
@@ -36,7 +47,8 @@ class AppTest extends PHPUnit_Framework_TestCase
     {
         touch($this->rootPath . '/storage/app/maintenance');
 
-        $maintenance = App::inMaintenance();
+        $app = new App;
+        $maintenance = $app->inMaintenance();
 
         $this->assertTrue($maintenance);
     }
@@ -45,8 +57,21 @@ class AppTest extends PHPUnit_Framework_TestCase
     {
         unlink($this->rootPath . '/storage/app/maintenance');
 
-        $maintenance = App::inMaintenance();
+        $app = new App;
+        $maintenance = $app->inMaintenance();
 
         $this->assertFalse($maintenance);
+    }
+
+    public function test_app_can_go_into_maintenance_mode()
+    {
+        define('PEON_START', microtime(true));
+        include __DIR__ . '/../src/helpers.php';
+        $app = new App;
+        $app->registerBindings();
+
+        $maintenance = $app->showMaintenance(true);
+
+        $this->assertEquals($maintenance, '503');
     }
 }

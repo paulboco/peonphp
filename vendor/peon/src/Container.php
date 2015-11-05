@@ -12,7 +12,7 @@ abstract class Container
      *
      * @var array
      */
-    protected $bindings;
+    protected static $bindings;
 
     /**
      * Return An Instance Of A Class
@@ -39,7 +39,7 @@ abstract class Container
      */
     public function register($className, Closure $closure)
     {
-        $this->bindings[$className] = $closure;
+        self::$bindings[$className] = $closure;
     }
 
     /**
@@ -49,7 +49,7 @@ abstract class Container
      */
     public function registerBindings()
     {
-        $this->bindings = require __DIR__ . '/../../../config/bindings.php';
+        self::$bindings = require __DIR__ . '/../../../config/bindings.php';
     }
 
     /**
@@ -60,7 +60,7 @@ abstract class Container
      */
     public function has($className)
     {
-        return array_key_exists($className, $this->bindings);
+        return array_key_exists($className, self::$bindings);
     }
 
     /**
@@ -72,6 +72,6 @@ abstract class Container
      */
     private function resolve($className, $params = array())
     {
-        return call_user_func_array($this->bindings[$className], $params);
+        return call_user_func_array(self::$bindings[$className], $params);
     }
 }
