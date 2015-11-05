@@ -6,19 +6,14 @@ use PHPUnit_Framework_TestCase;
 
 class PdoConnectionTest extends PHPUnit_Framework_TestCase
 {
-    public function setUp()
-    {}
-
-    public function tearDown()
-    {}
-
     public function test_connection_is_valid()
     {
-        $dsn = 'mysql:host=127.0.0.1;dbname=peon';
+        $dsn = 'mysql:host=localhost';
         $user = 'root';
         $pass = 'root';
 
         $connection = new PdoBase($dsn, $user, $pass);
+
         $this->assertInstanceOf('PDO', $connection->getPdo());
     }
 }
