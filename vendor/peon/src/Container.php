@@ -8,21 +8,11 @@ use Exception;
 abstract class Container
 {
     /**
-     * The Registered Services
+     * The Registered Bindings
      *
      * @var array
      */
-    protected $services;
-
-    /**
-     * Register Configured Services
-     *
-     * @return void
-     */
-    public function registerServices()
-    {
-        $this->services = include './../config/services.php';
-    }
+    protected $bindings;
 
     /**
      * Return An Instance Of A Class
@@ -33,19 +23,15 @@ abstract class Container
      */
     public function make($className, $params = array())
     {
-        $className = strtolower($className);
-
         if ($this->has($className)) {
-            return call_user_func_array($this->services[$className], $params);
+            return $this->resolve($className, $params);
         } else {
             throw new Exception("No class found with the name '{$className}'.", 1);
         }
-
-        static::$instance = $this;
     }
 
     /**
-     * Register A Service
+     * Register A Binding
      *
      * @param  string  $className
      * @param  Closure  $closure
@@ -53,23 +39,39 @@ abstract class Container
      */
     public function register($className, Closure $closure)
     {
-        $className = strtolower($className);
-
-        // if($this->has($className)) {
-        //     throw new Exception("Class is already registered!", 1);
-        // }
-
-        $this->services[$className] = $closure;
+        $this->bindings[$className] = $closure;
     }
 
     /**
-     * Check If A Service Has Been Registered
+     * Register The Configured Bindings
+     *
+     * @return void
+     */
+    public function registerBindings()
+    {
+        $this->bindings = include './../config/bindings.php';
+    }
+
+    /**
+     * Resolve The Class
+     *
+     * @param  string  $className
+     * @param  array  $params
+     * @return mixed
+     */
+    private function resolve($className, $params = array())
+    {
+        return call_user_func_array($this->bindings[$className], $params);
+    }
+
+    /**
+     * Check If A Binding Has Been Registered
      *
      * @param  string  $className
      * @return bool
      */
-    public function has($className)
+    private function has($className)
     {
-        return array_key_exists($className, $this->services);
+        return array_key_exists($className, $this->bindings);
     }
 }
