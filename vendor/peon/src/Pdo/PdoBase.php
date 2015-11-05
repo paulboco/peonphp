@@ -43,11 +43,11 @@ class PdoBase extends MysqlPdo
                 ->make('config')
                 ->get('database');
 
-            $default = $database['connections'][$database['default']];
+            extract($database['connections'][$database['default']]);
 
-            $dsn  = $default['dsn'];
-            $user = $default['user'];
-            $pass = $default['pass'];
+            // $dsn  = $default['dsn'];
+            // $user = $default['user'];
+            // $pass = $default['pass'];
         }
 
         return array(
