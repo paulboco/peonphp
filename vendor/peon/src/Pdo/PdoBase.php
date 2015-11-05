@@ -3,7 +3,7 @@
 namespace Peon\Pdo;
 
 use PDO;
-use Peon\App;
+use Peon\Config;
 
 class PdoBase extends MysqlPdo
 {
@@ -38,16 +38,7 @@ class PdoBase extends MysqlPdo
     protected function credentials($dsn, $user, $pass)
     {
         if (is_null($dsn)) {
-            // Get the default database configuration
-            $database = App::getInstance()
-                ->make('config')
-                ->get('database');
-
-            extract($database['connections'][$database['default']]);
-
-            // $dsn  = $default['dsn'];
-            // $user = $default['user'];
-            // $pass = $default['pass'];
+            extract($this->getDefaultCredentials());
         }
 
         return array(
@@ -65,5 +56,17 @@ class PdoBase extends MysqlPdo
     public function getPdo()
     {
         return $this->pdo;
+    }
+
+    /**
+     * Get The Default Database Credentials
+     *
+     * @return array
+     */
+    private function getDefaultCredentials()
+    {
+        $database = Config::pull('database');
+
+        return $database['connections'][$database['default']];
     }
 }

@@ -39,7 +39,7 @@ class View
         extract($data);
 
         $errors = isset($errors) ? $errors : array();
-        include path("/views/{$template}.tpl");
+        require path("/views/{$template}.tpl");
     }
 
     /**

@@ -13,8 +13,10 @@ final class App extends Container
 
     /**
      * The Application's Root Path
+     *
+     * @var string
      */
-    private $rootPath;
+    private static $rootPath;
 
     /**
      * Get App Instance
@@ -38,7 +40,7 @@ final class App extends Container
      */
     public function setRootPath($path)
     {
-        $this->rootPath = $path;
+        self::$rootPath = $path;
     }
 
     /**
@@ -48,7 +50,7 @@ final class App extends Container
      */
     public function getRootPath()
     {
-        return $this->rootPath;
+        return self::$rootPath ?: __DIR__ . '/../../../';
     }
 
     /**
@@ -58,7 +60,7 @@ final class App extends Container
      */
     public function inMaintenance()
     {
-        return file_exists($this->rootPath . '/storage/app/maintenance');
+        return file_exists(self::$rootPath . '/storage/app/maintenance');
     }
 
     /**

@@ -49,7 +49,18 @@ abstract class Container
      */
     public function registerBindings()
     {
-        $this->bindings = include './../config/bindings.php';
+        $this->bindings = require __DIR__ . '/../../../config/bindings.php';
+    }
+
+    /**
+     * Check If A Binding Has Been Registered
+     *
+     * @param  string  $className
+     * @return bool
+     */
+    public function has($className)
+    {
+        return array_key_exists($className, $this->bindings);
     }
 
     /**
@@ -62,16 +73,5 @@ abstract class Container
     private function resolve($className, $params = array())
     {
         return call_user_func_array($this->bindings[$className], $params);
-    }
-
-    /**
-     * Check If A Binding Has Been Registered
-     *
-     * @param  string  $className
-     * @return bool
-     */
-    private function has($className)
-    {
-        return array_key_exists($className, $this->bindings);
     }
 }

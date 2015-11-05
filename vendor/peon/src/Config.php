@@ -26,6 +26,20 @@ class Config
     protected $config;
 
     /**
+     * Pull A Configuration Variable Statically
+     *
+     * @param  string  $path
+     * @param  mixed  $default
+     * @return mixed
+     */
+    public static function pull($path, $default = null)
+    {
+        $config = new self;
+
+        return $config->get($path, $default);
+    }
+
+    /**
      * Get Configuration Data
      *
      * @param  string  $path
@@ -63,10 +77,10 @@ class Config
      */
     private function loadConfigFile()
     {
-        $file = path("/config/{$this->file}.php");
+        $file = App::getRootPath() . "/config/{$this->file}.php";
 
         if (file_exists($file)) {
-            $this->config = include $file;
+            $this->config = require $file;
             return true;
         }
 
@@ -81,9 +95,9 @@ class Config
     private function getValue()
     {
         foreach ($this->parts as $part) {
-            if (!is_array($this->config)) {
-                return;
-            }
+            // if (!is_array($this->config)) {
+            //     return;
+            // }
 
             if (!array_key_exists($part, $this->config)) {
                 return;

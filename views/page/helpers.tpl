@@ -13,7 +13,7 @@
             </ul>
             <?php foreach ($helpers as $template): ?>
                 <?php $id = 'goto-' . basename($template, '.tpl') ?>
-                <?php include $template ?>
+                <?php require $template ?>
             <?php endforeach ?>
         </div>
     </div>

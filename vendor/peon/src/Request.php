@@ -46,7 +46,7 @@ class Request
      */
     public function all()
     {
-        return $this->request;
+        return $this->get();
     }
 
     /**
@@ -57,6 +57,6 @@ class Request
      */
     public function has($key)
     {
-        return isset($request[$key]);
+        return array_key_exists($key, $this->request);
     }
 }
