@@ -62,16 +62,4 @@ class AppTest extends PHPUnit_Framework_TestCase
 
         $this->assertFalse($maintenance);
     }
-
-    public function test_app_can_go_into_maintenance_mode()
-    {
-        define('PEON_START', microtime(true));
-        include __DIR__ . '/../src/helpers.php';
-        $app = new App;
-        $app->registerBindings();
-
-        $maintenance = $app->showMaintenance(true);
-
-        $this->assertEquals($maintenance, '503');
-    }
 }

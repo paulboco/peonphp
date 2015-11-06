@@ -66,11 +66,11 @@ final class App extends Container
     /**
      * Show Maintenance Mode Page
      *
-     * @param  boolean  $mock
-     * @return string|void
+     * @return void
+     * @codeCoverageIgnore
      */
-    public function showMaintenance($mock)
+    public function showMaintenance()
     {
-        return $mock ? '503' : $this->make('response')->send503();
+        $this->make('response')->send503();
     }
 }
