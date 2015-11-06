@@ -56,37 +56,37 @@ class Router extends RouteFilterApplicator
     /**
      * The Current URI
      *
-     * @var string
+     * @static string
      */
-    protected $uri;
+    protected static $uri;
 
     /**
      * The URI Segments
      *
-     * @var array
+     * @static array
      */
-    protected $segments;
+    protected static $segments;
 
     /**
      * The Controller
      *
-     * @var string
+     * @static string
      */
-    protected $controller;
+    protected static $controller;
 
     /**
      * The Controller's Method
      *
-     * @var string
+     * @static string
      */
-    protected $method;
+    protected static $method;
 
     /**
      * The Route Parameters
      *
-     * @var array
+     * @static array
      */
-    protected $params;
+    protected static $params;
 
     /**
      * Create a new router
@@ -110,7 +110,7 @@ class Router extends RouteFilterApplicator
     public function dispatch()
     {
         $this->validateRoute();
-        $this->applyFilters($this->controller, $this->method);
+        $this->applyFilters(self::$controller, self::$method);
 
         return $this->callControllerMethod();
     }
@@ -124,8 +124,8 @@ class Router extends RouteFilterApplicator
      */
     public function getSegment($position, $default = '')
     {
-        if (isset($this->segments[$position - 1])) {
-            return $this->segments[$position - 1];
+        if (isset(self::$segments[$position - 1])) {
+            return self::$segments[$position - 1];
         }
 
         return $default;
@@ -141,7 +141,7 @@ class Router extends RouteFilterApplicator
         $uri = str_replace('?' . $_SERVER['QUERY_STRING'], '', $_SERVER['REQUEST_URI']);
         $uri = preg_replace('~/+~', '/', $uri);
 
-        $this->uri = trim($uri, '/') ?: 'page/welcome';
+        self::$uri = trim($uri, '/') ?: 'page/welcome';
     }
 
     /**
@@ -151,12 +151,12 @@ class Router extends RouteFilterApplicator
      */
     private function extractSegments()
     {
-        $segments = explode('/', $this->uri);
-        $this->segments = $segments;
+        $segments = explode('/', self::$uri);
+        self::$segments = $segments;
 
-        $this->controller = $this->formatController(array_shift($segments));
-        $this->method = $this->formatMethod(array_shift($segments));
-        $this->params = empty($segments) ? array() : $segments;
+        self::$controller = $this->formatController(array_shift($segments));
+        self::$method = $this->formatMethod(array_shift($segments));
+        self::$params = empty($segments) ? array() : $segments;
     }
 
     /**
@@ -197,7 +197,7 @@ class Router extends RouteFilterApplicator
     private function validateRoute()
     {
         // Send a 404 if the controller method doesn't exist
-        if (!method_exists($this->controller, $this->method)) {
+        if (!method_exists(self::$controller, self::$method)) {
             $this->response->send404();
         }
     }
@@ -210,8 +210,8 @@ class Router extends RouteFilterApplicator
     private function callControllerMethod()
     {
         return call_user_func_array(array(
-            $this->resolver->resolve($this->controller),
-            $this->method,
-        ), $this->params);
+            $this->resolver->resolve(self::$controller),
+            self::$method,
+        ), self::$params);
     }
 }

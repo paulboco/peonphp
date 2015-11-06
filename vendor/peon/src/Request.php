@@ -5,21 +5,6 @@ namespace Peon;
 class Request
 {
     /**
-     * The HTTP Request
-     *
-     * @var array
-     */
-    protected $request;
-
-    /**
-     * Create a new request controller
-     */
-    public function __construct()
-    {
-        $this->request = $_REQUEST;
-    }
-
-    /**
      * Get A Request Variable
      *
      * @param  string  $key
@@ -29,11 +14,11 @@ class Request
     public function get($key = null, $default = null)
     {
         if (is_null($key)) {
-            return $this->request;
+            return $_REQUEST;
         }
 
-        if (isset($this->request[$key])) {
-            return $this->request[$key];
+        if (isset($_REQUEST[$key])) {
+            return $_REQUEST[$key];
         }
 
         return $default;
@@ -57,6 +42,6 @@ class Request
      */
     public function has($key)
     {
-        return array_key_exists($key, $this->request);
+        return array_key_exists($key, $_REQUEST);
     }
 }

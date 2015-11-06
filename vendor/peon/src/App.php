@@ -7,14 +7,14 @@ final class App extends Container
     /**
      * The App Instance
      *
-     * @var Peon\App
+     * @static Peon\App
      */
     private static $instance;
 
     /**
      * The Application's Root Path
      *
-     * @var string
+     * @static string
      */
     private static $rootPath;
 

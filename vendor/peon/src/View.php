@@ -7,9 +7,9 @@ class View
     /**
      * Shared Data
      *
-     * @var array
+     * @static array
      */
-    protected $shared = array();
+    protected static $shared = array();
 
     /**
      * Make A View
@@ -35,7 +35,7 @@ class View
      */
     public function render($template, $data = array())
     {
-        extract($this->shared);
+        extract(self::$shared);
         extract($data);
 
         $errors = isset($errors) ? $errors : array();
@@ -50,7 +50,7 @@ class View
      */
     public function share($data)
     {
-        $this->shared = array_merge($this->shared, $data);
+        self::$shared = array_merge(self::$shared, $data);
     }
 
     /**
