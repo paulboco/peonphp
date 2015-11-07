@@ -44,8 +44,7 @@ class SessionController extends Controller
      */
     public function create()
     {
-        // show the login form
-        return $this->view->make('session/create');
+        return $this->app->view->make('session/create');
     }
 
     /**
@@ -56,15 +55,16 @@ class SessionController extends Controller
     public function store()
     {
         if ($this->validator->fails()) {
-            return $this->response->redirect('session/create');
+            return $this->app->response->redirect('session/create');
         }
 
-        if ($this->auth->attempt($this->request->all())) {
-            return $this->response->redirect('page/home');
+        if ($this->auth->attempt($this->app->request->all())) {
+            return $this->app->response->redirect('page/home');
         }
 
-        $this->session->setFlash('danger', "Your credentials could not be verified.");
-        return $this->response->redirect('session/create');
+        $this->app->alert->flash('danger', "Your credentials could not be verified.");
+
+        return $this->app->response->redirect('session/create');
     }
 
     /**
@@ -76,8 +76,6 @@ class SessionController extends Controller
     {
         $this->auth->logout();
 
-        // flash success message and redirect to index
-        $this->session->setFlash('success', "You are now logged out.");
-        return $this->response->redirect();
+        return $this->app->response->redirect();
     }
 }

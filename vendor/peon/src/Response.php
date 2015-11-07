@@ -25,11 +25,17 @@ class Response
      * Redirect To A URL
      *
      * @param  string  $uri
+     * @param  boolean  $terminate
      * @return void
      */
-    public function redirect($uri = null)
+    public function redirect($uri = null, $terminate = false)
     {
-        return function () use ($uri) {
+        if ($terminate) {
+            header('Location: ' . "http://{$_SERVER['SERVER_NAME']}/{$uri}");
+            die;
+        }
+
+        return function () use($uri) {
             header('Location: ' . "http://{$_SERVER['SERVER_NAME']}/{$uri}");
         };
     }

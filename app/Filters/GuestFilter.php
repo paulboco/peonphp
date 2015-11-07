@@ -14,7 +14,7 @@ class GuestFilter extends Filter
     public function run()
     {
         if ($this->auth->check()) {
-            $this->response->redirect('page/home');
+            $this->response->redirect('page/home', true);
         }
     }
 }

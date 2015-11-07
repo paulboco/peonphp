@@ -44,7 +44,7 @@ class BondservantController extends Controller
      */
     public function index()
     {
-        return $this->view->make('bondservant/index', array(
+        return $this->app->view->make('bondservant/index', array(
             'rows' => $this->bondservant->all(true),
         ));
     }
@@ -57,8 +57,8 @@ class BondservantController extends Controller
     public function create()
     {
         // show the create form
-        return $this->view->make('bondservant/create', array(
-            'ratings' => $this->config->get('lists/rating'),
+        return $this->app->view->make('bondservant/create', array(
+            'ratings' => $this->app->config->get('lists/rating'),
         ));
     }
 
@@ -71,18 +71,18 @@ class BondservantController extends Controller
     {
         // redirect back to the form if validation fails
         if ($this->validator->fails()) {
-            return $this->response->redirect('bondservant/create');
+            return $this->app->response->redirect('bondservant/create');
         }
 
         // insert into database
         $result = $this->bondservant->insert(array(
-            'name' => $this->request->get('name'),
-            'rating' => $this->request->get('rating'),
+            'name' => $this->app->request->get('name'),
+            'rating' => $this->app->request->get('rating'),
         ));
 
-        // flash message and redirect to index
-        $this->flashMessage($result, $result);
-        return $this->response->redirect('bondservant/index');
+        // flash alert and redirect to index
+        $this->app->alert->flash('success', "Bondservant #{$result} was successfully stored.");
+        return $this->app->response->redirect('bondservant/index');
     }
 
     /**
@@ -94,14 +94,14 @@ class BondservantController extends Controller
     public function edit($id)
     {
         if (!$row = $this->bondservant->findById($id, true)) {
-            return $this->response->redirect('bondservant/index');
+            return $this->app->response->redirect('bondservant/index');
         }
 
         // show the edit form
-        return $this->view->make('bondservant/edit', array(
+        return $this->app->view->make('bondservant/edit', array(
             'row' => $row,
-            'ratings' => $this->config->get('lists/rating'),
-            'no_yes' => $this->config->get('lists/no_yes'),
+            'ratings' => $this->app->config->get('lists/rating'),
+            'no_yes' => $this->app->config->get('lists/no_yes'),
         ));
     }
 
@@ -115,19 +115,19 @@ class BondservantController extends Controller
     {
         // redirect back to the form if validation fails
         if ($this->validator->fails()) {
-            return $this->response->redirect('bondservant/edit/' . $id);
+            return $this->app->response->redirect('bondservant/edit/' . $id);
         }
 
         // update the database
         $result = $this->bondservant->update($id, array(
-            'name' => $this->request->get('name'),
-            'rating' => $this->request->get('rating'),
-            'deleted' => $this->request->get('deleted'),
+            'name' => $this->app->request->get('name'),
+            'rating' => $this->app->request->get('rating'),
+            'deleted' => $this->app->request->get('deleted'),
         ));
 
-        // flash message and redirect to index
-        $this->flashMessage($result, $id);
-        return $this->response->redirect('bondservant/index');
+        // flash alert and redirect to index
+        $this->app->alert->flash('success', "Bondservant #{$id} was successfully updated.");
+        return $this->app->response->redirect('bondservant/index');
     }
 
     /**
@@ -143,8 +143,8 @@ class BondservantController extends Controller
             'deleted' => 1,
         ));
 
-        // flash message and redirect to index
-        $this->flashMessage($result, $id);
-        return $this->response->redirect('bondservant/index');
+        // flash alert and redirect to index
+        $this->app->alert->flash('success', "Bondservant #{$id} was successfully deleted.");
+        return $this->app->response->redirect('bondservant/index');
     }
 }

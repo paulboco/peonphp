@@ -76,7 +76,7 @@ class Validator extends ValidatorRules
         }
 
         if ($this->errors) {
-            $this->session->setFlash('danger', 'Errors were found in your form submission.');
+            $this->session->setFlash('alerts.danger', 'Errors were found in your form submission.');
             $this->session->setFlash('errors', $this->errors());
             $this->session->setFlash('old_input', $this->input);
         }

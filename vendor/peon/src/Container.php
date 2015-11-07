@@ -24,7 +24,7 @@ abstract class Container
     public function make($className, $params = array())
     {
         if ($this->has($className)) {
-            return $this->resolve($className, $params);
+            return $this->callClass($className, $params);
         } else {
             throw new Exception("No class found with the name '{$className}'.", 1);
         }
@@ -47,9 +47,9 @@ abstract class Container
      *
      * @return void
      */
-    public function registerBindings()
+    public function registerBindings($bindings)
     {
-        self::$bindings = require __DIR__ . '/../../../config/bindings.php';
+        self::$bindings = $bindings;
     }
 
     /**
@@ -64,14 +64,28 @@ abstract class Container
     }
 
     /**
-     * Resolve The Class
+     * Call A Class
      *
      * @param  string  $className
      * @param  array  $params
      * @return mixed
      */
-    private function resolve($className, $params = array())
+    private function callClass($className, $params = array())
     {
         return call_user_func_array(self::$bindings[$className], $params);
+    }
+
+    /**
+     * Magic Method To Call A Registered Binding
+     *
+     * @param  string  $property
+     * @return object
+     */
+
+    public function __get($property)
+    {
+        if (array_key_exists($property, self::$bindings)) {
+            return call_user_func(self::$bindings[$property]);
+        }
     }
 }

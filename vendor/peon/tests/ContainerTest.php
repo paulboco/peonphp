@@ -45,7 +45,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
     {
         $container = new Foo;
 
-        $container->registerBindings();
+        $container->registerBindings(require __DIR__ . '/../../../config/bindings.php');
         $object = $container->make('request');
 
         $this->assertTrue($container->has('request'));

@@ -8,6 +8,10 @@ return array(
     |--------------------------------------------------------------------------
     */
 
+    'alert' => function() {
+        return new Peon\Alert(new Peon\Session);
+    },
+
     'auth' => function () {
         return new Peon\Auth(new App\Models\User, new Peon\Session);
     },

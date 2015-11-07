@@ -66,9 +66,11 @@ class Session
      * @param  mixed  $default
      * @return mixed
      */
-    public function getFlash($key, $default = null)
+    public function getFlash($key = null, $default = null)
     {
-        return $this->get('flash-available.' . $key, $default);
+        $key = 'flash-available' . (is_null($key) ? '' : ".{$key}");
+
+        return $this->get($key, $default);
     }
 
     /**
@@ -80,6 +82,17 @@ class Session
     public function has($key)
     {
         return Arr::has($_SESSION, $key);
+    }
+
+    /**
+     * Check For A Flash Variable
+     *
+     * @param  string  $key
+     * @return mixed
+     */
+    public function hasFlash($key)
+    {
+        return Arr::has($_SESSION, 'flash-available.' . $key);
     }
 
     /**
