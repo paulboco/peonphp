@@ -19,6 +19,7 @@ html {
 }
 body {
     margin-top: 60px;
+    background-color: #FFFBCD;
 }
 h1.page-header {
     border-bottom: none;
@@ -101,6 +102,9 @@ div.function-definition dt {
 }
 div.function-definition dd {
     padding: 0 20px 20px;
+}
+div.jumbotron {
+    background-color: #FFFBCD;
 }
 div.radio label {
     padding-right: 15px;
