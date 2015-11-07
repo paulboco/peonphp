@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+
+$scripts = glob('console/*.php');
+
+if (!in_array("console/{$argv[1]}.php", $scripts)) {
+    echo "Command {$argv[1]} not found" . PHP_EOL;
+    die;
+}
+
+array_shift($argv);
+$argc -= 1;
+
+require __DIR__ . "/console/{$argv[0]}.php";

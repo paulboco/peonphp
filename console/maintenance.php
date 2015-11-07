@@ -1,5 +1,6 @@
-#!/usr/bin/php
 <?php
+
+$filename = './storage/app/maintenance';
 
 if ($argc < 2) {
     echo 'Not enough arguments.' . PHP_EOL;
@@ -20,11 +21,21 @@ if ($command != 'on' and $command != 'off') {
 }
 
 if ($command == 'on') {
-    touch('./storage/app/maintenance');
+    if (file_exists($filename)) {
+        echo 'Maintenance mode is already on.' . PHP_EOL;
+        die;
+    }
+
+    touch($filename);
     echo 'Maintenance mode is now on.' . PHP_EOL;
 }
 
 if ($command == 'off') {
-    unlink('./storage/app/maintenance');
+    if (!file_exists($filename)) {
+        echo 'Maintenance mode is already off.' . PHP_EOL;
+        die;
+    }
+
+    unlink($filename);
     echo 'Maintenance mode is now off.' . PHP_EOL;
 }
