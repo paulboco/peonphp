@@ -42,8 +42,7 @@ class Response
      */
     public function redirectAndDie($uri = null)
     {
-        header('Location: ' . "http://{$_SERVER['SERVER_NAME']}/{$uri}");
-        die;
+        $this->send($this->redirect($uri));
     }
 
     /**
