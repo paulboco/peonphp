@@ -9,11 +9,11 @@ return array(
     */
 
     'alert' => function() {
-        return new Peon\Alert(new Peon\Session);
+        return new Peon\Alert(new Peon\Session\Session);
     },
 
     'auth' => function () {
-        return new Peon\Auth(new App\Models\User, new Peon\Session);
+        return new Peon\Auth(new App\Models\User, new Peon\Session\Session);
     },
 
     'config' => function () {
@@ -33,11 +33,11 @@ return array(
     },
 
     'session' => function () {
-        return new Peon\Session;
+        return new Peon\Session\Session;
     },
 
     'sessionhandler' => function () {
-        return new Peon\SessionHandler;
+        return new Peon\Session\SessionHandler;
     },
 
     'view' => function () {

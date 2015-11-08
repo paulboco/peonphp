@@ -2,12 +2,14 @@
 
 namespace Peon;
 
+use Peon\Session\Session;
+
 class Alert
 {
     /**
      * The Session Instance
      *
-     * @var Peon\Session
+     * @var Peon\Session\Session
      */
     protected $session;
 

@@ -4,6 +4,7 @@ namespace Peon;
 
 use App\Models\User;
 use Peon\App;
+use Peon\Session\Session;
 
 class Auth
 {
@@ -21,7 +22,7 @@ class Auth
     /**
      * The Session Instance
      *
-     * @var Peon\Session
+     * @var Peon\Session\Session
      */
     private $session;
 
@@ -29,7 +30,7 @@ class Auth
      * Create A New Auth
      *
      * @param  Peon\User  $user
-     * @param  Peon\Session  $session
+     * @param  Peon\Session\Session  $session
      * @return void
      */
     public function __construct(User $user, Session $session)

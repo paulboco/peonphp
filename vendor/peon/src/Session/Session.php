@@ -1,9 +1,9 @@
 <?php
 
-namespace Peon;
+namespace Peon\Session;
 
 use Illuminate\Arr;
-use Peon\SessionHandler;
+use Peon\Session\SessionHandler;
 
 class Session
 {

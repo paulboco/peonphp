@@ -1,6 +1,6 @@
 <?php
 
-namespace Peon;
+namespace Peon\Session;
 
 use Peon\Pdo\PdoBase;
 
