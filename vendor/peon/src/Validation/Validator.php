@@ -1,10 +1,9 @@
 <?php
 
-namespace Peon;
+namespace Peon\Validation;
 
 use Peon\Request;
-use Peon\Session;
-use Peon\ValidatorRules;
+use Peon\Session\Session;
 
 class Validator extends ValidatorRules
 {
@@ -18,7 +17,7 @@ class Validator extends ValidatorRules
     /**
      * The Session Instance
      *
-     * @var Peon\Session
+     * @var Peon\Session\Session
      */
     protected $session;
 

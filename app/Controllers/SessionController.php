@@ -18,7 +18,7 @@ class SessionController extends Controller
     /**
      * The Validator Instance
      *
-     * @var Peon\Validator
+     * @var Peon\Validation\Validator
      */
     protected $validator;
 

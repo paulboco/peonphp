@@ -2,7 +2,7 @@
 
 namespace App\Validators;
 
-use Peon\Validator;
+use Peon\Validation\Validator;
 
 class BondservantValidator extends Validator
 {
