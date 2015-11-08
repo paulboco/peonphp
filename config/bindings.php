@@ -29,7 +29,7 @@ return array(
     },
 
     'router' => function () {
-        return new Peon\Router(new Peon\Resolver, new Peon\Response(new Peon\View));
+        return new Peon\Routing\Router(new Peon\Resolver, new Peon\Response(new Peon\View));
     },
 
     'session' => function () {

@@ -3,10 +3,10 @@
 namespace App\Filters;
 
 use Peon\Auth;
-use Peon\Filter;
 use Peon\Response;
+use Peon\Routing\RouteFilter;
 
-class AuthFilter extends Filter
+class AuthFilter extends RouteFilter
 {
     /**
      * Run The Filter

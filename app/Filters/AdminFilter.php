@@ -2,9 +2,9 @@
 
 namespace App\Filters;
 
-use Peon\Filter;
+use Peon\Routing\RouteFilter;
 
-class AdminFilter extends Filter
+class AdminFilter extends RouteFilter
 {
     /**
      * Run The Filter

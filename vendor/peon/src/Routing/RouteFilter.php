@@ -1,8 +1,11 @@
 <?php
 
-namespace Peon;
+namespace Peon\Routing;
 
-class Filter
+use Peon\Auth;
+use Peon\Response;
+
+class RouteFilter
 {
     /**
      * The Auth Instance
@@ -19,7 +22,7 @@ class Filter
     protected $response;
 
     /**
-     * Create A New Auth Filter
+     * Create A New Auth RouteFilter
      *
      * @return void
      */

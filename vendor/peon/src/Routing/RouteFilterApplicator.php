@@ -1,6 +1,6 @@
 <?php
 
-namespace Peon;
+namespace Peon\Routing;
 
 class RouteFilterApplicator
 {

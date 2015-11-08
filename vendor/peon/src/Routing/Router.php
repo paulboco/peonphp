@@ -1,6 +1,9 @@
 <?php
 
-namespace Peon;
+namespace Peon\Routing;
+
+use Peon\Resolver;
+use Peon\Response;
 
 /**
  * Peon Router

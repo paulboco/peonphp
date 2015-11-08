@@ -2,9 +2,9 @@
 
 namespace App\Filters;
 
-use Peon\Filter;
+use Peon\Routing\RouteFilter;
 
-class SuperFilter extends Filter
+class SuperFilter extends RouteFilter
 {
     /**
      * Run The Filter
