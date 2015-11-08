@@ -24,7 +24,7 @@ echo "alias phpunit='phpunit --colors'" >> /home/vagrant/.bash_aliases
 echo "Droping database 'peon' if it already exists.";
 mysql -uroot -proot -e "DROP DATABASE IF EXISTS peon";
 echo "Creating new database 'peon'";
-mysql -uroot -proot -e "create database peon";
+mysql -uroot -proot -e "CREATE DATABASE peon";
 echo "Importing tables";
 mysql -uroot -proot peon < /vagrant/database/mysql/peon.sql
   SHELL

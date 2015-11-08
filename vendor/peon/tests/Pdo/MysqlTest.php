@@ -20,7 +20,7 @@ class MysqlTest extends PHPUnit_Framework_TestCase
         $user->replaceInto(array(
             'id' => 1,
             'username' => 'paulboco',
-            'password' => '$2y$10$doBSDgl4dGepE8LIZ5pb/Os8gagGu13SzUCC36jBfnmspWcACVrvS',
+            'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
             'level' => '1',
             'deleted' => '0',
         ));
@@ -57,14 +57,14 @@ class MysqlTest extends PHPUnit_Framework_TestCase
             array(
                 'id' => '1',
                 'username' => 'paulboco',
-                'password' => '$2y$10$doBSDgl4dGepE8LIZ5pb/Os8gagGu13SzUCC36jBfnmspWcACVrvS',
+                'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
                 'level' => '1',
                 'deleted' => '0',
             ),
             array(
                 'id' => '2',
                 'username' => 'jayne',
-                'password' => '$2y$10$doBSDgl4dGepE8LIZ5pb/Os8gagGu13SzUCC36jBfnmspWcACVrvS',
+                'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
                 'level' => '10',
                 'deleted' => '0',
             ),
@@ -81,14 +81,14 @@ class MysqlTest extends PHPUnit_Framework_TestCase
     //         array(
     //             'id' => '1',
     //             'username' => 'paulboco',
-    //             'password' => '$2y$10$doBSDgl4dGepE8LIZ5pb/Os8gagGu13SzUCC36jBfnmspWcACVrvS',
+    //             'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
     //             'level' => '1',
     //             'deleted' => '0',
     //         ),
     //         array(
     //             'id' => '2',
     //             'username' => 'jayne',
-    //             'password' => '$2y$10$doBSDgl4dGepE8LIZ5pb/Os8gagGu13SzUCC36jBfnmspWcACVrvS',
+    //             'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
     //             'level' => '10',
     //             'deleted' => '0',
     //         ),
@@ -104,7 +104,7 @@ class MysqlTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(array(
             'id' => '1',
             'username' => 'paulboco',
-            'password' => '$2y$10$doBSDgl4dGepE8LIZ5pb/Os8gagGu13SzUCC36jBfnmspWcACVrvS',
+            'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
             'level' => '1',
             'deleted' => '0',
         ), $result);
@@ -116,7 +116,7 @@ class MysqlTest extends PHPUnit_Framework_TestCase
 
         $result = $user->insert(array(
             'username' => 'kaylee',
-            'password' => '$2y$10$doBSDgl4dGepE8LIZ5pb/Os8gagGu13SzUCC36jBfnmspWcACVrvS',
+            'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
             'level' => '100',
             'deleted' => '0',
         ));
@@ -130,7 +130,7 @@ class MysqlTest extends PHPUnit_Framework_TestCase
 
         $result = $user->update(1, array(
             'username' => 'boc',
-            'password' => '$2y$10$doBSDgl4dGepE8LIZ5pb/Os8gagGu13SzUCC36jBfnmspWcACVrvS',
+            'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
             'level' => '1',
             'deleted' => '0',
         ));
@@ -145,7 +145,7 @@ class MysqlTest extends PHPUnit_Framework_TestCase
         $result = $user->replaceInto(array(
             'id' => 1,
             'username' => 'boc',
-            'password' => '$2y$10$doBSDgl4dGepE8LIZ5pb/Os8gagGu13SzUCC36jBfnmspWcACVrvS',
+            'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
             'level' => '1',
             'deleted' => '0',
         ));

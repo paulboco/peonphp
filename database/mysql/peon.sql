@@ -26,12 +26,13 @@ SET time_zone = "+00:00";
 -- Table structure for table `bondservants`
 --
 
+DROP TABLE IF EXISTS `bondservants`;
 CREATE TABLE IF NOT EXISTS `bondservants` (
   `id` int(10) unsigned NOT NULL,
   `name` varchar(100) NOT NULL,
   `rating` int(11) NOT NULL DEFAULT '0',
   `deleted` tinyint(4) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bondservants`
@@ -47,6 +48,7 @@ INSERT INTO `bondservants` (`id`, `name`, `rating`, `deleted`) VALUES
 -- Table structure for table `sessions`
 --
 
+DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE IF NOT EXISTS `sessions` (
   `id` varchar(32) NOT NULL,
   `access` int(10) unsigned DEFAULT NULL,
@@ -59,6 +61,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(10) unsigned NOT NULL,
   `username` varchar(100) NOT NULL,
@@ -72,8 +75,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `level`, `deleted`) VALUES
-(1, 'paulboco', '$2y$10$doBSDgl4dGepE8LIZ5pb/Os8gagGu13SzUCC36jBfnmspWcACVrvS', 1, 0),
-(2, 'jazzmole', '$2y$10$doBSDgl4dGepE8LIZ5pb/Os8gagGu13SzUCC36jBfnmspWcACVrvS', 10, 0);
+(1, 'paulboco', '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO', 1, 0),
+(2, 'jayne', '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO', 10, 0);
 
 --
 -- Indexes for dumped tables
@@ -106,7 +109,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bondservants`
 --
 ALTER TABLE `bondservants`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=102;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `users`
 --
