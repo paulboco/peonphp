@@ -59,6 +59,9 @@ code {
     color: #a00;
     font-size: 15px;
 }
+div.alert.alert-success {
+    background-color: #A7EF89;
+}
 div.alert-success, .alert-info, .alert-warning, .alert-danger {
     text-align: center;
     margin-top: -15px;
