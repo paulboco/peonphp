@@ -1,6 +1,6 @@
 <?php
 
-namespace Peon;
+namespace Peon\Console;
 
 class Console extends ConsoleColors
 {
@@ -40,7 +40,7 @@ class Console extends ConsoleColors
 
         extract($this->shiftArgs());
 
-        require __DIR__ . "/../../../console/{$argv[0]}.php";
+        require __DIR__ . "/../../../../console/{$argv[0]}.php";
     }
 
     /**

@@ -15,5 +15,5 @@ require __DIR__ . '/boot/autoloader.php';
 |--------------------------------------------------------------------------
 */
 
-$console = new Peon\Console($argc, $argv);
+$console = new Peon\Console\Console($argc, $argv);
 $console->dispatch();
