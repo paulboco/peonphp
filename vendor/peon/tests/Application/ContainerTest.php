@@ -6,6 +6,13 @@ use PHPUnit_Framework_TestCase;
 
 class ContainerTest extends PHPUnit_Framework_TestCase
 {
+    protected $bindings;
+
+    public function setUp()
+    {
+        $this->bindings = require __DIR__ . '/../../../../config/bindings.php';
+    }
+
     public function test_container_can_bind_a_class()
     {
         $container = new Foo;
@@ -45,7 +52,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
     {
         $container = new Foo;
 
-        $container->registerBindings(require __DIR__ . '/../../../config/bindings.php');
+        $container->registerBindings($this->bindings);
         $object = $container->make('request');
 
         $this->assertTrue($container->has('request'));
@@ -56,7 +63,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
     {
         $container = new Foo;
 
-        $container->registerBindings(require __DIR__ . '/../../../config/bindings.php');
+        $container->registerBindings($this->bindings);
         $request = $container->request;
 
         $this->assertInstanceOf('Peon\Http\Request', $request);
@@ -66,7 +73,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
     {
         $container = new Foo;
 
-        $container->registerBindings(require __DIR__ . '/../../../config/bindings.php');
+        $container->registerBindings($this->bindings);
         $foo = $container->foo;
 
         $this->assertNull($foo);

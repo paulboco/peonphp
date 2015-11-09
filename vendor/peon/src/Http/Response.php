@@ -28,6 +28,7 @@ class Response
      *
      * @param  string  $uri
      * @return void
+     * @codeCoverageIgnore
      */
     public function redirect($uri = null)
     {
@@ -41,6 +42,7 @@ class Response
      *
      * @param  string  $uri
      * @return void
+     * @codeCoverageIgnore
      */
     public function redirectAndDie($uri = null)
     {
