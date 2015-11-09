@@ -1,6 +1,6 @@
 <?php
 
-namespace Peon;
+namespace Peon\Application;
 
 use PHPUnit_Framework_TestCase;
 
@@ -20,7 +20,7 @@ class AppTest extends PHPUnit_Framework_TestCase
     {
         $app = App::getInstance();
 
-        $this->assertInstanceOf('Peon\App', $app);
+        $this->assertInstanceOf('Peon\Application\App', $app);
     }
 
     public function test_app_can_set_root_path()

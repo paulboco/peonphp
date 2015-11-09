@@ -3,7 +3,6 @@
 namespace Peon\Pdo;
 
 use PDO;
-use Peon\Auth;
 
 abstract class MysqlPdo
 {
@@ -169,9 +168,7 @@ abstract class MysqlPdo
      */
     protected function whereDeleted($includeDeleted = false)
     {
-        if ($includeDeleted) {
-            return Auth::level(Auth::SUPER) ? '' : ' WHERE deleted=0';
-        }
+        return $includeDeleted ? ' WHERE deleted=0' : '';
     }
 
     /**
@@ -185,24 +182,5 @@ abstract class MysqlPdo
         if ($where = $this->whereDeleted($includeDeleted)) {
             return str_replace('WHERE', 'AND', $where);
         }
-    }
-
-    /**
-     * Find By Username
-     *
-     * @param  string  $username
-     * @return array
-     */
-    public function findByUsername($username)
-    {
-        $statement = $this->pdo->prepare(
-            "SELECT * FROM {$this->table} WHERE username=:username LIMIT 1"
-        );
-
-        $statement->execute(array(
-            'username' => $username,
-        ));
-
-        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 }

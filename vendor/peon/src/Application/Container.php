@@ -1,6 +1,6 @@
 <?php
 
-namespace Peon;
+namespace Peon\Application;
 
 use Closure;
 use Exception;

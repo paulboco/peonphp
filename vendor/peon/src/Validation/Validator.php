@@ -2,7 +2,7 @@
 
 namespace Peon\Validation;
 
-use Peon\Request;
+use Peon\Http\Request;
 use Peon\Session\Session;
 
 class Validator extends ValidatorRules
@@ -10,7 +10,7 @@ class Validator extends ValidatorRules
     /**
      * The Request Instance
      *
-     * @var Peon\Request
+     * @var Peon\Http\Request
      */
     protected $request;
 

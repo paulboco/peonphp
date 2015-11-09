@@ -15,20 +15,23 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <?php if (Peon\Auth::check()): ?>
                 <ul class="nav navbar-nav">
-                    <li class="<?php echo segment(2, 'concepts', 'active') ?>"><a href="/page/concepts">Concepts</a></li>
+                    <li class="<?php echo activate_if(2, 'concepts', 'active') ?>"><a href="/page/concepts">Concepts</a></li>
                 </ul>
                 <ul class="nav navbar-nav">
-                    <li class="<?php echo segment(2, 'helpers', 'active') ?>"><a href="/page/helpers">Helpers</a></li>
+                    <li class="<?php echo activate_if(2, 'helpers', 'active') ?>"><a href="/page/helpers">Helpers</a></li>
                 </ul>
                 <ul class="nav navbar-nav">
-                    <li class="<?php echo segment(2, 'requirements', 'active') ?>"><a href="/page/requirements">Requirements</a></li>
+                    <li class="<?php echo activate_if(2, 'requirements', 'active') ?>"><a href="/page/requirements">Requirements</a></li>
                 </ul>
                 <ul class="nav navbar-nav">
-                    <li class="<?php echo segment(2, 'api', 'active') ?>"><a href="/page/api">API</a></li>
+                    <li class="<?php echo activate_if(2, 'api', 'active') ?>"><a href="/page/api">API</a></li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li class="<?php echo activate_if(2, 'coverage', 'active') ?>"><a href="/page/coverage">Coverage</a></li>
                 </ul>
                 <?php if (Peon\Auth::user()->level <= Peon\Auth::MANAGER): ?>
                     <ul class="nav navbar-nav">
-                        <li class="<?php echo segment(1, 'bondservant', 'active') ?>"><a href="/bondservant/index">Bondservants</a></li>
+                        <li class="<?php echo activate_if(1, 'bondservant', 'active') ?>"><a href="/bondservant/index">Bondservants</a></li>
                     </ul>
                 <?php endif ?>
             <?php endif ?>

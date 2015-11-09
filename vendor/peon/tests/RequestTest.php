@@ -1,6 +1,6 @@
 <?php
 
-namespace Peon;
+namespace Peon\Http;
 
 use PHPUnit_Framework_TestCase;
 

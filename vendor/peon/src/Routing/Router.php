@@ -2,8 +2,8 @@
 
 namespace Peon\Routing;
 
-use Peon\Resolver;
-use Peon\Response;
+use Peon\Application\Resolver;
+use Peon\Http\Response;
 
 /**
  * Peon Router
@@ -52,7 +52,7 @@ class Router extends RouteFilterApplicator
     /**
      * The Response Instance
      *
-     * @var Peon\Response
+     * @var Peon\Http\Response
      */
     protected $response;
 
@@ -100,9 +100,7 @@ class Router extends RouteFilterApplicator
     {
         $this->resolver = $resolver;
         $this->response = $response;
-
         $this->prepareUri();
-        $this->extractSegments();
     }
 
     /**
@@ -112,6 +110,7 @@ class Router extends RouteFilterApplicator
      */
     public function dispatch()
     {
+        $this->extractSegments();
         $this->validateRoute();
         $this->applyFilters(self::$controller, self::$method);
 
@@ -141,7 +140,10 @@ class Router extends RouteFilterApplicator
      */
     private function prepareUri()
     {
-        $uri = str_replace('?' . $_SERVER['QUERY_STRING'], '', $_SERVER['REQUEST_URI']);
+        $requestUri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+        $queryString = isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '';
+
+        $uri = str_replace('?' . $queryString, '', $requestUri);
         $uri = preg_replace('~/+~', '/', $uri);
 
         self::$uri = trim($uri, '/') ?: 'page/welcome';

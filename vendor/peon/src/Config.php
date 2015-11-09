@@ -2,6 +2,8 @@
 
 namespace Peon;
 
+use Peon\Application\App;
+
 class Config
 {
     /**

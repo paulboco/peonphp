@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Validators\SessionValidator;
 use Peon\Auth;
-use Peon\Controller;
+use Peon\Http\Controller;
 
 class SessionController extends Controller
 {

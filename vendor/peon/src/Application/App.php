@@ -1,13 +1,13 @@
 <?php
 
-namespace Peon;
+namespace Peon\Application;
 
 final class App extends Container
 {
     /**
      * The App Instance
      *
-     * @static Peon\App
+     * @static Peon\Application\App
      */
     private static $instance;
 
@@ -50,7 +50,7 @@ final class App extends Container
      */
     public function getRootPath()
     {
-        return self::$rootPath ?: __DIR__ . '/../../../';
+        return self::$rootPath ?: realpath(__DIR__ . '/../../../../');
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Bondservant;
 use App\Validators\BondservantValidator;
-use Peon\Controller;
+use Peon\Http\Controller;
 
 class BondservantController extends Controller
 {

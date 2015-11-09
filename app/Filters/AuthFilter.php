@@ -3,7 +3,7 @@
 namespace App\Filters;
 
 use Peon\Auth;
-use Peon\Response;
+use Peon\Http\Response;
 use Peon\Routing\RouteFilter;
 
 class AuthFilter extends RouteFilter

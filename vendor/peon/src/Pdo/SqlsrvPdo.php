@@ -4,7 +4,7 @@ namespace Peon\Pdo;
 
 use PDO;
 use Peon\Auth;
-use Peon\App;
+use Peon\Application\App;
 
 abstract class SqlsrvPdo
 {

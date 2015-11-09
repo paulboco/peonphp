@@ -1,6 +1,6 @@
 <?php
 
-namespace Peon;
+namespace Peon\Application;
 
 use PHPUnit_Framework_TestCase;
 
@@ -26,7 +26,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
         });
         $object = $container->make('bar');
 
-        $this->assertInstanceOf('Peon\Bar', $object);
+        $this->assertInstanceOf('Peon\Application\Bar', $object);
     }
 
     public function test_container_throws_exception_when_a_class_can_not_be_resolved()
@@ -49,7 +49,27 @@ class ContainerTest extends PHPUnit_Framework_TestCase
         $object = $container->make('request');
 
         $this->assertTrue($container->has('request'));
-        $this->assertInstanceOf('Peon\Request', $object);
+        $this->assertInstanceOf('Peon\Http\Request', $object);
+    }
+
+    public function test_magic_getter_can_get_an_object()
+    {
+        $container = new Foo;
+
+        $container->registerBindings(require __DIR__ . '/../../../config/bindings.php');
+        $request = $container->request;
+
+        $this->assertInstanceOf('Peon\Http\Request', $request);
+    }
+
+    public function test_magic_getter_returns_null_on_unregistered_binding()
+    {
+        $container = new Foo;
+
+        $container->registerBindings(require __DIR__ . '/../../../config/bindings.php');
+        $foo = $container->foo;
+
+        $this->assertNull($foo);
     }
 }
 

@@ -3,7 +3,7 @@
 namespace Peon\Pdo;
 
 use PDO;
-use Peon\App;
+use Peon\Application\App;
 use PHPUnit_Framework_TestCase;
 
 class MysqlTest extends PHPUnit_Framework_TestCase
@@ -71,6 +71,30 @@ class MysqlTest extends PHPUnit_Framework_TestCase
         ), $result);
     }
 
+    public function test_can_get_all_with_deleted()
+    {
+        $user = new User($GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASS']);
+
+        $result = $user->all(true);
+
+        $this->assertEquals(array(
+            array(
+                'id' => '1',
+                'username' => 'paulboco',
+                'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
+                'level' => '1',
+                'deleted' => '0',
+            ),
+            array(
+                'id' => '2',
+                'username' => 'jayne',
+                'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
+                'level' => '10',
+                'deleted' => '0',
+            ),
+        ), $result);
+    }
+
     // public function test_can_get_all_with_deleted()
     // {
     //     $user = new User($GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASS']);
@@ -100,6 +124,21 @@ class MysqlTest extends PHPUnit_Framework_TestCase
         $user = new User($GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASS']);
 
         $result = $user->findById(1);
+
+        $this->assertEquals(array(
+            'id' => '1',
+            'username' => 'paulboco',
+            'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
+            'level' => '1',
+            'deleted' => '0',
+        ), $result);
+    }
+
+    public function test_can_find_by_id_with_deleted()
+    {
+        $user = new User($GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASS']);
+
+        $result = $user->findById(1, true);
 
         $this->assertEquals(array(
             'id' => '1',

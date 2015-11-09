@@ -1,6 +1,8 @@
 <?php
 
-namespace Peon;
+namespace Peon\Http;
+
+use Peon\Application\App;
 
 class Controller
 {

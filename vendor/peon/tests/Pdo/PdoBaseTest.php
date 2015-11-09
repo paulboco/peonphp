@@ -2,7 +2,7 @@
 
 namespace Peon\Pdo;
 
-use Peon\App;
+use Peon\Application\App;
 use PHPUnit_Framework_TestCase;
 
 class PdoConnectionTest extends PHPUnit_Framework_TestCase

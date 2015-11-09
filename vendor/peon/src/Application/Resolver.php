@@ -1,6 +1,6 @@
 <?php
 
-namespace Peon;
+namespace Peon\Application;
 
 use Exception;
 use ReflectionClass;
@@ -47,7 +47,7 @@ class Resolver
      * @param array $parameters
      * @return array
      */
-    public function getDependencies($parameters)
+    private function getDependencies($parameters)
     {
         $dependencies = array();
 
@@ -67,7 +67,7 @@ class Resolver
      *
      * @throws Exception
      */
-    public function resolveNonClass(ReflectionParameter $parameter)
+    private function resolveNonClass(ReflectionParameter $parameter)
     {
         if ($parameter->isDefaultValueAvailable()) {
             return $parameter->getDefaultValue();
@@ -83,7 +83,7 @@ class Resolver
      * @param  ReflectionParameter  $parameter
      * @return object
      */
-    protected function chooseResolver($dependency, $parameter)
+    private function chooseResolver($dependency, $parameter)
     {
         if (is_null($dependency)) {
             return $this->resolveNonClass($parameter);

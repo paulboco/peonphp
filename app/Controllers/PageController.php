@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use Peon\Controller;
+use Peon\Http\Controller;
 
 class PageController extends Controller
 {
@@ -64,5 +64,15 @@ class PageController extends Controller
     public function api()
     {
         return $this->app->view->make('page/api');
+    }
+
+    /**
+     * PHPUnit Code Coverage Report
+     *
+     * @return void
+     */
+    public function coverage()
+    {
+        return $this->app->view->make('page/coverage');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-use Peon\App;
+use Peon\Application\App;
 
 if (!function_exists('config')) {
     /**
@@ -12,9 +12,7 @@ if (!function_exists('config')) {
      */
     function config($path, $default = null)
     {
-        $config = App::getInstance()->make('config');
-
-        return $config->get($path, $default);
+        return App::getInstance()->config->get($path, $default);
     }
 }
 
@@ -39,6 +37,7 @@ if (!function_exists('dd')) {
      * Dump Variable and Die
      *
      * @return void
+     * @codeCoverageIgnore
      */
     function dd()
     {
@@ -77,28 +76,21 @@ if (!function_exists('path')) {
     }
 }
 
-if (!function_exists('segment')) {
+if (!function_exists('activate_if')) {
     /**
-     * Check A URI Segment For Equality
-     *
-     * Compares the value of the URI segment at $position with $value.
-     * If they are a match, true is returned unless $default is defined in which
-     * case $default's value will be returned.
-     * If they are not a match, false is returned.
+     * Return 'active' If Segment Matches Value
      *
      * @param  integer  $position
      * @param  string  $value
      * @param  mixed  $default
      * @return mixed
      */
-    function segment($position, $value, $default = null)
+    function activate_if($position, $value, $default = 'active')
     {
-        $router = App::getInstance()->make('router');
+        $router = App::getInstance()->router;
 
         if ($router->getSegment($position) == $value) {
-            return is_null($default) ? true : $default;
+            return $default;
         }
-
-        return false;
     }
 }
