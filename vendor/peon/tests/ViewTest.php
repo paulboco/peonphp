@@ -25,20 +25,28 @@ class ViewTest extends PHPUnit_Framework_TestCase
     {
         $view = new View;
 
-        $result = $view->make('temp/test');
+        $result = $view->make('temp/header');
 
-        $this->assertEquals('headerview contents', $result);
+        $this->assertEquals('header', $result);
     }
 
     public function test_can_make_an_injected_view()
     {
-        // $this->createView('test-view.tpl', 'view contents');
-        // $this->createView('test-view-header.tpl', 'view contents');
-        // $view = new View;
+        $view = new View;
 
-        // $result = $view->make('test-view');
+        $result = $view->make('temp/test', array('foo' => 'bar'));
 
-        // $this->assertEquals('view contents', $result);
+        $this->assertEquals('headerview contentsbar', $result);
+    }
+
+    public function test_can_share_view_data()
+    {
+        $view = new View;
+
+        $view->share(array('foo' => 'baz'));
+        $result = $view->make('temp/test');
+
+        $this->assertEquals('headerview contentsbaz', $result);
     }
 
     private function createView($file, $contents)
@@ -58,7 +66,7 @@ class ViewTest extends PHPUnit_Framework_TestCase
         $this->viewsPath = realpath('./../../views');
 
         mkdir($this->viewsPath . '/temp');
-        $this->createView('/temp/test.tpl', "<?php \$this->inject('temp/header') ?>\nview contents");
+        $this->createView('/temp/test.tpl', "<?php \$this->inject('temp/header') ?>\nview contents<?echo \$foo ?>");
         $this->createView('/temp/header.tpl', 'header');
     }
 
