@@ -42,6 +42,7 @@ class Alert
      */
     public function has()
     {
+dt($this->session->getFlash('alerts', array()));
         return (boolean) count($this->session->getFlash('alerts', array()));
     }
 
