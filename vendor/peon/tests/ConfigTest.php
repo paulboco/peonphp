@@ -2,9 +2,9 @@
 
 namespace Peon;
 
-use PHPUnit_Framework_TestCase;
+use PeonTestCase;
 
-class ConfigTest extends PHPUnit_Framework_TestCase
+class ConfigTest extends PeonTestCase
 {
     public function test_a_single_config_variable_can_be_pulled()
     {

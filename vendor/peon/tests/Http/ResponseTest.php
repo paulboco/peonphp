@@ -2,10 +2,9 @@
 
 namespace Peon\Http;
 
-use Peon\View;
-use PHPUnit_Framework_TestCase;
+use PeonTestCase;
 
-class ResponseTest extends PHPUnit_Framework_TestCase
+class ResponseTest extends PeonTestCase
 {
     public function test_nothing()
     {

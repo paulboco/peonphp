@@ -3,15 +3,18 @@
 namespace Peon\Application;
 
 use Peon\View;
-use PHPUnit_Framework_TestCase;
+use PeonTestCase;
 
-class ResolverTest extends PHPUnit_Framework_TestCase
+class ResolverTest extends PeonTestCase
 {
+    public function setUp()
+    {
+        $this->resolver = new Resolver;
+    }
+
     public function test_can_resolve_a_class()
     {
-        $resolver = new Resolver;
-
-        $foo = $resolver->resolve('Peon\Application\ResolverFoo');
+        $foo = $this->resolver->resolve('Peon\Application\ResolverFoo');
 
         $this->assertInstanceOf('Peon\Application\ResolverFoo', $foo);
         $this->assertInstanceOf('Peon\Application\ResolverBar', $foo->bar);
@@ -20,16 +23,13 @@ class ResolverTest extends PHPUnit_Framework_TestCase
     public function test_throws_exception_on_interface()
     {
         $this->setExpectedException('Exception');
-        $resolver = new Resolver;
 
-        $fail = $resolver->resolve('Peon\Application\ResolverFail');
+        $fail = $this->resolver->resolve('Peon\Application\ResolverFail');
     }
 
     public function test_can_resolve_a_default_value()
     {
-        $resolver = new Resolver;
-
-        $default = $resolver->resolve('Peon\Application\ResolverDefault');
+        $default = $this->resolver->resolve('Peon\Application\ResolverDefault');
 
         $this->assertInstanceOf('Peon\Application\ResolverDefault', $default);
         $this->assertEquals('bar', $default->default);
@@ -38,11 +38,16 @@ class ResolverTest extends PHPUnit_Framework_TestCase
     public function test_exception_when_no_default_value()
     {
         $this->setExpectedException('Exception');
-        $resolver = new Resolver;
 
-        $default = $resolver->resolve('Peon\Application\ResolverUnknown');
+        $default = $this->resolver->resolve('Peon\Application\ResolverUnknown');
     }
 }
+
+/*
+|--------------------------------------------------------------------------
+| Test Classes
+|--------------------------------------------------------------------------
+*/
 
 class ResolverBar
 {

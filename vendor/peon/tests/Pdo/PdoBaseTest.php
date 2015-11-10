@@ -3,9 +3,9 @@
 namespace Peon\Pdo;
 
 use Peon\Application\App;
-use PHPUnit_Framework_TestCase;
+use PeonTestCase;
 
-class PdoConnectionTest extends PHPUnit_Framework_TestCase
+class PdoConnectionTest extends PeonTestCase
 {
     public function test_connection_with_parameters()
     {

@@ -1,8 +1,6 @@
 <?php
 
-use Peon\Application\App;
-
-class helpersTest extends PHPUnit_Framework_TestCase
+class helpersTest extends PeonTestCase
 {
     public function setUp()
     {
@@ -11,8 +9,7 @@ class helpersTest extends PHPUnit_Framework_TestCase
 
     public function test_that_config_works()
     {
-        $app = new App;
-        $app->registerBindings(require __DIR__ . '/../../../config/bindings.php');
+        $this->loadContainer();
 
         $dsn = config('database.connections.mysql.dsn');
 

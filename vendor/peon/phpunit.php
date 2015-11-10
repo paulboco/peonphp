@@ -1,11 +1,13 @@
 <?php
 
-$require = array(
+require __DIR__ . '/PeonTestCase.php';
+
+$namespaces = array(
     'Peon\\' => '/src/',
     'Illuminate\\' => '/../illuminate/',
 );
 
-foreach ($require as $namespace => $path) {
+foreach ($namespaces as $namespace => $path) {
     spl_autoload_register(function ($class) use ($namespace, $path) {
         $prefix = $namespace;
         $base_dir = __DIR__ . $path;

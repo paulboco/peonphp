@@ -2,63 +2,59 @@
 
 namespace Peon\Application;
 
-use PHPUnit_Framework_TestCase;
+use PeonTestCase;
 
-class AppTest extends PHPUnit_Framework_TestCase
+class AppTest extends PeonTestCase
 {
+    protected $app;
+
     public function setUp()
     {
-        $this->rootPath = App::getRootPath();
+        $this->app = new App;
+        $this->rootPath = $this->app->getRootPath();
     }
 
     public function tearDown()
     {
-        App::setRootPath($this->rootPath);
+        $this->app->setRootPath($this->rootPath);
     }
 
     public function test_app_can_return_instance()
     {
-        $app = App::getInstance();
-
-        $this->assertInstanceOf('Peon\Application\App', $app);
+        $this->assertInstanceOf('Peon\Application\App', App::getInstance());
     }
 
     public function test_app_can_set_root_path()
     {
-        $app = new App;
+        $this->app->setRootPath('foo/bar');
 
-        $app->setRootPath('foo/bar');
-
-        $rootPath = $app->getRootPath();
+        $rootPath = $this->app->getRootPath();
         $this->assertEquals($rootPath, 'foo/bar');
     }
 
     public function test_app_can_get_root_path()
     {
-        $app = new App;
-        $app->setRootPath('foo/bar');
+        $this->app->setRootPath('foo/bar');
 
-        $rootPath = $app->getRootPath();
+        $rootPath = $this->app->getRootPath();
 
         $this->assertEquals($rootPath, 'foo/bar');
     }
 
-    public function test_app_can_detect_is_in_maintenance_mode()
+    public function test_app_can_detect_it_is_in_maintenance_mode()
     {
-        touch($this->rootPath . '/storage/app/maintenance');
+        touch(__DIR__ . '/../../../../storage/app/maintenance');
 
-        $app = new App;
-        $maintenance = $app->inMaintenance();
+        $maintenance = $this->app->inMaintenance();
 
         $this->assertTrue($maintenance);
     }
 
     public function test_app_can_detect_is_not_in_maintenance_mode()
     {
-        unlink($this->rootPath . '/storage/app/maintenance');
+        unlink(__DIR__ . '/../../../../storage/app/maintenance');
 
-        $app = new App;
-        $maintenance = $app->inMaintenance();
+        $maintenance = $this->app->inMaintenance();
 
         $this->assertFalse($maintenance);
     }

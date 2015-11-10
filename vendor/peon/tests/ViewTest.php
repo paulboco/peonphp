@@ -2,18 +2,21 @@
 
 namespace Peon;
 
-use Peon\Application\Container;
-use PHPUnit_Framework_TestCase;
+use PeonTestCase;
+use Peon\Application\Container as ContainerBase;
 
-class ViewTest extends PHPUnit_Framework_TestCase
+class ViewTest extends PeonTestCase
 {
+    protected $view;
     protected $viewsPath;
 
     public function setUp()
     {
         include __DIR__ . '/../src/helpers.php';
-        $this->createContainer();
+        $this->loadContainer();
         $this->createTestFiles();
+
+        $this->view = new View;
     }
 
     public function tearDown()
@@ -23,53 +26,53 @@ class ViewTest extends PHPUnit_Framework_TestCase
 
     public function test_can_make_a_view()
     {
-        $view = new View;
-
-        $result = $view->make('temp/header');
+        $result = $this->view->make('temp/header');
 
         $this->assertEquals('header', $result);
     }
 
     public function test_can_make_an_injected_view()
     {
-        $view = new View;
-
-        $result = $view->make('temp/test', array('foo' => 'bar'));
+        $result = $this->view->make('temp/test', array('foo' => 'bar'));
 
         $this->assertEquals('headerview contentsbar', $result);
     }
 
     public function test_can_share_view_data()
     {
-        $view = new View;
-
-        $view->share(array('foo' => 'baz'));
-        $result = $view->make('temp/test');
+        $this->view->share(array('foo' => 'baz'));
+        $result = $this->view->make('temp/test');
 
         $this->assertEquals('headerview contentsbaz', $result);
     }
 
-    private function createView($file, $contents)
-    {
-        file_put_contents($this->viewsPath . $file, $contents);
-    }
-
-    private function createContainer()
-    {
-        $this->bindings = require __DIR__ . '/../../../config/bindings.php';
-        $container = new Foo;
-        $container->registerBindings($this->bindings);
-    }
-
+    /**
+     * Create Test Files
+     *
+     * @return void
+     */
     private function createTestFiles()
     {
         $this->viewsPath = realpath('./../../views');
 
         mkdir($this->viewsPath . '/temp');
-        $this->createView('/temp/test.tpl', "<?php \$this->inject('temp/header') ?>\nview contents<?echo \$foo ?>");
-        $this->createView('/temp/header.tpl', 'header');
+
+        file_put_contents(
+            $this->viewsPath . '/temp/test.tpl',
+            "<?php \$this->inject('temp/header') ?>\nview contents<?echo \$foo ?>"
+        );
+
+        file_put_contents(
+            $this->viewsPath . '/temp/header.tpl',
+            'header'
+        );
     }
 
+    /**
+     * Remove Test Files
+     *
+     * @return void
+     */
     private function removeTestFiles()
     {
         foreach (glob($this->viewsPath . '/temp/*') as $file) {
@@ -80,5 +83,5 @@ class ViewTest extends PHPUnit_Framework_TestCase
     }
 }
 
-class Foo extends Container
+class Container extends ContainerBase
 {}

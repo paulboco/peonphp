@@ -2,36 +2,40 @@
 
 namespace Peon\Application;
 
-use PHPUnit_Framework_TestCase;
+use PeonTestCase;
+use Peon\Application\Container as BaseContainer;
 
-class ContainerTest extends PHPUnit_Framework_TestCase
+class Cont extends BaseContainer
+{}
+
+class Bar
+{}
+
+class ContainerTest extends PeonTestCase
 {
-    protected $bindings;
+    protected $container;
 
     public function setUp()
     {
-        $this->bindings = require __DIR__ . '/../../../../config/bindings.php';
+        $this->container = new Cont;
     }
 
-    public function test_container_can_bind_a_class()
+    public function test_container_can_register_a_class()
     {
-        $container = new Foo;
-
-        $container->register('bar', function () {
+        $this->container->register('bar', function () {
             return new Bar;
         });
 
-        $this->assertTrue($container->has('bar'));
+        $this->assertTrue($this->container->has('bar'));
     }
 
     public function test_container_can_resolve_a_class()
     {
-        $container = new Foo;
-
-        $container->register('bar', function () {
+        $this->container->register('bar', function () {
             return new Bar;
         });
-        $object = $container->make('bar');
+
+        $object = $this->container->make('bar');
 
         $this->assertInstanceOf('Peon\Application\Bar', $object);
     }
@@ -40,48 +44,38 @@ class ContainerTest extends PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('Exception');
 
-        $container = new Foo;
-
-        $container->register('bar', function () {
+        $this->container->register('bar', function () {
             return new Bar;
         });
-        $object = $container->make('baz');
+
+        $object = $this->container->make('baz');
     }
 
     public function test_container_can_register_configured_bindings()
     {
-        $container = new Foo;
+        $this->container->registerBindings($this->getBindings());
 
-        $container->registerBindings($this->bindings);
-        $object = $container->make('request');
+        $object = $this->container->make('request');
 
-        $this->assertTrue($container->has('request'));
+        $this->assertTrue($this->container->has('request'));
         $this->assertInstanceOf('Peon\Http\Request', $object);
     }
 
     public function test_magic_getter_can_get_an_object()
     {
-        $container = new Foo;
+        $this->loadContainer();
 
-        $container->registerBindings($this->bindings);
-        $request = $container->request;
+        $request = $this->container->request;
 
         $this->assertInstanceOf('Peon\Http\Request', $request);
     }
 
     public function test_magic_getter_returns_null_on_unregistered_binding()
     {
-        $container = new Foo;
+        $this->loadContainer();
 
-        $container->registerBindings($this->bindings);
-        $foo = $container->foo;
+        $foo = $this->container->foo;
 
         $this->assertNull($foo);
     }
 }
-
-class Foo extends Container
-{}
-
-class Bar
-{}
