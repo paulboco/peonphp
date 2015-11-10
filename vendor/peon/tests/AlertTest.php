@@ -6,39 +6,56 @@ use PeonTestCase;
 
 class AlertTest extends PeonTestCase
 {
-    public function setUp()
+    public function test_alert_can_set_a_flash_message()
     {
-        $this->stubSession = $this->getSessionMock();
-        $this->alert = new Alert($this->stubSession);
+        $stub = $this->getSessionMock(true, 'success message');
+        $this->alert = new Alert($stub);
+
+        $this->alert->flash('success', 'success message');
+
+        $this->assertEquals('success message', $stub->getFlash('success'));
     }
 
-    public function test_alert_can_flash_message()
+    public function test_alert_can_get_all_flash_messages()
     {
-        $this->alert->flash('success', 'message');
+        $stub = $this->getSessionMock(true, array('success' => 'success message'));
+        $this->alert = new Alert($stub);
 
-        $this->assertEquals('message', $this->stubSession->getFlash('success'));
+        $messages = $this->alert->all();
+
+        $this->assertEquals(array('success' => 'success message'), $messages);
     }
 
     public function test_that_alert_has_messages()
     {
-        $this->alert->flash('success', 'message');
+        $stub = $this->getSessionMock(true);
+        $this->alert = new Alert($stub);
 
         $this->assertEquals(true, $this->alert->has());
     }
 
     public function test_that_alert_does_not_have_messages()
     {
-        $this->alert->flash('success', false);
+        $stub = $this->getSessionMock(false);
+        $this->alert = new Alert($stub);
 
         $this->assertEquals(false, $this->alert->has());
     }
 
-    private function getSessionMock()
+    private function getSessionMock($hasMessages, $returnValue = null)
     {
-        $stubSession = $this->getMock('Peon\Session\Session');
-        $stubSession->expects($this->any())->method('setFlash');
-        $stubSession->expects($this->any())->method('getFlash')->will($this->returnValue('message'));
+        $stub = $this->getMockBuilder('Peon\Session\Session')
+                     ->getMock();
 
-        return $stubSession;
+        $stub->method('has')
+             ->willReturn($hasMessages);
+
+        $stub->method('getFlash')
+             ->willReturn($returnValue);
+
+        $stub->method('all')
+             ->willReturn($returnValue);
+
+        return $stub;
     }
 }

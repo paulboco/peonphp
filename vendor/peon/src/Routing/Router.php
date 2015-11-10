@@ -111,7 +111,11 @@ class Router extends RouteFilterApplicator
     public function dispatch()
     {
         $this->extractSegments();
-        $this->validateRoute();
+
+        if (!$this->validRoute()) {
+            return $this->response->send404();
+        }
+
         $this->applyFilters(self::$controller, self::$method);
 
         return $this->callControllerMethod();
@@ -199,12 +203,9 @@ class Router extends RouteFilterApplicator
      *
      * @return void
      */
-    private function validateRoute()
+    private function validRoute()
     {
-        // Send a 404 if the controller method doesn't exist
-        if (!method_exists(self::$controller, self::$method)) {
-            $this->response->send404();
-        }
+        return method_exists(self::$controller, self::$method);
     }
 
     /**

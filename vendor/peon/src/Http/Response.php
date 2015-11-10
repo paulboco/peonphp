@@ -64,8 +64,6 @@ class Response
         if (is_string($response)) {
             echo $this->injectExecutionTime($response);
         }
-
-        die;
     }
 
     /**
@@ -76,11 +74,10 @@ class Response
     public function send404()
     {
         header("HTTP/1.0 404 Not Found");
-        echo $this->injectExecutionTime(
+
+        return $this->injectExecutionTime(
             $this->view->make('errors/404')
         );
-
-        die;
     }
 
     /**
@@ -93,11 +90,9 @@ class Response
         header('HTTP/1.1 503 Service Temporarily Unavailable');
         header('Status: 503 Service Temporarily Unavailable');
         header('Retry-After: 3600');
-        echo $this->injectExecutionTime(
+        return $this->injectExecutionTime(
             $this->view->make('errors/503')
         );
-
-        die;
     }
 
     /**

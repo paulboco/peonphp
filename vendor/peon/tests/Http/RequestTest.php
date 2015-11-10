@@ -8,9 +8,9 @@ class RequestTest extends PeonTestCase
 {
     public function setUp()
     {
-        $this->request = new Request;
-
         $_REQUEST = array('foo' => 'bar');
+
+        $this->request = new Request;
     }
 
     public function test_all_request_variables_can_be_returned()
