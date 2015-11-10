@@ -13,6 +13,10 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src</directory>
-        </whitelist>
+            <exclude>
+                <file>src/Form.php</file>
+                <file>src/Pdo/SqlsrvPdo.php</file>
+            </exclude>
+         </whitelist>
     </filter>
 </phpunit>
