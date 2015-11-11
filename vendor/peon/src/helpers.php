@@ -21,6 +21,7 @@ if (!function_exists('d')) {
      * Dump Variable
      *
      * @return void
+     * @codeCoverageIgnore
      */
     function d()
     {

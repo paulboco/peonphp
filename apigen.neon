@@ -1,5 +1,5 @@
 source:
-    - ./vendor/peon
+    - ./vendor/peon/src
 
 destination: ./public/api
 

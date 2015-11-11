@@ -1,5 +1,4 @@
 <?php
-// dd($argv[1]);
 
 switch ($argv[1]) {
 
