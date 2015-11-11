@@ -1,4 +1,16 @@
-<phpunit bootstrap="phpunit.php">
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="phpunit.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnError="false"
+         stopOnFailure="false"
+         syntaxCheck="true"
+         verbose="true"
+>
     <testsuites>
         <testsuite name="peon">
             <directory>tests</directory>

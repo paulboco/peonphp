@@ -1,24 +1,46 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| Register The Autoloader
+|--------------------------------------------------------------------------
+*/
+
+require __DIR__ . '/src/Autoloader.php';
+$autoloader = new \Peon\Autoloader;
+$autoloader->register();
+
+/*
+|--------------------------------------------------------------------------
+| Get Autoloader Configuration
+|--------------------------------------------------------------------------
+*/
+
+$autoloaderConfig = require __DIR__ . '/../../config/autoload.php';
+
+/*
+|--------------------------------------------------------------------------
+| Require Files
+|--------------------------------------------------------------------------
+*/
+
 require __DIR__ . '/PeonTestCase.php';
 
-$namespaces = array(
-    'Peon\\' => '/src/',
-    'Illuminate\\' => '/../illuminate/',
-);
+/*
+|--------------------------------------------------------------------------
+| Register Namespaces
+|--------------------------------------------------------------------------
+*/
 
-foreach ($namespaces as $namespace => $path) {
-    spl_autoload_register(function ($class) use ($namespace, $path) {
-        $prefix = $namespace;
-        $base_dir = __DIR__ . $path;
-        $len = strlen($prefix);
-        if (strncmp($prefix, $class, $len) !== 0) {
-            return;
-        }
-        $relative_class = substr($class, $len);
-        $file = $base_dir . str_replace('\\', '/', $relative_class) . '.php';
-        if (file_exists($file)) {
-            require $file;
-        }
-    });
+foreach ($autoloaderConfig['namespaces'] as $namespace => $path) {
+    $autoloader->registerNamespace($namespace, realpath(__DIR__ . '/../../' . $path));
 }
+
+/*
+|--------------------------------------------------------------------------
+| Clean Up
+|--------------------------------------------------------------------------
+*/
+
+unset($autoloaderConfig, $autoloader, $namespace, $path);
+

@@ -22,9 +22,9 @@ return array(
     */
 
     'namespaces' => array(
-        'App\\' => 'app/',
-        'Illuminate\\' => 'vendor/illuminate/',
-        'Peon\\' => 'vendor/peon/src/',
+        'App' => 'app/',
+        'Illuminate' => 'vendor/illuminate/',
+        'Peon' => 'vendor/peon/src/',
     ),
 
 );

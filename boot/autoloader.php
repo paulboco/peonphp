@@ -6,8 +6,8 @@
 |--------------------------------------------------------------------------
 */
 
-require __DIR__ . '/../vendor/phpfig/Autoloader.php';
-$autoloader = new \Phpfig\Autoloader;
+require __DIR__ . '/../vendor/peon/src/Autoloader.php';
+$autoloader = new \Peon\Autoloader;
 $autoloader->register();
 
 /*
@@ -35,7 +35,7 @@ foreach ($autoloaderConfig['files'] as $path) {
 */
 
 foreach ($autoloaderConfig['namespaces'] as $namespace => $path) {
-    $autoloader->addNamespace($namespace, __DIR__ . '/../' . $path);
+    $autoloader->registerNamespace($namespace, realpath(__DIR__ . '/../' . $path));
 }
 
 /*
