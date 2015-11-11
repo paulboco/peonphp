@@ -15,18 +15,6 @@ Vagrant.configure("2") do |config|
   # do NOT download the iso file from a webserver
   config.vbguest.no_remote = true
 
-  config.vm.provision "shell", inline: <<-SHELL
-echo "Installing PHPUnit"
-wget --quiet https://phar.phpunit.de/phpunit-old.phar >/dev/null
-chmod +x phpunit-old.phar
-sudo mv phpunit-old.phar /usr/local/bin/phpunit
-echo "alias phpunit='phpunit --colors'" >> /home/vagrant/.bash_aliases
-echo "Droping database 'peon' if it already exists.";
-mysql -uroot -proot -e "DROP DATABASE IF EXISTS peon";
-echo "Creating new database 'peon'";
-mysql -uroot -proot -e "CREATE DATABASE peon";
-echo "Importing tables";
-mysql -uroot -proot peon < /vagrant/database/mysql/peon.sql
-  SHELL
+  config.vm.provision "shell", path: "Vagrantscript.sh"
 
 end
