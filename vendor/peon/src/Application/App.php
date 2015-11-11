@@ -19,6 +19,13 @@ final class App extends Container
     private static $rootPath;
 
     /**
+     * The Application Environment
+     *
+     * @static string
+     */
+    private static $environment = 'production';
+
+    /**
      * Get App Instance
      *
      * @return static
@@ -30,6 +37,26 @@ final class App extends Container
         }
 
         return self::$instance;
+    }
+
+    /**
+     * Set The Application Environment
+     *
+     * @return void
+     */
+    public function setEnvironment()
+    {
+        self::$environment = getenv('PEON_ENV') ?: 'production';
+    }
+
+    /**
+     * Get The Application Environment
+     *
+     * @return string
+     */
+    public static function environment()
+    {
+        return self::$environment;
     }
 
     /**
