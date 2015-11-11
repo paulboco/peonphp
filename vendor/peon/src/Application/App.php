@@ -71,6 +71,6 @@ final class App extends Container
      */
     public function showMaintenance()
     {
-        $this->make('response')->send503();
+        $this->response->send503();
     }
 }

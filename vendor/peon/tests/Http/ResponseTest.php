@@ -38,14 +38,14 @@ class ResponseTest extends PeonTestCase
     {
         $response = $this->response->send404();
 
-        $this->assertRegExp('/test view ran in [0-9]+\.[0-9]+ms/', $response);
+        $this->assertRegExp('/test view ran in [0-9.]+ms/', $response);
     }
 
     public function test_can_send_a_503_response()
     {
         $response = $this->response->send503();
 
-        $this->assertRegExp('/test view ran in [0-9]+\.[0-9]+ms/', $response);
+        $this->assertRegExp('/test view ran in [0-9.]+ms/', $response);
     }
 
     private function getViewMock()

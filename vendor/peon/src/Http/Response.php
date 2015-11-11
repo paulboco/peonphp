@@ -38,13 +38,13 @@ class Response
     }
 
     /**
-     * Redirect To A URL And Die
+     * Redirect To A URL And Send
      *
      * @param  string  $uri
      * @return void
      * @codeCoverageIgnore
      */
-    public function redirectAndDie($uri = null)
+    public function redirectAndSend($uri = null)
     {
         $this->send($this->redirect($uri));
     }
@@ -75,9 +75,9 @@ class Response
     {
         header("HTTP/1.0 404 Not Found");
 
-        return $this->injectExecutionTime(
+        $this->send($this->injectExecutionTime(
             $this->view->make('errors/404')
-        );
+        ));
     }
 
     /**
@@ -90,9 +90,10 @@ class Response
         header('HTTP/1.1 503 Service Temporarily Unavailable');
         header('Status: 503 Service Temporarily Unavailable');
         header('Retry-After: 3600');
-        return $this->injectExecutionTime(
+
+        die($this->injectExecutionTime(
             $this->view->make('errors/503')
-        );
+        ));
     }
 
     /**
