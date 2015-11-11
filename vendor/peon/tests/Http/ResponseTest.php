@@ -41,13 +41,6 @@ class ResponseTest extends PeonTestCase
         $this->assertRegExp('/test view ran in [0-9.]+ms/', $response);
     }
 
-    public function test_can_send_a_503_response()
-    {
-        $response = $this->response->send503();
-
-        $this->assertRegExp('/test view ran in [0-9.]+ms/', $response);
-    }
-
     private function getViewMock()
     {
         $stub = $this->getMockBuilder('Peon\View')

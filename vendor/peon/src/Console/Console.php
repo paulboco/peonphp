@@ -19,12 +19,20 @@ class Console extends ConsoleColors
     protected $argv;
 
     /**
+     * The Relative Path To Command Files
+     *
+     * @var string
+     */
+    protected $path;
+
+    /**
      * Create A New Console
      */
-    function __construct($argc, $argv)
+    function __construct($argc, $argv, $path = '')
     {
         $this->argc = $argc;
         $this->argv = $argv;
+        $this->path = realpath($path);
     }
 
     /**
@@ -36,11 +44,12 @@ class Console extends ConsoleColors
     {
         if (!$this->scriptExists()) {
             $this->fatal("Command ':argv1' not found");
+            return;
         }
 
         extract($this->shiftArgs());
 
-        require __DIR__ . "/../../../../console/{$argv[0]}.php";
+        require $this->path . "/console/{$argv[0]}.php";
     }
 
     /**
@@ -52,7 +61,7 @@ class Console extends ConsoleColors
     {
         $scripts = $this->getScripts();
 
-        return in_array("console/{$this->argv[1]}.php", $scripts);
+        return in_array($this->path . "/console/{$this->argv[1]}.php", $scripts);
     }
 
     /**
@@ -62,21 +71,20 @@ class Console extends ConsoleColors
      */
     protected function getScripts()
     {
-        return glob('console/*.php');
+        return glob($this->path . '/console/*.php');
     }
 
     /**
-     * Handle Fatal Error
+     * Print Success Message
      *
      * @param  string  $message
      * @return void
      */
-    protected function fatal($message = '')
+    protected function success($message = '')
     {
         $message = $this->replaceArgs($message) . PHP_EOL;
 
-        echo $this->colorizeString($message, 'light_red');
-        die;
+        echo $this->colorizeString($message, 'green');
     }
 
     /**
@@ -93,16 +101,17 @@ class Console extends ConsoleColors
     }
 
     /**
-     * Print Success Message
+     * Handle Fatal Error
      *
      * @param  string  $message
      * @return void
      */
-    protected function success($message = '')
+    protected function fatal($message = '')
     {
         $message = $this->replaceArgs($message) . PHP_EOL;
 
-        echo $this->colorizeString($message, 'green');
+        echo $this->colorizeString($message, 'light_red');
+        return;
     }
 
     /**

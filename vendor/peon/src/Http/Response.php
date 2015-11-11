@@ -75,15 +75,16 @@ class Response
     {
         header("HTTP/1.0 404 Not Found");
 
-        $this->send($this->injectExecutionTime(
+        return $this->injectExecutionTime(
             $this->view->make('errors/404')
-        ));
+        );
     }
 
     /**
      * Send A 503 Response
      *
      * @return void
+     * @codeCoverageIgnore
      */
     public function send503()
     {

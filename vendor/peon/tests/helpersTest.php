@@ -16,13 +16,6 @@ class helpersTest extends PeonTestCase
         $this->assertEquals($dsn, 'mysql:host=localhost;dbname=peon');
     }
 
-    public function test_that_d_works()
-    {
-        $this->expectOutputString("<pre>int(1)\n</pre>");
-
-        d(1);
-    }
-
     public function test_that_e_works()
     {
         $this->expectOutputString('&lt;code&gt;test&lt;/code&gt;');

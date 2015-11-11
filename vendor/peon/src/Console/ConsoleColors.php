@@ -61,24 +61,4 @@ abstract class ConsoleColors
 
         return $colored_string;
     }
-
-    /**
-     * Get All Foreground Colors
-     *
-     * @return array
-     */
-    public function getForegroundColors()
-    {
-        return array_keys($this->foreground_colors);
-    }
-
-    /**
-     * Get All Background Colors
-     *
-     * @return array
-     */
-    public function getBackgroundColors()
-    {
-        return array_keys($this->background_colors);
-    }
 }
