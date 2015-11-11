@@ -18,6 +18,7 @@ exec('mysql -uroot -proot peon < ./database/mysql/peon.sql', $output, $return3);
 
 if ($return1 or $return2 or $return3) {
     $this->fatal('An error occured');
+    return;
 }
 
 $this->success('Database peon seeded successfully');

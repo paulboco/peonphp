@@ -40,7 +40,8 @@ CREATE TABLE IF NOT EXISTS `bondservants` (
 
 INSERT INTO `bondservants` (`id`, `name`, `rating`, `deleted`) VALUES
 (1, 'Gondor', -1000000, 0),
-(2, 'Edward Schloushdern', -1000, 0);
+(2, 'Edward Schloushdern', -1000, 0),
+(3, 'Kaylee', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -52,7 +53,8 @@ DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE IF NOT EXISTS `sessions` (
   `id` varchar(32) NOT NULL,
   `access` int(10) unsigned DEFAULT NULL,
-  `data` text
+  `data` text,
+  `deleted` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -75,8 +77,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `level`, `deleted`) VALUES
-(1, 'paulboco', '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO', 1, 0),
-(2, 'jayne', '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO', 10, 0);
+(1, 'asdf', '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO', 1, 0),
+(2, 'qwer', '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO', 10, 0);
 
 --
 -- Indexes for dumped tables

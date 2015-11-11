@@ -26,7 +26,7 @@ class MysqlTest extends PeonTestCase
         $this->user->deleteWhere(array('username', '=', 'kaylee'));
         $this->user->replaceInto(array(
             'id' => 1,
-            'username' => 'paulboco',
+            'username' => 'asdf',
             'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
             'level' => '1',
             'deleted' => '0',
@@ -57,14 +57,14 @@ class MysqlTest extends PeonTestCase
         $this->assertEquals(array(
             array(
                 'id' => '1',
-                'username' => 'paulboco',
+                'username' => 'asdf',
                 'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
                 'level' => '1',
                 'deleted' => '0',
             ),
             array(
                 'id' => '2',
-                'username' => 'jayne',
+                'username' => 'qwer',
                 'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
                 'level' => '10',
                 'deleted' => '0',
@@ -79,14 +79,14 @@ class MysqlTest extends PeonTestCase
         $this->assertEquals(array(
             array(
                 'id' => '1',
-                'username' => 'paulboco',
+                'username' => 'asdf',
                 'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
                 'level' => '1',
                 'deleted' => '0',
             ),
             array(
                 'id' => '2',
-                'username' => 'jayne',
+                'username' => 'qwer',
                 'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
                 'level' => '10',
                 'deleted' => '0',
@@ -100,7 +100,7 @@ class MysqlTest extends PeonTestCase
 
         $this->assertEquals(array(
             'id' => '1',
-            'username' => 'paulboco',
+            'username' => 'asdf',
             'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
             'level' => '1',
             'deleted' => '0',
@@ -113,7 +113,7 @@ class MysqlTest extends PeonTestCase
 
         $this->assertEquals(array(
             'id' => '1',
-            'username' => 'paulboco',
+            'username' => 'asdf',
             'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
             'level' => '1',
             'deleted' => '0',
