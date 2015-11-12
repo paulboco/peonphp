@@ -168,7 +168,7 @@ abstract class MysqlPdo
      */
     protected function whereDeleted($includeDeleted = false)
     {
-        return $includeDeleted ? ' WHERE deleted=0' : '';
+        return $includeDeleted ? '' : ' WHERE deleted=0';
     }
 
     /**

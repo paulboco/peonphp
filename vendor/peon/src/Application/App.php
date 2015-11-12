@@ -94,7 +94,7 @@ final class App extends Container
      * Show Maintenance Mode Page
      *
      * @return void
-     * @codeCoverageIgnore
+     * @codeCoverageIgnore - can't test methods that die
      */
     public function showMaintenance()
     {

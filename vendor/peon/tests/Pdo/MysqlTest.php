@@ -64,7 +64,7 @@ class MysqlTest extends PeonTestCase
             ),
             array(
                 'id' => '2',
-                'username' => 'qwer',
+                'username' => 'sdfg',
                 'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
                 'level' => '10',
                 'deleted' => '0',
@@ -86,10 +86,17 @@ class MysqlTest extends PeonTestCase
             ),
             array(
                 'id' => '2',
-                'username' => 'qwer',
+                'username' => 'sdfg',
                 'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
                 'level' => '10',
                 'deleted' => '0',
+            ),
+            array(
+                'id' => '3',
+                'username' => 'qwer',
+                'password' => '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO',
+                'level' => '100',
+                'deleted' => '1',
             ),
         ), $result);
     }
@@ -129,7 +136,7 @@ class MysqlTest extends PeonTestCase
             'deleted' => '0',
         ));
 
-        $this->assertEquals(3, $result);
+        $this->assertEquals(4, $result);
     }
 
     public function test_can_update()

@@ -79,6 +79,7 @@ class SessionHandler extends PdoBase
             'id' => $id,
             'access' => time(),
             'data' => $data,
+            'deleted' => 0,
         ));
     }
 

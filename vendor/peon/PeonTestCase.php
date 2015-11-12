@@ -3,6 +3,31 @@
 class PeonTestCase extends PHPUnit_Framework_TestCase
 {
     /**
+     * The Project Root Path
+     *
+     * @var string
+     */
+    protected $projectRoot;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->projectRoot = realpath(__DIR__ . '/../../');
+    }
+
+    /**
+     * Get The Project Root Path
+     *
+     * @return string
+     */
+    public function projectRoot()
+    {
+        return $this->projectRoot;
+    }
+
+    /**
      * Load Container
      *
      * @return void
@@ -15,14 +40,24 @@ class PeonTestCase extends PHPUnit_Framework_TestCase
         );
     }
 
-    protected function getBindings()
-    {
+    /**
+     * Get The Configured Bindings
+     *
+     * @return array
+     */
+    protected function getBindings()    {
         return require __DIR__ . '/../../config/bindings.php';
     }
 }
 
-if (!function_exists('d')) {
-    function d()
+/*
+|--------------------------------------------------------------------------
+| Test Helper Functions
+|--------------------------------------------------------------------------
+*/
+
+if (!function_exists('dt')) {
+    function dt()
     {
         array_map(function ($x) {
             var_dump($x);
@@ -31,8 +66,8 @@ if (!function_exists('d')) {
     }
 }
 
-if (!function_exists('dd')) {
-    function dd()
+if (!function_exists('ddt')) {
+    function ddt()
     {
         array_map(function ($x) {
             var_dump($x);

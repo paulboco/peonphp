@@ -2,6 +2,7 @@
 
 namespace Peon\Http;
 
+use Exception;
 use Peon\View;
 
 class Response
@@ -24,32 +25,6 @@ class Response
     }
 
     /**
-     * Redirect To A URL
-     *
-     * @param  string  $uri
-     * @return void
-     * @codeCoverageIgnore
-     */
-    public function redirect($uri = null)
-    {
-        return function () use($uri) {
-            header('Location: ' . "http://{$_SERVER['SERVER_NAME']}/{$uri}");
-        };
-    }
-
-    /**
-     * Redirect To A URL And Send
-     *
-     * @param  string  $uri
-     * @return void
-     * @codeCoverageIgnore
-     */
-    public function redirectAndSend($uri = null)
-    {
-        $this->send($this->redirect($uri));
-    }
-
-    /**
      * Send The Response
      *
      * @param  mixed  $response
@@ -57,34 +32,44 @@ class Response
      */
     public function send($response)
     {
-        if (is_callable($response)) {
-            call_user_func($response);
-        }
-
         if (is_string($response)) {
             echo $this->injectExecutionTime($response);
         }
     }
 
     /**
+     * Redirect To A URL
+     *
+     * @param  string  $uri
+     * @return void
+     * @codeCoverageIgnore - can't test methods that die
+     */
+    public function redirect($uri = null)
+    {
+        header('Location: ' . "http://{$_SERVER['SERVER_NAME']}/{$uri}");
+        die();
+    }
+
+    /**
      * Send A 404 Response
      *
      * @return void
+     * @codeCoverageIgnore - can't test methods that die
      */
     public function send404()
     {
         header("HTTP/1.0 404 Not Found");
 
-        return $this->injectExecutionTime(
+        die($this->injectExecutionTime(
             $this->view->make('errors/404')
-        );
+        ));
     }
 
     /**
      * Send A 503 Response
      *
      * @return void
-     * @codeCoverageIgnore
+     * @codeCoverageIgnore - can't test methods that die
      */
     public function send503()
     {

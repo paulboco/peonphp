@@ -2,6 +2,7 @@
 
 namespace App\Filters;
 
+use Peon\Auth;
 use Peon\Routing\RouteFilter;
 
 class AdminFilter extends RouteFilter
@@ -13,11 +14,11 @@ class AdminFilter extends RouteFilter
      */
     public function run()
     {
-        if (!$this->auth->check()) {
+        if (!$this->auth->check() or is_null($this->auth->user())) {
             $this->response->send404();
         }
 
-        if ($this->auth->user()->level > 10) {
+        if ($this->auth->user()->level > Auth::ADMIN) {
             $this->response->send404();
         }
     }

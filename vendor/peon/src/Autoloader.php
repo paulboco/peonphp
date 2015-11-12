@@ -2,10 +2,25 @@
 
 namespace Peon;
 
-use Exception;
-
+/**
+ * @codeCoverageIgnore - not testing the autoloader at this time
+ */
 class Autoloader
 {
+    /**
+     * The Registered Namespaces
+     *
+     * @var array
+     */
+    protected $namespaces;
+
+    /**
+     * Whether The Autoloader Has Been Registered
+     *
+     * @var boolean
+     */
+    protected static $registered;
+
     /**
      * Register The Autoloader
      *
@@ -14,14 +29,9 @@ class Autoloader
     public function register()
     {
         spl_autoload_register(array($this, 'loadClass'));
-    }
 
-    /**
-     * The Registered Namespaces
-     *
-     * @var array
-     */
-    protected $namespaces;
+        self::$registered = true;
+    }
 
     /**
      * Register A Namespace
@@ -33,6 +43,16 @@ class Autoloader
     public function registerNamespace($namespace, $path)
     {
         $this->namespaces[$namespace] = $path;
+    }
+
+    /**
+     * Check If The Autoloader Has Been Registered
+     *
+     * @return boolean
+     */
+    public function isRegistered()
+    {
+        return self::$registered;
     }
 
     /**

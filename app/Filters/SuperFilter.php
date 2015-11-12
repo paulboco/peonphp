@@ -2,6 +2,7 @@
 
 namespace App\Filters;
 
+use Peon\Auth;
 use Peon\Routing\RouteFilter;
 
 class SuperFilter extends RouteFilter
@@ -13,7 +14,7 @@ class SuperFilter extends RouteFilter
      */
     public function run()
     {
-        if (!$this->auth->check()) {
+        if (!$this->auth->check() or is_null($this->auth->user())) {
             $this->response->send404();
         }
 

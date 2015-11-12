@@ -29,7 +29,7 @@
                 <ul class="nav navbar-nav">
                     <li class="<?php echo activate_if(2, 'coverage', 'active') ?>"><a href="/page/coverage">Coverage</a></li>
                 </ul>
-                <?php if (Peon\Auth::user()->level <= Peon\Auth::MANAGER): ?>
+                <?php if (Peon\Auth::user()->level <= Peon\Auth::ADMIN): ?>
                     <ul class="nav navbar-nav">
                         <li class="<?php echo activate_if(1, 'bondservant', 'active') ?>"><a href="/bondservant/index">Bondservants</a></li>
                     </ul>

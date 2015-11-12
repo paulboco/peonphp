@@ -78,7 +78,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `level`, `deleted`) VALUES
 (1, 'asdf', '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO', 1, 0),
-(2, 'qwer', '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO', 10, 0);
+(2, 'sdfg', '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO', 10, 0),
+(3, 'qwer', '$2y$10$aSTwU9CMyqulKDDKhrjANuxggmPa/t7n5pJY.4ljFsDncReR.azUO', 100, 1);
 
 --
 -- Indexes for dumped tables

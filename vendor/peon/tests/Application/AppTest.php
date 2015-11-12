@@ -24,6 +24,13 @@ class AppTest extends PeonTestCase
         $this->assertInstanceOf('Peon\Application\App', App::getInstance());
     }
 
+    public function test_app_can_set_environment()
+    {
+        $this->app->setEnvironment();
+
+        $this->assertEquals('production', $this->app->environment());
+    }
+
     public function test_app_can_set_root_path()
     {
         $this->app->setRootPath('foo/bar');

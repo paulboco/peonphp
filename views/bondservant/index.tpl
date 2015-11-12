@@ -25,6 +25,9 @@
                         <td colspan="5">No records found! Click the plus sign to add some.</td>
                     <?php endif ?>
                     <?php foreach ($rows as $row): ?>
+                        <?php if ($row['deleted'] and !Peon\Auth::level(Peon\Auth::SUPER)): ?>
+                            <?php continue ?>
+                        <?php endif ?>
                         <?php echo $row['deleted'] ? '<tr class="muted">' : '<tr>' ?>
                             <td><?php e($row['id']) ?></td>
                             <td><?php e($row['name']) ?></td>

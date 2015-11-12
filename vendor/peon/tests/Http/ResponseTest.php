@@ -23,23 +23,23 @@ class ResponseTest extends PeonTestCase
         $this->response->send('foo');
     }
 
-    public function test_send_a_closure_response()
-    {
-        $this->expectOutputString('closure');
+    // public function test_send_a_closure_response()
+    // {
+    //     $this->expectOutputString('closure');
 
-        $closure = function () {
-            echo 'closure';
-        };
+    //     $closure = function () {
+    //         echo 'closure';
+    //     };
 
-        $this->response->send($closure);
-    }
+    //     $this->response->send($closure);
+    // }
 
-    public function test_can_send_a_404_response()
-    {
-        $response = $this->response->send404();
+    // public function test_can_send_a_404_response()
+    // {
+    //     $response = $this->response->send404();
 
-        $this->assertRegExp('/test view ran in [0-9.]+ms/', $response);
-    }
+    //     $this->assertRegExp('/test view ran in [0-9.]+ms/', $response);
+    // }
 
     private function getViewMock()
     {

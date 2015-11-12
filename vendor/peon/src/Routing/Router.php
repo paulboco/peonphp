@@ -113,7 +113,7 @@ class Router extends RouteFilterApplicator
         $this->extractSegments();
 
         if (!$this->validRoute()) {
-            return $this->response->send404();
+            $this->response->send404();
         }
 
         $this->applyFilters(self::$controller, self::$method);
