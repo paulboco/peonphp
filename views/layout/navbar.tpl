@@ -23,12 +23,18 @@
                 <ul class="nav navbar-nav">
                     <li class="<?php echo activate_if(2, 'requirements', 'active') ?>"><a href="/page/requirements">Requirements</a></li>
                 </ul>
-                <ul class="nav navbar-nav">
-                    <li class="<?php echo activate_if(2, 'api', 'active') ?>"><a href="/page/api">API</a></li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li class="<?php echo activate_if(2, 'coverage', 'active') ?>"><a href="/page/coverage">Coverage</a></li>
-                </ul>
+
+                <!-- Don't show API and code coverage in production -->
+                <?php if (Peon\Application\App::environment() == 'dev'): ?>
+                    <ul class="nav navbar-nav">
+                        <li class="<?php echo activate_if(2, 'api', 'active') ?>"><a href="/page/api">API</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav">
+                        <li class="<?php echo activate_if(2, 'coverage', 'active') ?>"><a href="/page/coverage">Coverage</a></li>
+                    </ul>
+                <?php endif ?>
+
+                <!-- Show Bondservants link only to admins -->
                 <?php if (Peon\Auth::user()->level <= Peon\Auth::ADMIN): ?>
                     <ul class="nav navbar-nav">
                         <li class="<?php echo activate_if(1, 'bondservant', 'active') ?>"><a href="/bondservant/index">Bondservants</a></li>

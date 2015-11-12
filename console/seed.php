@@ -16,13 +16,13 @@ if (!extension_loaded('mysql')) {
     $this->fatal('MySql is not loaded');
 }
 
-exec("mysql -u{$username} -p{$password} -e \"DROP DATABASE IF EXISTS peon\";", $output, $return1);
-exec("mysql -u{$username} -p{$password} -e \"CREATE DATABASE IF NOT EXISTS peon\";", $output, $return2);
-exec("mysql -u{$username} -p{$password} peon < ./database/mysql/peon.sql", $output, $return3);
+exec("mysql -u{$username} -p{$password} -e \"DROP DATABASE IF EXISTS {$database}\";", $output, $return1);
+exec("mysql -u{$username} -p{$password} -e \"CREATE DATABASE IF NOT EXISTS {$database}\";", $output, $return2);
+exec("mysql -u{$username} -p{$password} {$database} < ./database/mysql/{$database}.sql", $output, $return3);
 
 if ($return1 or $return2 or $return3) {
     $this->fatal('An error occured');
     return;
 }
 
-$this->success('Database peon seeded successfully');
+$this->success("Database {$database} seeded successfully");
