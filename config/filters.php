@@ -14,7 +14,8 @@ return array(
         'concepts' => array('auth'),
         'helpers' => array('auth'),
         'requirements' => array('auth'),
-        'api' => array('auth'),
+        'api' => array('dev'),
+        'coverage' => array('dev'),
     ),
 
     /*
