@@ -79,7 +79,7 @@ class Config
      */
     private function loadConfigFile()
     {
-        $file = App::getRootPath() . "/config/{$this->file}.php";
+        $file = App::getInstance()->getRootPath() . "/config/{$this->file}.php";
 
         if (file_exists($file)) {
             $this->config = require $file;
